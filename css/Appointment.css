@@ -1,0 +1,107 @@
+﻿body
+{
+
+}
+
+section{
+	background-image: url(../Foto/Department2.jpg);
+	background-repeat: no-repeat;
+	background-size: cover;
+	height:100vh;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.form{
+
+height:500px;
+width:400px;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.DivForm{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+.DivForm h1{
+margin-bottom:15%;
+font-size:40px;
+}
+
+.box{
+width:300px;
+border-bottom: 2px solid black;
+display:flex;
+flex-direction:row;
+margin-bottom:20px;
+justify-content:space-between;
+align-items:center;
+}
+
+.input{
+  color: black;
+  width: 200px;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 0;  
+  border: none;
+  outline: none;
+  background: none;
+  float:right;
+}
+
+.img{
+height:40px;
+margin-right:5px;
+}
+
+.submit{
+    
+  width: 100%;
+  background: none;
+  border:none;
+  background-color:#3492eb;
+  border-radius:20px;
+  color: white;
+  padding: 5px;
+  font-size: 18px;
+  cursor: pointer;
+  margin-top:30px;
+}
+
+.submit:hover{
+    background-color:#2d80cf;
+}
+
+.radio-input{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items:center;
+}
+.radio-input input{
+    
+    margin-right:10px;
+}
+
+.date input{
+  color: black;
+  width: 70px;
+  overflow: hidden;
+  font-size: 20px;
+  padding: 8px 0;
+  margin: 8px 3px;  
+  border: none;
+  outline: none;
+  background: none;
+  float:right;
+}
+

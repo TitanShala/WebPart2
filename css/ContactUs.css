@@ -1,0 +1,96 @@
+.ContactUsPage
+{   
+
+   
+}
+
+section{
+    margin: 0;
+    padding-top: 10%;
+    text-align: center;
+    background: url(../Foto/recepsion.jpg);
+    background-size: cover;
+    font-family: Century Gothic;
+    height:100vh;
+}
+
+.ContactUstitle
+{
+    
+    
+    color: black;
+}
+
+.ContactUstitle h1
+{
+    font-size: 32px;
+    line-height: 10px;
+}
+
+.ContactUstitlee h2
+{
+    font-size: 16px;
+}
+
+.ContactUsForm
+{
+    margin-top: 50px;
+}
+
+.form-controlContactUs
+{
+    width: 600px;
+    background: transparent;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid black;
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.ContactUsForm input
+{
+    height: 45px;
+}
+
+.form-control-submit
+{
+    background-color: lightblue;
+    border-color: transparent;
+    color: #fff;
+    font-size: 20px;
+    letter-spacing: 2px;
+    height: 50px;
+    margin-top: 20px;
+    transition: 0.4s ease;
+}
+
+form .form-control-submit:hover
+{
+    background-color: #f44336;
+    cursor: pointer;
+}
+
+.gotopbtn{
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	background: #24c1d6;
+	bottom: 40px;
+	right: 50px;
+  
+	text-decoration: none;
+	text-align: center;
+	line-height: 50px;
+	color: white;
+	font-size: 22px;
+  }
+
+html{
+	scroll-behavior: smooth;
+    }
+
+#name , #text , #email{
+    color:black;
+}

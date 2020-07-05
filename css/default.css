@@ -1,0 +1,211 @@
+/*@import url('httph://fonts.googleapis.com/css?family=Montserrat:500');*/
+
+body{
+//background-color: #e6e6e6;
+}
+
+
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+.HospitalName{
+font-family:sans-serif;
+color:#edf0f1;
+}
+
+.Nav li,a{
+
+    font-family: "Montserrat", sans-serif;
+    font-weight:500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration:none;
+}
+
+.SignInNav{
+	display:block;
+	font-family: "Montserrat", sans-serif;
+    font-weight:500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration:none;
+	padding: 9px 25px;
+	background-color: rgba(0,136,169,1);
+	border:none;
+	border-radius:15px;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+}
+
+.SignOutNav{
+	display:none;
+	font-family: "Montserrat", sans-serif;
+    font-weight:500;
+    font-size: 16px;
+    color: #edf0f1;
+    text-decoration:none;
+	padding: 9px 25px;
+	background-color: rgba(0,136,169,1);
+	border:none;
+	border-radius:15px;
+	cursor: pointer;
+	transition: all 0.3s ease 0s;
+}
+
+.SignOutNav:hover{
+background-color: rgba(0,136,169,0.8);
+}
+
+
+.SignInNav:hover{
+background-color: rgba(0,136,169,0.8);
+}
+
+.Nav{
+list-style:none;
+}
+
+.Nav li{
+display:inline-block;
+padding: 0px 20px;
+}
+
+.Nav li a{
+transition: all 0.3s ease 0s;
+}
+.Nav li a:hover{
+color: #0088a9;
+}
+
+
+
+header{
+display:flex;
+justify-content: space-between;
+align-content:center;
+padding: 30px 10%;
+background-color: #24252A;
+}
+
+
+body
+{
+//background-image: url("../Foto/dust_scratches.png");
+
+margin:0;
+padding:0;
+}
+
+footer{
+	
+	width: 100vw;
+	display: block;
+	overflow: hidden;
+	padding: 70px 0;
+	box-sizing: border-box;
+	background-color: #18181a;
+}
+
+.inner_footer{
+	display: block;
+	margin: 0 auto;
+	width: 1100px;
+	height: 100%;
+}
+
+.inner_footer .logo_container{
+	width: 35%;
+	float: left;
+	height: 100%;
+	display: block;
+}
+
+.inner_footer .logo_container img{
+	width: 70px;
+	height: auto;
+}
+
+.inner_footer .footer_third{
+	width: calc(21.6666666667% - 20px);
+	margin-right: 10px;
+	float: left;
+	height: 100%;
+}
+
+.inner_footer .footer_third:last-child{
+	margin-right: 0;
+}
+
+.inner_footer .footer_third h1{
+	
+	font-family: 'arial';
+	font-size: 22px;
+	color: white;
+	display: block;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+.inner_footer .footer_third a{
+	
+	font-family: 'arial';
+	font-size: 18px;
+	color: white;
+	display: block;
+	font-weight: 200;
+	width: 100%;
+	padding-bottom: 5px;
+}
+
+.inner_footer .footer_third li{
+	display: inline-block;
+	padding: 0 5px;
+	font-size: 20px;
+	color: white;
+}
+
+.inner_footer .footer_third span{
+	color: white;
+	
+	font-family: 'arial';
+	font-size: 16px;
+	font-weight: 200;
+	display: block;
+	width: 100%;
+	padding-top: 20px;
+}
+
+@media(max-width: 600px){
+	.footer .inner_footer{
+		width: 90%;
+	}
+
+	.inner_footer .logo_container,
+	.inner_footer .footer_third{
+		width: 100%;
+		margin-bottom: 30px;
+	}
+}
+
+.gotopbtn{
+	position: fixed;
+	width: 50px;
+	height: 50px;
+	background: #24c1d6;
+	bottom: 40px;
+	right: 50px;
+  
+	text-decoration: none;
+	text-align: center;
+	line-height: 50px;
+	color: white;
+	font-size: 22px;
+  }
+
+html{
+	scroll-behavior: smooth;
+	}

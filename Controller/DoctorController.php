@@ -1,6 +1,8 @@
 <?php
-include_once '../Models/doctorMapper.php';
 include_once '../Models/DoctorModel.php';
+include_once '../Models/doctorReader.php';
+include_once '../Models/doctorMapper.php';
+
 class DoctorController{
 
 	public function InsertDoctor($Name,$Surname,$Specialization,$Experience){
@@ -10,6 +12,14 @@ class DoctorController{
 		return true;
 	}
 
-}
+	public function GetDoctors(){
 
-	
+		$DoctorReader = new doctorReader();
+		$results = $DoctorReader->GetDoctors();
+		return $results ;
+
+	}
+
+	}
+
+	?>

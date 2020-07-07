@@ -94,7 +94,7 @@ background-color: #24252A;
 
 body
 {
-//background-image: url("../Foto/dust_scratches.png");
+//background-image: url("C:\xampp\htdocs\Project\Foto\dust_scratches.png");
 
 margin:0;
 padding:0;
@@ -198,7 +198,6 @@ footer{
 	background: #24c1d6;
 	bottom: 40px;
 	right: 50px;
-  
 	text-decoration: none;
 	text-align: center;
 	line-height: 50px;

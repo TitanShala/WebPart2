@@ -1,6 +1,6 @@
 <?php
-include 'DbConn.php';
-include 'DoctorModel.php';
+include_once 'DbConn.php';
+include_once 'DoctorModel.php';
 class DoctorMapper{
 
 	private $Doctor;
@@ -11,6 +11,8 @@ class DoctorMapper{
 		$this->connection= $obj->getConnection();
 		$this->Doctor=$Doctor;
 	}
+
+	
 
 	public function Insert($Name, $Surname, $Specialization, $Experience){
 		$sql = "INSERT INTO Doktori (Emri,Mbiemri,Specializimi,Pervoja) VALUES (:Name, :Surname, :Specialization, :Experience)";
@@ -26,3 +28,4 @@ class DoctorMapper{
 
 }
 
+?>

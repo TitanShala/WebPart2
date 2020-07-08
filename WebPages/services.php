@@ -5,28 +5,28 @@
     <meta charset="utf-8" />
     <title>Services</title>
 
-    <link rel="stylesheet" href="./css/default.css">
-    <link rel="stylesheet" href="./css/services.css">
-    <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="../css/all.min.css">
 </head>
 
 <body>
         <header>
 
-        <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="./Foto/logoS.png">
+        <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="../Foto/logoS.png">
         <h1 class="HospitalName">Peja</h1> <h1 class="HospitalName" style="color:#24c1d6;">Hospital</h1></div>
 
         <nav>
             <ul class="Nav">
-                <li><a href="index.html">Home</a></li>
+                <li><a href="index.php">Home</a></li>
                 <li><a href="#">Services</a></li>
-                <li><a href="contactUs.html">Contact</a></li>
-                <li><a href="Appointment.html">Appointment</a></li>
+                <li><a href="contactUs.php">Contact</a></li>
+                <li><a href="Appointment.php">Appointment</a></li>
              </ul>
          
         </nav>
-        <a href="Login.html" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
-        <a href="Login.html" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
+        <a href="Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
+        <a href="Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
         
         </header> 
         
@@ -36,10 +36,10 @@
               <h1>Our Services</h1>
               <span class="Departments-border"></span>
               <div class="picture-section">
-                    <div> <a href="#Department1"><img src="./Foto/cardiology.jpg" alt=""></a> <h3>Cardiology</h3> </div>
-                    <div> <a href="#Department2"><img src="./Foto/orl.jpg" alt=""></a> <h3>ORL</h3> </div>
-                    <div> <a href="#Department3"><img src="./Foto/dentistry.jpg" alt=""></a> <h3>Dentistry</h3> </div>
-                    <div> <a href="#Department4"><img src="./Foto/surgery.jpg" alt=""></a> <h3>Surgery</h3> </div>
+                    <div> <a href="#Department1"><img src="../Foto/cardiology.jpg" alt=""></a> <h3>Cardiology</h3> </div>
+                    <div> <a href="#Department2"><img src="../Foto/orl.jpg" alt=""></a> <h3>ORL</h3> </div>
+                    <div> <a href="#Department3"><img src="../Foto/dentistry.jpg" alt=""></a> <h3>Dentistry</h3> </div>
+                    <div> <a href="#Department4"><img src="../Foto/surgery.jpg" alt=""></a> <h3>Surgery</h3> </div>
                </div>
 
                <div class="DepartmentSection" id="Department1">
@@ -97,7 +97,7 @@
         <div class="inner_footer">
             <div class="logo_container">
                 <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="./Foto/logoS.png" >
+                <img src="../Foto/logoS.png" >
             </div>
 
             
@@ -105,9 +105,9 @@
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Links</h1>
                 <li><a href="#">Home</a></li><br />
-                <li><a href="services.html">Services</a></li><br />
-                <li><a href="contactUs.html">Contact</a></li><br />
-                <li><a href="Appointment.html">Appointment</a></li>
+                <li><a href="services.php">Services</a></li><br />
+                <li><a href="contactUs.php">Contact</a></li><br />
+                <li><a href="Appointment.php">Appointment</a></li>
             </div>
 
             <div class="footer_third">

@@ -5,9 +5,9 @@
     <meta charset="utf-8" />
     <title>Login Page</title>
 
-    <link rel="stylesheet" href="./css/LoginStyle.css">
-     <link rel="stylesheet" href="./css/default.css">
-     <link rel="stylesheet" href="./css/all.min.css">
+    <link rel="stylesheet" href="../css/LoginStyle.css">
+     <link rel="stylesheet" href="../css/default.css">
+     <link rel="stylesheet" href="../css/all.min.css">
 </head>
 
 
@@ -19,20 +19,20 @@
 
  <header>
          
-           <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="./Foto/logoS.png">
+           <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="../Foto/logoS.png">
            <h1 class="HospitalName">Peja</h1> <h1 class="HospitalName" style="color:#24c1d6;">Hospital</h1></div>
         <nav>
             <ul class="Nav">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contactUs.html">Contact</a></li>
-                <li><a href="Appointment.html">Appointment</a></li>
+                <li><a href="index.php">Home</a></li>
+                <li><a href="services.php">Services</a></li>
+                <li><a href="contactUs.php">Contact</a></li>
+                <li><a href="Appointment.php">Appointment</a></li>
              </ul>
          
         </nav>
         
         
-        <a href="Login.html" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
+        <a href="Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
         <a href="#" class="SignOutNav"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
        
       
@@ -111,17 +111,17 @@
         <div class="inner_footer">
             <div class="logo_container">
                 <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="./Foto/logoS.png" >
+                <img src="../Foto/logoS.png" >
             </div>
 
             
 
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="index.html">Home</a></li><br />
-                <li><a href="services.html">Services</a></li><br />
-                <li><a href="contactUs.html">Contact</a></li><br />
-                <li><a href="Appointment.html">Appointment</a></li>
+                <li><a href="index.phpl">Home</a></li><br />
+                <li><a href="services.php">Services</a></li><br />
+                <li><a href="contactUs.php">Contact</a></li><br />
+                <li><a href="Appointment.php">Appointment</a></li>
             </div>
 
             <div class="footer_third">
@@ -150,6 +150,6 @@
 
 </footer>
 
- <script src="./js/Login.js"></script>
+ <script src="../js/Login.js"></script>
 </body>
 </html>

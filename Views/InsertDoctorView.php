@@ -4,33 +4,49 @@ include_once '../Controller/DoctorController.php';
 		
 
 		$count = 0;
-		$Name = $_POST['Emri'];
+		//$Name = $_POST['Emri'];
+		$Name =filter_input(INPUT_POST,'Emri');
 
-		if($Name == "" || strlen($Name)<3){
+		if(strlen($Name)<3){
 			$Name_Error = "Name should not be null or shorter than 3";
 			$count++;
 		}
-		$surname = $_POST['SurnameInput'];
-		if($surname == "" || strlen($surname)<3){
+		//$surname =$_POST['SurnameInput'];
+		$surname =filter_input(INPUT_POST,'SurnameInput');
+		if(strlen($surname)<3){
 			$Surname_Error = "Surname should not be null or shorter than 3";
 			$count++;
 		}
-		$specialization = $_POST['SpecializationInput'];
-		if($specialization == "" || strlen($specialization)<3){
+		//$specialization = $_POST['SpecializationInput'];
+		$specialization =filter_input(INPUT_POST,'SpecializationInput');
+		if(strlen($specialization)<3){
 			$Specialization_Error = "Specialization should not be null or shorter than 3";
 			$count++;
 		}
-		$experience = $_POST['ExperienceInput'];
-		if($experience == "" || strlen($experience)<1){
-			$Experience_Error = "Experience should not be null or shorter than 1";
+		//$experience = $_POST['ExperienceInput'];
+		$experience =filter_input(INPUT_POST,'ExperienceInput');
+
+		$view = new InsertView();
+
+		if(strlen($experience)<1){
+			$Experience_Error = "Experience should not be null";
+			$count++;
+		}
+
+		else if(!$view->isInteger($experience)){
+			$Experience_Error = "Experience should be integer";
 			$count++;
 		}
 		if($count == 0){
-		$view = new InsertView();
 		$view->InsertDoctor($Name, $surname, $specialization, $experience);
-		$Result = 'Doctor Inserted succesfully';	
+		$Result = 'Doctor Inserted succesfully';
+		$Name ="";
+		$surname ="";
+		$specialization="";
+		$experience="";
+		
 			}	
-			include 'C:/xampp/htdocs/Project/WebPages/RegisterDoctor.php';
+			include 'C:/xampp/htdocs/GitProject/WebPages/RegisterDoctor.php';
 	}
 
 class InsertView{
@@ -38,9 +54,14 @@ class InsertView{
 	public function InsertDoctor($name, $surname, $specialization, $experience){
 		$controller = new DoctorController();
 		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience);
-			
-		
-	
+
 	}
+
+	
+	public function isInteger($input){
+		return(ctype_digit(strval($input)));
+}
+
+
 
 }

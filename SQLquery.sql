@@ -1,5 +1,5 @@
 create Database WebProject
-
+use WebProject
 create table Account(
 Id int primary key identity(1,1),
 Username varchar(20),
@@ -19,8 +19,9 @@ Stafi int ,
 foreign key(Stafi) references Account(Id)
 )
 
-select * from Doktori
+select TOP 4 *  
+from Doktori
+order by 
+Pervoja DESC
 
 
-
-select * from Account

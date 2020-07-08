@@ -4,8 +4,9 @@ $Controller = new DoctorController();
 $TopDoctors = $Controller->topDoctors();
 $count = count($TopDoctors);
 $search_result = $Controller->LoadTable();
-
+      
 ?>
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -44,7 +45,7 @@ $search_result = $Controller->LoadTable();
         </header>
 
 <section>
-    <div class="team-section" >
+    <div class="team-section" style="display:none;" >
         <h1>Our Doctors</h1>
             <span class="Doctorborder"></span>
                 <div class="picture-section">
@@ -77,11 +78,11 @@ $search_result = $Controller->LoadTable();
                     <span class="Doctorborder"></span>
                     <p><?php if($count>=4){ echo 'Specialization:'.$TopDoctors[3][3]."</br>Experience: ".$TopDoctors[3][4]." Years"; }?></p>
                 </div> 
-                <input type="button" value="See All Doctors" class="DocBTN" onclick="SeeAllClick();">
+                <input type="button" value="Check all doctors" class="DocBTN" onclick="SeeAllClick();">
     </div>
 
     
-            <form action="../WebPages/Doctors.php" method="post" class="SearchForm" style="display:none;" >
+            <form action="../WebPages/Doctors.php" method="post" class="SearchForm"  >
                  <div class="SearchFormInputContainer">
                      <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
                      <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
@@ -116,7 +117,7 @@ $search_result = $Controller->LoadTable();
                      </table>
                   </div>
                 </div>
-                <input type="button" value="See All Doctors" class="DocBTN" onclick="SeeTop4();">
+                <input type="button" value="See the most experienced" class="DocBTN" onclick="SeeTop4();">
          </form> 
     
 

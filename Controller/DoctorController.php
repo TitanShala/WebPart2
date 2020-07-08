@@ -42,6 +42,8 @@ class DoctorController{
         $query = "select TOP 4 *  from Doktori order by Pervoja DESC";
         return $this->filterTable($query);
     }
+
+
 	/*
 	function ClearInputs(){
     if(!isset($Name)){
@@ -92,3 +94,4 @@ class DoctorController{
 	}
 
 	?>
+

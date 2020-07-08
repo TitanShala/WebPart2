@@ -104,16 +104,16 @@
     </div>
  
 
-    <div class="team-section">
+    <div class="team-section" style="display:block">
         <h1>Our Doctors</h1>
-    <span class="border"></span>
-    <div class="picture-section">
-        <a href="Doctors.html#Doctor1"><img src="../Foto/DoctorProfile1.jpg" alt=""></a>
-        <a href="Doctors.html#Doctor2"><img src="../Foto/DoctorProfile2.jpg" alt=""></a>
-        <a href="Doctors.html#Doctor3"><img src="../Foto/DoctorProfile3.png" alt=""></a>
-        <a href="Doctors.html#Doctor4"><img src="../Foto/DoctorProfile4.jpg" alt=""></a>
-    </div>
-    <a href="Doctors.php">Read About Our Doctors</a>
+        <span class="border"></span>
+        <div class="picture-section">
+            <a href="Doctors.php#Doctor1"><img src="../Foto/DoctorProfile1.jpg" alt=""></a>
+            <a href="Doctors.php#Doctor2"><img src="../Foto/DoctorProfile2.jpg" alt=""></a>
+            <a href="Doctors.php#Doctor3"><img src="../Foto/DoctorProfile3.png" alt=""></a>
+            <a href="Doctors.php#Doctor4"><img src="../Foto/DoctorProfile4.jpg" alt=""></a>
+        </div>
+        <a href="Doctors.php">Read About Our Doctors</a>
     </div>
 
 

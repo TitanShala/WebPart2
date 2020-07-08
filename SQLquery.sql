@@ -19,9 +19,18 @@ Stafi int ,
 foreign key(Stafi) references Account(Id)
 )
 
+create table Reparti(
+Id int primary key identity(1,1),
+Emri varchar(20),
+NrDhoma int,
+Stafi int,
+foreign key(Stafi) references Account(Id)
+)
+
 select TOP 4 *  
 from Doktori
 order by 
 Pervoja DESC
+
 
 

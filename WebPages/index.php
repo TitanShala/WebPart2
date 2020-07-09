@@ -1,3 +1,19 @@
+<?php
+include_once '../Controller/DoctorController.php';
+@session_start();
+if(isset($_SESSION['Account'])){
+    $Account = $_SESSION['Account'];
+    $Username = $_SESSION['Username'];
+    $Controller = new DoctorController();
+    
+    $query = "select * from Account where Username ='".$Username."'";
+    
+    //E marrim Userin per ta perdorur emrin dhe mbiemri e tij per 'WELCOME'
+    $Result = $Controller->filterTable($query);
+    }
+
+
+?>
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -6,17 +22,18 @@
     <meta charset="utf-8" />
     <title>Web Project</title>
 
-        <link rel="stylesheet" href="../css/default.css">
+        <link rel="stylesheet" href="../css/Default.css">
+        <link rel="stylesheet" href="../css/LoginToIndex.css">
        <link rel="stylesheet" href="../css/all.css">
        <link rel="stylesheet" href="../css/Doctors.css">
        <link rel="stylesheet" href="../css/all.min.css">
-
-        
        
-
-       
-
-
+       <?php
+            if(isset($Account) ){
+                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                
+            }
+       ?>
 
 </head>
 
@@ -24,25 +41,38 @@
 
 
         <header>
-        
-            
-      
+            <div class="NavContainer">
+                <div style="display:flex; flex-direction:row;">
+                    <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
+                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                </div>
 
-        <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="../Foto/logoS.png">
-        <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div>
+                <nav>
+                    <ul class="Nav">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/services.php">Services</a></li>
+                        <li><a href="../WebPages/contactUs.php">Contact</a></li>
+                        <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
+                    </ul>  
+                </nav>
+            </div>
 
-        <nav>
-            <ul class="Nav">
-                <li><a href="#">Home</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="contactUs.php">Contact</a></li>
-                <li><a href="Appointment.php">Appointment</a></li>
-             </ul>
-         
-        </nav>
-        <a href="Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
-        <a href="Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
-        
+            <div class="LogAndManage" >
+                <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
+                <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
+                <div class="ManageDiv">
+                    <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
+                    <ul class="Manager">
+                        <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
+                            <ul>
+                                <li><a>ManageDoctors</a></li>
+                                <li><a>ManageUsers</a></li>
+                                <li><a>Departments</a></li>
+                            </ul>   
+                        </li>
+                    </ul>
+                </div>
+            </div>   
         </header>
   
    <section>
@@ -50,6 +80,7 @@
      
         <div class="bodyh1">
             <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
+            <?php if(isset($Result)){echo '</br> </br> <h3 style="display:inline;font-size: 7vh; color:white;">Welcome</br></h3> <h3 style="color:#24c1d6; font-size:7vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h3>' ;} ?>
         </div>
   
      </div>
@@ -60,7 +91,10 @@
             <div style="padding-top:5%;">
                 <h1>Welcome to Our Hospital</h1>
                 <p>Need to make an appointment?</p>
-               <a href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
+                <?php if(!isset($Account))
+                    echo '<h4 style="color:rgba(0,136,169,1);; margin-top:20px;">Please sign in to make an appointment</h4>';
+                ?>
+               <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
             </div>
         </div>
         <div class="schedule">
@@ -113,7 +147,7 @@
             <a href="Doctors.php#Doctor3"><img src="../Foto/DoctorProfile3.png" alt=""></a>
             <a href="Doctors.php#Doctor4"><img src="../Foto/DoctorProfile4.jpg" alt=""></a>
         </div>
-        <a href="Doctors.php">Read About Our Doctors</a>
+        <a style="color:blue;" href="Doctors.php">Read About Our Doctors</a>
     </div>
 
 

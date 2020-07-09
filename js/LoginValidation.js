@@ -5,14 +5,24 @@
         const password = document.getElementById('password');
         const form= document.getElementById('form');
         const errorElement = document.getElementById('error');
-        var LogedIn = false ;
+        const rbs = document.querySelectorAll('input[name="account"]');
+        // var LogedIn = false ;
 
       
 
         //Login Submit 
         form.addEventListener('submit', (e) =>{
-            console.log('aa');
+            
             let messages = [];
+            let selectedValue ;
+            
+            for (const rb of rbs) {
+            if (rb.checked) {
+                selectedValue = rb.value;
+                break; }
+            }
+
+
             
             if(name.value === '' || name.value == null){
                 messages.push('Username is required');
@@ -37,25 +47,32 @@
             else if(password.value.length >= 20){
                 messages.push('Password must be shorter than 20 characters');
             }
+            
+            if(selectedValue == null){  
+                messages.push('Choose one account type');
+            }
+
+
+
 
             if(messages.length > 0){
             e.preventDefault();
             errorElement.innerText = messages.join('! ');           
             }
 
-         if(messages.length < 1){
+        //  if(messages.length < 1){
             
             
             
-            var signin = document.querySelector('.SignInNav');
-            var signout = document.querySelector('.SignOutNav');
-            LogedIn = true ;
-            SaveLoginCondition ();
+        //     var signin = document.querySelector('.SignInNav');
+        //     var signout = document.querySelector('.SignOutNav');
+        //     LogedIn = true ;
+        //     SaveLoginCondition ();
             
         
-            signin.style.display='none'; 
-            signout.style.display = 'block';
-            }
+        //     signin.style.display='none'; 
+        //     signout.style.display = 'block';
+        //     }
             
 
         })

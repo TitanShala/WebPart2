@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(isset($_SESSION['Account'])){
+    $Account = $_SESSION['Account'];
+    }
+?>
+
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -5,30 +12,54 @@
     <meta charset="utf-8" />
     <title>Services</title>
 
-    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/Default.css">
     <link rel="stylesheet" href="../css/services.css">
     <link rel="stylesheet" href="../css/all.min.css">
+
+    <?php
+            if(isset($Account) ){
+                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                
+            }
+       ?>
 </head>
 
 <body>
+
         <header>
+            <div class="NavContainer">
+                <div style="display:flex; flex-direction:row;">
+                    <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
+                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                </div>
 
-        <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="../Foto/logoS.png">
-        <h1 class="HospitalName">Peja</h1> <h1 class="HospitalName" style="color:#24c1d6;">Hospital</h1></div>
+                <nav>
+                    <ul class="Nav">
+                        <li><a href="../WebPages/index.php">Home</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="../WebPages/contactUs.php">Contact</a></li>
+                        <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
+                    </ul>  
+                </nav>
+            </div>
 
-        <nav>
-            <ul class="Nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="#">Services</a></li>
-                <li><a href="contactUs.php">Contact</a></li>
-                <li><a href="Appointment.php">Appointment</a></li>
-             </ul>
-         
-        </nav>
-        <a href="Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
-        <a href="Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
-        
-        </header> 
+            <div class="LogAndManage" >
+                <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
+                <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
+                <div class="ManageDiv">
+                    <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
+                    <ul class="Manager">
+                        <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
+                            <ul>
+                                <li><a>ManageDoctors</a></li>
+                                <li><a>ManageUsers</a></li>
+                                <li><a>Departments</a></li>
+                            </ul>   
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+        </header>
         
 
         <section> 

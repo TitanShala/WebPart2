@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    session_destroy();
+?>
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -5,38 +9,47 @@
     <meta charset="utf-8" />
     <title>Login Page</title>
 
-    <link rel="stylesheet" href="../css/LoginStyle.css">
-     <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/Login.css">
+     <link rel="stylesheet" href="../css/Default.css">
      <link rel="stylesheet" href="../css/all.min.css">
 </head>
 
-
-
-
-
-
 <body>
 
- <header>
-         
-           <div style="display:flex; flex-direction:row;"><img style="width: 40px; height: auto;;" src="../Foto/logoS.png">
-           <h1 class="HospitalName">Peja</h1> <h1 class="HospitalName" style="color:#24c1d6;">Hospital</h1></div>
-        <nav>
-            <ul class="Nav">
-                <li><a href="index.php">Home</a></li>
-                <li><a href="services.php">Services</a></li>
-                <li><a href="contactUs.php">Contact</a></li>
-                <li><a href="Appointment.php">Appointment</a></li>
-             </ul>
-         
-        </nav>
-        
-        
-        <a href="Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
-        <a href="#" class="SignOutNav"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>
-       
-      
-</header>
+        <header>
+            <div class="NavContainer">
+                <div style="display:flex; flex-direction:row;">
+                    <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
+                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                </div>
+
+                <nav>
+                    <ul class="Nav">
+                        <li><a href="../WebPages/index.php">Home</a></li>
+                        <li><a href="../WebPages/services.php">Services</a></li>
+                        <li><a href="../WebPages/contactUs.php">Contact</a></li>
+                        <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
+                    </ul>  
+                </nav>
+            </div>
+
+            <div class="LogAndManage" >
+                <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
+                <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
+                <div class="ManageDiv">
+                    <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
+                    <ul class="Manager">
+                        <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
+                            <ul>
+                                <li><a>ManageDoctors</a></li>
+                                <li><a>ManageUsers</a></li>
+                                <li><a>Departments</a></li>
+                            </ul>   
+                        </li>
+                    </ul>
+                </div>
+            </div>   
+        </header>
 
 
 <section class="home">
@@ -49,20 +62,30 @@
          <div class="login-box">
 
          <p style="margin-top:60px;" id="error"></p>
-          <form id="form" action="index.html">
+          <form id="form" action="../Views/LoginView.php" method="post">
             <h1>Login</h1>
              <div class="textbox">
                 <i class="fas fa-user"></i>
-                <input id="name" type="text" placeholder="Username" required>
+                <input id="name" type="text" placeholder="Username" name="LoginUsername" required>
              </div>
 
              <div class="textbox">
                 <i class="fas fa-lock"></i>
-                <input id="password" type="password" placeholder="Password" required>
+                <input id="password" type="password" placeholder="Password" name="LoginPassword" required>
              </div>
 
+             <div class="RadioInputs">
+                        Admin: <input type="radio" id="Admin" name="account" value="Admin">
+                        User: <input type="radio" id="User" name="account" value="User"> 
+             </div>                     
+
+             <?php
+                if(isset($LoginError)){ ?>
+                    <p style="color:red;"><?php echo $LoginError; ?></p>     
+              <?php  } ?>
+
              <div class="LoginButtons">
-                 <input  type="submit" class="btnLogin" value="Log in">
+                 <input  type="submit" class="btnLogin" value="Log in" name="LoginBtn">
                  <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
                  <input type="button" class="btnNotRegistered" value="Not Registered Yet?" onclick="NotRegistedYet();">
              </div>
@@ -150,6 +173,6 @@
 
 </footer>
 
- <script src="../js/Login.js"></script>
+ <script src="../js/LoginValidation.js"></script>
 </body>
 </html>

@@ -62,9 +62,9 @@
 	width:600px;
 	margin:auto;
 	font-size:20px;
-	//color:white;
+	/* //color:white; */
 	color:black;
-	//color:rgba(0,136,169,1);
+	/* //color:rgba(0,136,169,1); */
 	height: 0;
 	overflow: hidden;
 }

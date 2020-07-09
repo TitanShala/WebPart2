@@ -1,10 +1,4 @@
-/*@import url('httph://fonts.googleapis.com/css?family=Montserrat:500');*/
-
-body{
-//background-color: #e6e6e6;
-}
-
-
+@import url('httph://fonts.googleapis.com/css?family=Montserrat:500');
 
 *{
 box-sizing:border-box;
@@ -17,16 +11,30 @@ font-family:sans-serif;
 color:#edf0f1;
 }
 
-.Nav li,a{
+.NavContainer{
+	display:flex;
+	flex-direction:row;
+	align-items:center;
+}
 
+.Nav{
+	margin-left:50px;
+}
+
+.Nav li,a{
     font-family: "Montserrat", sans-serif;
     font-weight:500;
-    font-size: 16px;
-    color: #edf0f1;
+    font-size: 18px;
+	color: #edf0f1;	
     text-decoration:none;
+} 
+
+.AppointmentAnch{	
+	display:none;
 }
 
 .SignInNav{
+	width:150px;
 	display:block;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
@@ -39,9 +47,11 @@ color:#edf0f1;
 	border-radius:15px;
 	cursor: pointer;
 	transition: all 0.3s ease 0s;
+	text-align:center;
 }
 
 .SignOutNav{
+	width:150px;
 	display:none;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
@@ -54,9 +64,10 @@ color:#edf0f1;
 	border-radius:15px;
 	cursor: pointer;
 	transition: all 0.3s ease 0s;
+	text-align:center;
 }
 
-.SignOutNav:hover{
+.SignOutNav:hover{	
 background-color: rgba(0,136,169,0.8);
 }
 
@@ -76,7 +87,7 @@ padding: 0px 20px;
 
 .Nav li a{
 transition: all 0.3s ease 0s;
-}
+} 
 .Nav li a:hover{
 color: #0088a9;
 }
@@ -87,15 +98,14 @@ header{
 display:flex;
 justify-content: space-between;
 align-content:center;
-padding: 30px 10%;
+padding: 30px 5%;
 background-color: #24252A;
 }
 
 
 body
 {
-//background-image: url("C:\xampp\htdocs\Project\Foto\dust_scratches.png");
-
+/* background-image: url("C:\xampp\htdocs\Project\Foto\dust_scratches.png"); */
 margin:0;
 padding:0;
 }
@@ -208,3 +218,71 @@ footer{
 html{
 	scroll-behavior: smooth;
 	}
+
+.LogAndManage{
+	display:flex;
+	flex-direction:column;
+}
+
+.ManageDiv{
+	
+	display:flex;
+	flex-direction:row;
+}
+
+.ManagePhoto{
+	height:40px;
+}
+
+.Manager{
+	display:none;
+	margin-top:20px;
+	padding:0px;
+	list-style:none;
+}	
+
+.Manager li{
+	
+	margin-left:0px;
+	float:right;
+	width:150px;
+	height:40px;
+	background-color:#24c1d6;
+	opacity: .8;
+	line-height:40px;
+	text-align:center;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.ImgAnchor{
+	height:100%;
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.Manager li a{
+	font-family: "Montserrat", sans-serif;
+    font-weight:500;
+	font-size: 16px; 
+	display:block;
+	color: #edf0f1;	
+    text-decoration:none;
+}
+
+.Manager li a:hover{
+	background-color: rgba(0,136,169,0.8);
+}
+
+.Manager li ul li{
+	display:none;
+	width:200px;
+}
+
+.Manager li:hover ul li{
+	display:block;
+}
+

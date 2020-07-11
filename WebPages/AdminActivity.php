@@ -5,11 +5,17 @@ $search_result = $Controller->LoadTableDepartment();
 
 $search_result1 = $Controller->LoadTableDoctor();
 
-session_start();
+@session_start();
 if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
-    }
+$Account = $_SESSION['Account'];
+}
+else{
+
+header("Location: ../WebPages/Login.php");
+}
       
+$GetInfo = "Select * from HospitalInfo" ;
+$info = $Controller->filterTable($GetInfo);   
 ?> 
 
 <!DOCTYPE html>
@@ -19,7 +25,7 @@ if(isset($_SESSION['Account'])){
 
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
+    <link rel="stylesheet" href="../css/RegisterDoctor.css"> 
     <link rel="stylesheet" href="../css/Index.css"> 
       
     <?php
@@ -35,11 +41,11 @@ if(isset($_SESSION['Account'])){
 </head>
 <body>
 
-        <header>
+<header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
-                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                    <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
                 <nav>
@@ -60,9 +66,11 @@ if(isset($_SESSION['Account'])){
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a href="#">ManageDoctors</a></li>
-                                <li><a>ManageUsers</a></li>
-                                <li><a>Departments</a></li>
+                                <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
+                                <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
+                                <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
+                                
                             </ul>   
                         </li>
                     </ul>
@@ -70,7 +78,7 @@ if(isset($_SESSION['Account'])){
             </div>   
         </header>
 
-        <section style="display:flex; flex-direction:row; justify-content: space-around; padding-top:10%;" >
+        <section style="min-height:80vh; display:flex; flex-direction:row; justify-content:space-around;" >
 
 
         <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm"  style="display:flex; flex-direction:column;">
@@ -83,10 +91,11 @@ if(isset($_SESSION['Account'])){
                  <table style="border:1px black ; line-height:25px" class="table sticky">
                     <thead>
                     <tr>
-				        <th colspan=4><h3>Admin Activity to Doctors</h3> </th>
+				        <th colspan=5><h3>Admin Activity to Doctors</h3> </th>
 				    </tr>
 
 			        <tr>
+                        <th> Date </th>
 						<th> Stafi </th>
 		                <th> Doctor Name </th>
                         <th> Doctor ID </th>
@@ -103,7 +112,7 @@ if(isset($_SESSION['Account'])){
                       ?>
                     
                     <tr>
-                        
+                        <td><?php echo $row['Data'];?></td>
                         <td><?php echo $row['Stafi'];?></td>
                         <td><?php echo $result[0][1]." ".$result[0][2];?></td>
                         <td><?php echo $row['Doctor'];?></td>
@@ -130,10 +139,11 @@ if(isset($_SESSION['Account'])){
                  <table style="border:1px black ; line-height:25px" class="table sticky">
                     <thead>
                     <tr>
-				        <th colspan=4><h3>Admin Activity to Departments</h3> </th>
+				        <th colspan=5><h3>Admin Activity to Departments</h3> </th>
 				    </tr>
 
 			        <tr>
+                        <th> Date </th>
 						<th> Stafi </th>
 		                <th> Department:Name </th>
                         <th> Department:ID </th>
@@ -150,7 +160,7 @@ if(isset($_SESSION['Account'])){
                       ?>
                     
                     <tr>
-                        
+                        <td><?php echo $row['Data'];?></td>
                         <td><?php echo $row['Stafi'];?></td>
                         <td><?php echo $result[0][1];?></td>
                         <td><?php echo $row['Reparti'];?></td>
@@ -169,52 +179,52 @@ if(isset($_SESSION['Account'])){
         </section>
 
 
+        <footer>
         
-<footer>
-<div class="footer">
-        <div class="inner_footer">
-            <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="../Foto/logoS.png" >
+
+        <div class="footer">
+            <div class="inner_footer">
+                <div class="logo_container">
+                    <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                    <img src="../Foto/logoS.png" >
+                </div>
+    
+                
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Links</h1>
+                    <li><a href="#">Home</a></li><br />
+                    <li><a href="services.php">Services</a></li><br />
+                    <li><a href="contactUs.php">Contact</a></li><br />
+                    <li><a href="Appointment.php">Appointment</a></li>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Social</h1>
+                    <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+    
+                    <address>
+                        <span>
+                            <?php echo $info[0][8] ?> <br />
+                            
+                            <?php echo $info[0][9] ?>
+                        </span>
+                    </address>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Contact Us</h1>
+                        <li>Email: <?php echo $info[0][7] ?></li>
+                        <li>Phone: <?php echo $info[0][6] ?></li>
+                </div>
+                <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
-
-            
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="index.php">Home</a></li><br />
-                <li><a href="services.php">Services</a></li><br />
-                <li><a href="contactUs.php">Contact</a></li><br />
-                <li><a href="#">About</a></li>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Social</h1>
-                <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-
-                <address>
-                    <span>
-                        PejaHospital <br />
-                        Kosove & Peje <br />
-                        Bill Clinton, 231 <br />
-                    </span>
-                </address>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: Spitali@gmail.com</li>
-                    <li>Phone: +383 123456</li>
-            </div>
-            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i> </a>
         </div>
-    </div>
+    
+    </footer>
 
-</footer>
 
-
- <script src="../js/Manage.js"></script>
 </body>
 </html>

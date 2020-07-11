@@ -66,8 +66,9 @@ if(isset($_POST['SubmitInputt'])){
                 $getresults = $connection->prepare($query);
                 $getresults->execute();
             }
-
-            $Manage->InsertDepartmentManage($Admin,$IdE,'Edited'); 
+            $dt = new DateTime();
+            $date = $dt->format('Y-m-d H:i:s');
+            $Manage->InsertDepartmentManage($Admin,$IdE,'Edited',$date); 
 
             $IdE = '';
             $NameE = '';

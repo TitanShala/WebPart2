@@ -98,7 +98,9 @@ $Admin = $_SESSION['Username'];
 						
 			}
 			$Manage = new ManageController();
-			$Manage->InsertDoctorManage($Admin,$DocID,'Edited'); 
+			$dt = new DateTime();
+			$date = $dt->format('Y-m-d H:i:s');
+			$Manage->InsertDoctorManage($Admin,$DocID,'Edited',$date); 
 
 			$NullError = "" ;
 			$resultEdit="Doctor edited succesfully!";

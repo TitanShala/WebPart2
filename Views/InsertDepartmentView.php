@@ -39,7 +39,9 @@
             
             $result = $Controller->filterTable($sql);
             $id = $result[0][0];
-            $Manage->InsertDepartmentManage($Admin,$id,'Inserted'); 
+            $dt = new DateTime();
+            $date = $dt->format('Y-m-d H:i:s');
+            $Manage->InsertDepartmentManage($Admin,$id,'Inserted',$date); 
                       
             $Name = '' ;
             $Nr = '' ;

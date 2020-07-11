@@ -3,6 +3,13 @@ session_start();
 if(isset($_SESSION['Account'])){
     $Account = $_SESSION['Account'];
     }
+
+    //Controllerin
+    include_once '../Controller/DepartmentController.php';
+    $Controller = new DepartmentController();
+    $Search_Results = $Controller->loadTable();
+    $GetInfo = "Select * from HospitalInfo" ;
+    $info = $Controller->filterTable($GetInfo);   
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +20,7 @@ if(isset($_SESSION['Account'])){
     <title>Services</title>
 
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/services.css">
+    <link rel="stylesheet" href="../css/services1.css">
     <link rel="stylesheet" href="../css/all.min.css">
 
     <?php
@@ -29,17 +36,17 @@ if(isset($_SESSION['Account'])){
 
 <body>
 
-        <header>
+<header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
-                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                    <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="../WebPages/index.php">Home</a></li>
-                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
@@ -54,9 +61,11 @@ if(isset($_SESSION['Account'])){
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a href="../WebPages/RegisterDoctor.php">ManageDoctors</a></li>
-                                <li><a>ManageUsers</a></li>
-                                <li><a>Departments</a></li>
+                                <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
+                                <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
+                                <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
+                                
                             </ul>   
                         </li>
                     </ul>
@@ -66,56 +75,43 @@ if(isset($_SESSION['Account'])){
         
 
         <section> 
-            <div class="departments-section">
+            <div class="departments-section" style="text-align:center;">
               <h1>Our Services</h1>
               <span class="Departments-border"></span>
-              <div class="picture-section">
-                    <div> <a href="#Department1"><img src="../Foto/cardiology.jpg" alt=""></a> <h3>Cardiology</h3> </div>
-                    <div> <a href="#Department2"><img src="../Foto/orl.jpg" alt=""></a> <h3>ORL</h3> </div>
-                    <div> <a href="#Department3"><img src="../Foto/dentistry.jpg" alt=""></a> <h3>Dentistry</h3> </div>
-                    <div> <a href="#Department4"><img src="../Foto/surgery.jpg" alt=""></a> <h3>Surgery</h3> </div>
-               </div>
+              
+              <div class="SearchFormInputContainer" style="margin-bottom:50px;">
+                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+                 </div>
 
-               <div class="DepartmentSection" id="Department1">
-                    <span class="DepartmentName">Cardiology</span>       
+              <div class="picture-section" >
+                    <?php if(count($Search_Results) < 1){
+                        echo '<h2>There are no departments registred</h2>';
+                    }
+                    foreach($Search_Results as $result){
+                        $DepartmentId = "'#Department".$result['Id']."'";
+                        ?>
+                    <div style="float:left; margin:50px 50px;"> <a href=<?php echo $DepartmentId?> ><img src="../Foto/cardiology.jpg" alt=""></a>
+                     <h3 style="background-color:rgba(0,136,169,1);"><?php echo $result['Emri']."</br> Number of rooms: ".$result['NrDhoma'] ;?> </h3> </div>
+                    
+                    <?php }?>
+               </div>
+                
+               <!-- <?php
+               foreach($Search_Results as $result){ 
+                $DepartmentId2 = "'#Department".$result['Id']."'";
+                   ?>
+               <div class="DepartmentSection" id= <?php echo $DepartmentId2;?> >
+                    <span class="DepartmentName"><?php echo $result['Emri'] ?></span>       
                     <span class="Departmentborder"></span>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pellentesque tristique egestas. Etiam euismod est vel mattis aliquet. 
-                        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Cras placerat placerat porttitor. 
-                        Nunc lorem nunc, varius non laoreet in, efficitur sed urna. Phasellus lacinia leo ac ligula tincidunt posuere. 
-                        Maecenas non ornare mauris, eget sollicitudin ante. Phasellus leo turpis, sagittis eget purus ac, volutpat dictum est.
+                        <?php echo $result['Emri']." department has ".$result['NrDhoma']." number of rooms" ; ?>
                     </p>        
                </div>
+               
+               <?php } ?> -->
 
-               <div class="DepartmentSection" id="Department2">
-                    <span class="DepartmentName">ORL</span>       
-                    <span class="Departmentborder"></span>
-                    <p>
-                        Turpis egestas integer eget aliquet nibh praesent tristique. Vestibulum lorem sed risus ultricies tristique nulla aliquet. 
-                        Iaculis at erat pellentesque adipiscing commodo elit at imperdiet dui. Luctus venenatis lectus magna fringilla urna porttitor 
-                        rhoncus dolor purus. Sit amet luctus venenatis lectus magna fringilla.
-                    </p>        
-               </div>
 
-               <div class="DepartmentSection" id="Department3">
-                    <span class="DepartmentName">Dentistry</span>       
-                    <span class="Departmentborder"></span>
-                    <p>
-                        Quam viverra orci sagittis eu volutpat odio facilisis mauris sit. Pharetra pharetra massa massa ultricies. 
-                        Eget aliquet nibh praesent tristique magna sit. Fermentum odio eu feugiat pretium nibh ipsum consequat. 
-                        Pellentesque nec nam aliquam sem et tortor consequat id.
-                    </p>        
-               </div>
-
-               <div class="DepartmentSection" id="Department4">
-                    <span class="DepartmentName">Surgery</span>       
-                    <span class="Departmentborder"></span>
-                    <p>
-                        Mauris a diam maecenas sed enim ut. Augue lacus viverra vitae congue. 
-                        Commodo odio aenean sed adipiscing. 
-                        Faucibus et molestie ac feugiat sed lectus vestibulum mattis ullamcorper.
-                    </p>        
-               </div>
 
             </div>
         </section>
@@ -123,52 +119,51 @@ if(isset($_SESSION['Account'])){
 
 
 
-
-   <footer>
+        <footer>
         
 
-    <div class="footer">
-        <div class="inner_footer">
-            <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="../Foto/logoS.png" >
+        <div class="footer">
+            <div class="inner_footer">
+                <div class="logo_container">
+                    <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                    <img src="../Foto/logoS.png" >
+                </div>
+    
+                
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Links</h1>
+                    <li><a href="#">Home</a></li><br />
+                    <li><a href="services.php">Services</a></li><br />
+                    <li><a href="contactUs.php">Contact</a></li><br />
+                    <li><a href="Appointment.php">Appointment</a></li>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Social</h1>
+                    <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+    
+                    <address>
+                        <span>
+                            <?php echo $info[0][8] ?> <br />
+                            
+                            <?php echo $info[0][9] ?>
+                        </span>
+                    </address>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Contact Us</h1>
+                        <li>Email: <?php echo $info[0][7] ?></li>
+                        <li>Phone: <?php echo $info[0][6] ?></li>
+                </div>
+                <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
-
-            
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="#">Home</a></li><br />
-                <li><a href="services.php">Services</a></li><br />
-                <li><a href="contactUs.php">Contact</a></li><br />
-                <li><a href="Appointment.php">Appointment</a></li>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Social</h1>
-                <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-
-                <address>
-                    <span>
-                        PejaHospital <br />
-                        Kosove & Peje <br />
-                        Bill Clinton, 231 <br />
-                    </span>
-                </address>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: Spitali@gmail.com</li>
-                    <li>Phone: +383 123456</li>
-            </div>
-            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
         </div>
-    </div>
-
-</footer>
+    
+    </footer>
 </body>
 </html>
 

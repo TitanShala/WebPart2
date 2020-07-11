@@ -13,7 +13,7 @@ public function __construct(){
 function LoadTableDepartment(){
     if(isset($_POST['SearchSubmit']) ){
         $SearchInput = $_POST['SearchInput'];
-        $query = "select * from DepartmentManage where Stafi like '%".$SearchInput."%' OR Reparti like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%'"; 
+        $query = "select * from DepartmentManage where Stafi like '%".$SearchInput."%' OR Reparti like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%' OR Data like'%".$SearchInput."%'"; 
         $search_result = $this->filterTable($query);
     }
     else{
@@ -26,7 +26,7 @@ function LoadTableDepartment(){
     function LoadTableDoctor(){
         if(isset($_POST['SearchSubmit1']) ){
             $SearchInput = $_POST['SearchInput1'];
-            $query = "select * from DoctorManage where Stafi like '%".$SearchInput."%' OR Doctor like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%'"; 
+            $query = "select * from DoctorManage where Stafi like '%".$SearchInput."%' OR Doctor like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%' OR Data like'%".$SearchInput."%'"; 
             $search_result = $this->filterTable($query);
         }
         else{
@@ -44,21 +44,23 @@ function filterTable($query){
     return $results ;        
 }
 
-public function InsertDepartmentManage($Admin, $Department, $Activity){
-   $sql = "INSERT INTO DepartmentManage (Stafi,Reparti,Aktiviteti) VALUES (:Admin,:Department,:Activity)";
+public function InsertDepartmentManage($Admin, $Department, $Activity, $Date){
+   $sql = "INSERT INTO DepartmentManage (Stafi,Reparti,Aktiviteti,Data) VALUES (:Admin,:Department,:Activity,:Date)";
    $statement = $this->connection->prepare($sql);
    $statement->bindParam(":Admin", $Admin);
    $statement->bindParam(":Department", $Department);
    $statement->bindParam(":Activity", $Activity);
+   $statement->bindParam(":Date", $Date);
    $statement->execute();
 }
 
-public function InsertDoctorManage($Admin, $Doctor, $Activity){
-   $sql = "INSERT INTO DoctorManage (Stafi,Doctor,Aktiviteti) VALUES (:Admin,:Doctor,:Activity)";
+public function InsertDoctorManage($Admin, $Doctor, $Activity, $Date){
+   $sql = "INSERT INTO DoctorManage (Stafi,Doctor,Aktiviteti,Data) VALUES (:Admin,:Doctor,:Activity,:Date)";
    $statement = $this->connection->prepare($sql);
    $statement->bindParam(":Admin", $Admin);
    $statement->bindParam(":Doctor", $Doctor);
    $statement->bindParam(":Activity", $Activity);
+   $statement->bindParam(":Date", $Date);
    $statement->execute();
 }
 public function isInteger($input){

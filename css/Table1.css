@@ -28,7 +28,7 @@
 
         }
         #table-wrapper table * {
-          //background:yellow;
+          /* background:rgba(0,136,169,1); */
           color:black;
         }
         #table-wrapper table thead th .text {
@@ -71,7 +71,8 @@
             text-align:center;
         }
         table th{
-            background: #888888;
+          background:  rgba(0,136,169,1);;
+            /* background: #888888; */
             color: #ffffff;
         }
 

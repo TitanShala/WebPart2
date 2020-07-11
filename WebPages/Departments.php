@@ -1,3 +1,8 @@
+<?php
+include_once '../Controller/DepartmentController.php';
+$Controller = new DepartmentController();
+$GetInfo = "Select * from HospitalInfo" ;
+$info = $Controller->filterTable($GetInfo);   
 ?>
 <!DOCTYPE html>
 
@@ -28,11 +33,11 @@
 <body>
 
 
-        <header>
+<header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
-                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                    <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
                 <nav>
@@ -54,8 +59,10 @@
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
                                 <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
-                                <li><a>ManageUsers</a></li>
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
+                                <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
+                                
                             </ul>   
                         </li>
                     </ul>
@@ -68,52 +75,52 @@
 
             </div>
    </section>
+   
    <footer>
         
 
-    <div class="footer">
-        <div class="inner_footer">
-            <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="../Foto/logoS.png" >
+        <div class="footer">
+            <div class="inner_footer">
+                <div class="logo_container">
+                    <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                    <img src="../Foto/logoS.png" >
+                </div>
+    
+                
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Links</h1>
+                    <li><a href="#">Home</a></li><br />
+                    <li><a href="services.php">Services</a></li><br />
+                    <li><a href="contactUs.php">Contact</a></li><br />
+                    <li><a href="Appointment.php">Appointment</a></li>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Social</h1>
+                    <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+    
+                    <address>
+                        <span>
+                            <?php echo $info[0][8] ?> <br />
+                            
+                            <?php echo $info[0][9] ?>
+                        </span>
+                    </address>
+                </div>
+    
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Contact Us</h1>
+                        <li>Email: <?php echo $info[0][7] ?></li>
+                        <li>Phone: <?php echo $info[0][6] ?></li>
+                </div>
+                <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
-
-            
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="#">Home</a></li><br />
-                <li><a href="services.php">Services</a></li><br />
-                <li><a href="contactUs.php">Contact</a></li><br />
-                <li><a href="Appointment.php">Appointment</a></li>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Social</h1>
-                <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-
-                <address>
-                    <span>
-                        PejaHospital <br />
-                        Kosove & Peje <br />
-                        Bill Clinton, 231 <br />
-                    </span>
-                </address>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: Spitali@gmail.com</li>
-                    <li>Phone: +383 123456</li>
-            </div>
-            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
         </div>
-    </div>
-
-</footer>
-
+    
+    </footer>
   
 
 </body>

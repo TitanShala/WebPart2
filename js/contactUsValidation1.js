@@ -14,32 +14,26 @@ form.addEventListener('submit', (e) =>{
     //Validate the name
 	if(name.value === '' || name.value == null){
 		messages.push('Fullname is required');
-		console.log('name required');
 		}
 
-	else if(name.value.length <= 6){
+	else if(name.value.length < 6){
                 messages.push('Full name must be longer than 6 characters');
-				console.log('name shorter than 6');
             }
 
-    else if(name.value.length >= 20){
-                messages.push('Full name must be shorter than 20 characters');
-                console.log('name larger than 20');
+    else if(name.value.length > 40){
+                messages.push('Full name should not be longer than 40 characters');
             }
 
     if(text.value === '' || text.value == null){
 		messages.push('Text message is required');
-		console.log('Text message required');
 		}
 
     else if(text.value.length <= 10){
-		messages.push('Your message should be longer');
-		console.log('Your message should be longer');
+		messages.push('Your message should be longer than 10 characters');
 		}
 
     else if(text.value.length >= 500){
-		messages.push('Your message should be shorter');
-		console.log('Your message should be shorter');
+		messages.push('Your message should not be longer than 500 characters');
 		}
 
     if(messages.length > 0){

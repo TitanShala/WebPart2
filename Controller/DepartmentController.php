@@ -20,18 +20,32 @@ public function InsertDepartment($Name, $Nr, $Admin){
 }
 
 
+// function LoadTable(){
+// if(isset($_POST['SearchSubmit']) ){
+//     $SearchInput = $_POST['SearchInput'];
+//     $query = "select * from Reparti where Id like '%".$SearchInput."%' OR Emri like '%".$SearchInput."%' OR NrDhoma like '%".$SearchInput."%' OR Stafi like '%".$SearchInput."%'"; 
+//     $search_result = $this->filterTable($query);
+// }
+// else{
+//     $query="Select * FROM Reparti";
+//     $search_result = $this->filterTable($query);
+// }
+// return $search_result;
+// }
+
+
 function LoadTable(){
-if(isset($_POST['SearchSubmit']) ){
-    $SearchInput = $_POST['SearchInput'];
-    $query = "select * from Reparti where Id like '%".$SearchInput."%' OR Emri like '%".$SearchInput."%' OR NrDhoma like '%".$SearchInput."%' OR Stafi like '%".$SearchInput."%'"; 
-    $search_result = $this->filterTable($query);
-}
-else{
-    $query="Select * FROM Reparti";
-    $search_result = $this->filterTable($query);
-}
-return $search_result;
-}
+    if(isset($_POST['SearchSubmit']) ){
+        $SearchInput = $_POST['SearchInput'];
+        $query = "select * from Reparti where Id like '%".$SearchInput."%' OR Emri like '%".$SearchInput."%' OR NrDhoma like '%".$SearchInput."%' OR Stafi like '%".$SearchInput."%' order by Id desc"; 
+        $search_result = $this->filterTable($query);
+    }
+    else{
+        $query="Select * FROM Reparti order by Id desc";
+        $search_result = $this->filterTable($query);
+    }
+    return $search_result;
+    }
 
 
 

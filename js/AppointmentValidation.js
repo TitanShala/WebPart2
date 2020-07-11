@@ -84,7 +84,7 @@ form.addEventListener('submit', (e) =>{
             errorElement.innerText = messages.join('! ');           
     }
     else
-    alert('We are gonna make an appointment for you, approximately with your choosen date and time. We will sent your appointment in your email adress thankyou!');
+    // alert('We are gonna make an appointment for you, approximately with your choosen date and time. We will sent your appointment in your email adress thankyou!');
 })
 /*
 window.onload = function(){

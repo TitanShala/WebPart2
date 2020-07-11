@@ -1,14 +1,14 @@
 ﻿section{
 	background-image: url(../Foto/doctor.jpg);
-	height:100vh;
-	background-repeat: no-repeat;
+	min-height:100vh;
+	background-repeat: repeat-y;
 	background-size: cover;
 }
 
 .departments-section{
 	overflow: hidden;
-	text-align: center;
-	//background: #34495e;
+	/* text-align: center;
+	//background: #34495e; */
 	padding: 60px;
 }
 
@@ -20,7 +20,7 @@
 }
 
 .Departments-border{
-	display:block;
+	/* display:block; */
 	margin: auto;
 	width: 160px;
 	height: 3px;
@@ -30,10 +30,11 @@
 
 .picture-section{
 	margin-bottom: 40px;
-	display:flex;
+	display:inline-block;
+	/* display:block;
 	flex-direction: row;
-	align-items:center;
-	justify-content:center;
+	align-items:center; 
+	justify-content:center;*/
 }
 
 .picture-section a{

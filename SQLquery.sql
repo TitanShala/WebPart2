@@ -71,9 +71,44 @@ foreign key(Stafi) references Account(Username),
 foreign key(Reparti) references Reparti(id)
 )
 
+alter table DoctorManage add Data date
+
+select * from DoctorManage
+
 select * from Reparti
 
 select * from DepartmentManage
 select * from DoctorManage
 
+create table Contacts(
+Id int primary key identity(1,1),
+Data Date,
+Name varchar (20),
+Email varchar (50),
+Message varchar(500)
+)
 
+insert into Contacts values ('2020-07-11','Titan Shala','titanshala@gmail.com', 'Pershendetje, cilave dite punoni?')
+insert into Contacts values ('2020-07-11','Titan Shala','titanshala@gmail.com', 'Pershendetje, cilave dite punoni?')
+
+select * from Contacts order by Id desc
+
+Delete from Contacts
+
+
+create table HospitalInfo(
+Id int primary key ,
+HenePremteOrari varchar(20),
+ShtuneOrari varchar(20),
+DieleOrari varchar(20),
+PushimOrari varchar(20),
+EmergencyNumber varchar(20),
+NumberForInfo varchar(20),
+Email varchar(40),
+HospitalName varchar(20),
+StreetAdress varchar(40)
+)
+
+select*from HospitalInfo
+
+insert into HospitalInfo values (0,'8:00-16:00' , '9:00-12:00' , 'Closed' , '10:00-11:00', '+383-49-123-456', '+383-44-123-456','HospitalPeja@gmail.com','Peja','Kosove & Peje Bill Clinton, 231')

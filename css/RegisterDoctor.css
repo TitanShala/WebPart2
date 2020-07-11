@@ -12,7 +12,7 @@
 
         }
         #table-wrapper table * {
-          background:green;
+          background: rgba(0,136,169,1);
           color:black;
         }
         #table-wrapper table thead th .text {
@@ -21,7 +21,7 @@
           z-index:2;
           height:20px;
           width:35%;
-          /* border:1px solid red; */
+          
 }
 
         .SearchFormInputContainer{
@@ -189,11 +189,14 @@
         } */
 
         section{
-            /* border: 2px solid green; */
             background-image: url(../Foto/5804.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            height:80vh;
+            min-height:80vh;
+            /* display:flex ;
+            flex-direction: row;
+            justify-content: space-around; */
+            padding-top: 100px ;
         }
 
         .FormH1{

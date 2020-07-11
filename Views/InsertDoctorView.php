@@ -2,6 +2,7 @@
 include_once '../Controller/DoctorController.php';
 include_once '../Controller/ManageController.php';
 
+
 	if(isset($_POST['SubmitInput'])){
 		session_start();
 		$Admin = $_SESSION['Username'];	
@@ -48,7 +49,9 @@ include_once '../Controller/ManageController.php';
 		if($count == 0){
 		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin);
 		$Result = 'Doctor Inserted succesfully';
-		$Manage->insertDoctorManage($Admin,$DoctorId,'Inserted');
+		$dt = new DateTime();
+		$date = $dt->format('Y-m-d H:i:s');
+		$Manage->insertDoctorManage($Admin,$DoctorId,'Inserted',$date);
 		$Name ="";
 		$surname ="";
 		$specialization="";

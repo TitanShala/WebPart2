@@ -1,28 +1,30 @@
 <?php
-    //Me bo controllerin per mi lexu info
-    include_once '../Controller/AppointmentController.php';
-    $Controller = new AppointmentController();
+    include_once '../Controller/ContactController.php';
+    $Controller = new ContactController();
+    $search_result = $Controller->loadTable();
     @session_start();
     if(isset($_SESSION['Account'])){
-        $Account = $_SESSION['Account'];
-        }
-
-        $GetInfo = "Select * from HospitalInfo" ;
-        $info = $Controller->filterTable($GetInfo);
-        $Departments = $Controller->filterTable("select * from Reparti");        
-?>
+    $Account = $_SESSION['Account'];
+    }
+    else{  
+    header("Location: ../WebPages/Login.php");
+    }
+    $GetInfo = "Select * from HospitalInfo" ;
+    $info = $Controller->filterTable($GetInfo);    
+?> 
 
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    
-     <link rel="stylesheet" href="../css/Appointment.css">
-     <link rel="stylesheet" href="../css/Default.css">
-     <link rel="stylesheet" href="../css/all.min.css">
 
-     <?php
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../css/all.min.css">
+    <link rel="stylesheet" href="../css/LoadInfo.css"> 
+    <link rel="stylesheet" href="../css/Default.css">
+    
+         
+    <?php
             if(isset($Account) ){
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
                 if($Account == 'Admin'){
@@ -30,17 +32,8 @@
                 }
                 
             }
-       ?>
-    <title></title>
-
-    <script>
-       function gettheYear(){
-       var year = Date().getFullYear();
-       console.log('method u realizua');
-       return year;
-       }
-                                 
-    </script>
+       ?>    
+    <title></title>                                                                                 
 </head>
 <body>
 
@@ -81,93 +74,42 @@
             </div>   
         </header>
 
+        <section style="min-height:80vh">
+                    
+                    <h1 style="inline-block">Contact Messages</h1>
+                    ?>
+                  <form action = "../WebPages/ClientContacts.php" method="post">
+                  <div class="SearchFormInputContainer">
+                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+                 </div>
 
-    <section>
-
-        <div class="DivForm">
-            
-            <h1>Make an appointment</h1>
-            <p id="error" style="color:red;"></p>
-            <form id="form" class="form" action="../Views/InsertAppointmentView.php" method="post">
-                
-
-                <div class="box">
-                    <img class="img" src="../Foto/person.png"> </img>
-                    <input name="name" class="input" id="name" type="text" placeholder="Full name" >
-                    <?php if(isset($Name_Error)) { ?>
-                            <p style="color:red;"><?php echo $Name_Error ?></p>
-                            <?php } ?> 
-                </div>
-
-                <div class="box" style="">
-                    <img class="img" src="../Foto/department.png"> </img>
-
-                    <div class="radio-input">
-                        <?php foreach($Departments as $Department) { 
-                            $DepName = $Department['Emri'];
-                            echo $DepName."<input type='radio' name='dept' value='".$DepName."'>"; 
-                        }
-                            ?> 
-                               <?php if(isset($Department_Error)) { ?>
-                            <p style="color:red;"><?php echo $Department_Error ?></p>
-                            <?php } ?> 
-
-                        <!-- Cardiology: <input type="radio" id="Cardiology" name="dept" value="Cardiology">
-                        Surgery: <input type="radio" id="Surgery" name="dept" value="Surgery">
-                        ORL: <input type="radio" id="Orl" name="dept" value="ORL">
-                        Dentistry: <input type="radio" id="Dentistry" name="dept" value="Dentistry"> -->
-                        <?php} ?>
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img class="img" src="../Foto/date.png"> </img>
-                    <div class="date" style="display:flex; flex-direction:row; justify-content:center;">
-                        <input name="Day" class="dateinput" id="day" type="number" placeholder="Day" min="1" max="31">
-                        <input name="Month" class="dateinput" id="month" type="number" placeholder="Month" min="1" max="12" >
-                        <input name="Year" class="dateinput" id="year" type="number" placeholder="Year" min="1" >
+                  <?php 
+                  if(count($search_result) < 1){
+                    echo '<h2 style="text-align:center;" >No messages</h2>';
+                  }
+                  
+                  foreach($search_result as $row){ ?>
+                    
+                    <div class="ContactDiv"> 
+                        <div class="ClientInfoDiv">
+                            <?php echo "<h2>$row[Data]</h2>";?>
+                            <?php echo "<h2>$row[Name]</h2>";?>
+                            <?php echo "<h2>$row[Email]</h2>";?>
+                        </div>
+                        <?php echo "<p>$row[Message]</p>";?>
                     </div>
 
-                    <!--<input class="input" id="date" type="Date" placeholder="Date" >-->
-                </div>
-                <?php if(isset($Day_Error)) { ?>
-                            <p style="color:red;"><?php echo $Day_Error ?></p>
-                            <?php } ?> 
-                            
-                            <?php if(isset($Month_Error)) { ?>
-                            <p style="color:red;"><?php echo $Month_Error ?></p>
-                            <?php } ?> 
+                  <?php } ?>
+                  </form>
 
-                            <?php if(isset($Year_Error)) { ?>
-                            <p style="color:red;"><?php echo $Year_Error ?></p>
-                            <?php } ?> 
+                  
+               
 
-                <div class="box">
-                    <img class="img" src="../Foto/clock.png"> </img>
-                    
-                        <input name="hour" class="input" id="hour" type="number" placeholder="Hour" min="8" max="16">
-
-                        
-                    
-                </div>
-                <?php if(isset($Hour_Error)) { ?>
-                            <p style="color:red;"><?php echo $Hour_Error ?></p>
-                            <?php } ?> 
-
-                <input type="submit" class="submit" value="Submit" name="submit">
-
-            </form>
-
-        </div>
+        </section>
 
 
-    </section>
-
-
-
-
-
-    <footer>
+        <footer>
         
 
         <div class="footer">
@@ -214,6 +156,5 @@
     </footer>
 
 
- <script src="../js/AppointmentValidation.js"></script>
 </body>
 </html>

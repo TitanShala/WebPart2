@@ -1,8 +1,15 @@
 <?php
+include_once '../Controller/ManageController.php';
     session_start();
     if(isset($_SESSION['Account'])){
         $Account = $_SESSION['Account'];
         }
+
+        
+        //Me bo kontrollerin
+        $Controller = new ManageController();
+        $GetInfo = "Select * from HospitalInfo" ;
+        $info = $Controller->filterTable($GetInfo);     
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,11 +34,11 @@
 <body>
 
     <!-- CONTACT US -->
-        <header>
+    <header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
-                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                    <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
                 <nav>
@@ -52,9 +59,11 @@
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a href="../WebPages/RegisterDoctor.php">ManageDoctors</a></li>
-                                <li><a>ManageUsers</a></li>
-                                <li><a>Departments</a></li>
+                                <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
+                                <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
+                                <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
+                                
                             </ul>   
                         </li>
                     </ul>
@@ -71,23 +80,35 @@
 
         <div class="ContactUsbox">
             <p id="error" class="error" style="color:red; margin-top:20px; background:#F0FFFF;"></p>
-            <form id="form" class="ContactUsForm">
+            <form id="form" class="ContactUsForm" action="../Views/InsertContactView.php" method="post">
                 <input id="name" type="text" name="name" class="form-controlContactUs" placeholder="Enter Your Name" required><br />
+                <?php if(isset($Name_Error)) { ?>
+                            <p style="color:red;"><?php echo $Name_Error ?></p>
+                            <?php } ?> 
                 <input id="email" type="email" name="email" class="form-controlContactUs" placeholder="Enter Your Email" required><br />
+                <?php if(isset($Email_Error)) { ?>
+                            <p style="color:red;"><?php echo $Email_Error ?></p>
+                            <?php } ?> 
                 <textarea id="text" name="message" class="form-controlContactUs" placeholder="Message" rows="4" required></textarea><br />
-                <input type="submit" name="" class="form-control-submit" value="SEND MESSAGE">
+                <?php if(isset($Email_Error)) { ?>
+                            <p style="color:red;"><?php echo $Name_Error ?></p>
+                            <?php } ?> 
+                <input type="submit" name="Submit" class="form-control-submit" value="SEND MESSAGE">
+                <?php if(isset($Result)) { ?>
+                            <p style="color:green;"><?php echo $Result ?></p>
+                            <?php } ?> 
             </form>
         </div>
     </div>
     </section>
 
-   <footer>
+    <footer>
         
 
     <div class="footer">
         <div class="inner_footer">
             <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                 <img src="../Foto/logoS.png" >
             </div>
 
@@ -95,7 +116,7 @@
 
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="index.php">Home</a></li><br />
+                <li><a href="#">Home</a></li><br />
                 <li><a href="services.php">Services</a></li><br />
                 <li><a href="contactUs.php">Contact</a></li><br />
                 <li><a href="Appointment.php">Appointment</a></li>
@@ -109,25 +130,24 @@
 
                 <address>
                     <span>
-                        PejaHospital <br />
-                        Kosove & Peje <br />
-                        Bill Clinton, 231 <br />
+                        <?php echo $info[0][8] ?> <br />
+                        
+                        <?php echo $info[0][9] ?>
                     </span>
                 </address>
             </div>
 
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: Spitali@gmail.com</li>
-                    <li>Phone: +383 123456</li>
+                    <li>Email: <?php echo $info[0][7] ?></li>
+                    <li>Phone: <?php echo $info[0][6] ?></li>
             </div>
-            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i> </a>
+            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
         </div>
     </div>
 
 </footer>
-
-<script src="../js/contactUsValidation.js"></script>
+<script src="../js/contactUsValidation1.js"></script>
 
 </body>
 </html>

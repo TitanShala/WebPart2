@@ -1,16 +1,19 @@
 <?php
 include_once '../Controller/DoctorController.php';
 @session_start();
+$Controller = new DoctorController();
 if(isset($_SESSION['Account'])){
     $Account = $_SESSION['Account'];
     $Username = $_SESSION['Username'];
-    $Controller = new DoctorController();
+    
     
     $query = "select * from Account where Username ='".$Username."'";
     
     //E marrim Userin per ta perdorur emrin dhe mbiemri e tij per 'WELCOME'
     $Result = $Controller->filterTable($query);
     }
+$GetInfo = "Select * from HospitalInfo" ;
+$info = $Controller->filterTable($GetInfo);    
 
 
 ?>
@@ -47,7 +50,7 @@ if(isset($_SESSION['Account'])){
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
-                    <h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1>
+                    <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
                 <nav>
@@ -69,8 +72,10 @@ if(isset($_SESSION['Account'])){
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
                                 <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
-                                <li><a>Admin Activities</a></li>
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
+                                <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
+                                
                             </ul>   
                         </li>
                     </ul>
@@ -103,19 +108,19 @@ if(isset($_SESSION['Account'])){
         <div class="schedule">
             <div>
                 <h4>Monday-Friday</h4>
-                <h4>8:00-16:00</h4>
+                <h4><?php echo $info[0][1] ?></h4>
             </div>
             <div>
                 <h4>Saturday</h4>
-                <h4>9:00-12:00</h4>
+                <h4><?php echo $info[0][2] ?></h4>
             </div>                
             <div>
                 <h4>Sunday</h4>
-                <h4>Closed</h4>
+                <h4><?php echo $info[0][3] ?></h4>
             </div>
             <div>
                 <h4>Break</h4>
-                <h4>10:00-11:00</h4>
+                <h4><?php echo $info[0][4] ?></h4>
             </div>
         </div>
         <div class="ContactInfo">
@@ -123,14 +128,14 @@ if(isset($_SESSION['Account'])){
                 <img src="../Foto/phone.jpg" alt="" style="height:80%; width:25%;">
                 <div>
                     <h4>Emergency Number</h4>
-                    <h4>555-555-555</h4>         
+                    <h4><?php echo $info[0][5] ?></h4>         
                 </div>    
             </div>               
             <div>
                 <img src="../Foto/Email.png" alt="" style="height:80%; width:25%;">
                 <div>
                     <h4>Email Adress</h4>
-                    <h4>Spitali @ gmail.com</h4>         
+                    <h4><?php echo $info[0][7] ?></h4>         
                 </div> 
             </div>
         </div>
@@ -171,7 +176,7 @@ if(isset($_SESSION['Account'])){
     <div class="footer">
         <div class="inner_footer">
             <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName">Peja</h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                 <img src="../Foto/logoS.png" >
             </div>
 
@@ -193,17 +198,17 @@ if(isset($_SESSION['Account'])){
 
                 <address>
                     <span>
-                        PejaHospital <br />
-                        Kosove & Peje <br />
-                        Bill Clinton, 231 <br />
+                        <?php echo $info[0][8] ?> <br />
+                        
+                        <?php echo $info[0][9] ?>
                     </span>
                 </address>
             </div>
 
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: Spitali@gmail.com</li>
-                    <li>Phone: +383 123456</li>
+                    <li>Email: <?php echo $info[0][7] ?></li>
+                    <li>Phone: <?php echo $info[0][6] ?></li>
             </div>
             <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
         </div>

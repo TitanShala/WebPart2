@@ -1,6 +1,10 @@
 <?php
 include_once '../Models/DbConn.php';
 include_once '../Views/InsertDoctorView.php';
+include_once '../Controller/DoctorController.php';
+include_once '../Controller/ManageController.php';
+session_start();
+$Admin = $_SESSION['Username'];	
 
 	
 
@@ -50,6 +54,15 @@ include_once '../Views/InsertDoctorView.php';
 				$count++;		
 			}
 		}
+
+		$Controller = new DoctorController();
+		$Check = $Controller->filterTable("Select * from Doktori where id ='".$DocID."'");
+		if(!isset($IdError)){
+			if(count($Check) < 1){
+				$IdError = 'Id doesnt exist';
+				$count++;
+			} 
+		}
 		$queries =array();
 		if($count == 0){
 			if(!strlen($DocName)==0){
@@ -75,17 +88,31 @@ include_once '../Views/InsertDoctorView.php';
 				array_push($queries,$query3);
 			}
 
+			if(count($queries) > 0){
+			$query4="Update Doktori set Stafi ='".$Admin."' where id=".$DocID  ;
+			array_push($queries, $query4);
+
 			foreach($queries as $q){
 						$getresults = $connection->prepare($q);
 						$getresults->execute();
 						
 			}
-			$Result="Doctor edited succesfully!";
+			$Manage = new ManageController();
+			$Manage->InsertDoctorManage($Admin,$DocID,'Edited'); 
+
+			$NullError = "" ;
+			$resultEdit="Doctor edited succesfully!";
 			$DocID = '';
 			$DocName = '' ;
 			$DocSurname = '' ;
 			$DocSpecialization = '' ;
 			$DocExperience = '' ;
+		}
+		if(isset($resultEdit) && isset($NullError)){
+			$NullError = "" ;
+		}else{
+		$NullError = 'Fill one of the fields';
+		}
 		}
 
 

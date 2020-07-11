@@ -1,6 +1,33 @@
 <?php
     session_start();
     session_destroy();
+
+    if(!isset($Name)){
+        $Name='';
+    }
+
+    if(!isset($Surname)){
+        $Surname='';
+    }
+
+    if(!isset($Password)){
+        $Password='';
+    }
+    if(!isset($Email)){
+        $Email='';
+    }
+
+    if(!isset($Username)){
+        $Username='';
+    }
+
+    if(!isset($UsernameL)){
+        $UsernameL='';
+    }
+
+    if(!isset($PasswordL)){
+        $PasswordL='';
+    }
 ?>
 <!DOCTYPE html>
 
@@ -9,7 +36,7 @@
     <meta charset="utf-8" />
     <title>Login Page</title>
 
-    <link rel="stylesheet" href="../css/Login.css">
+    <link rel="stylesheet" href="../css/Login1.css">
      <link rel="stylesheet" href="../css/Default.css">
      <link rel="stylesheet" href="../css/all.min.css">
 </head>
@@ -66,12 +93,12 @@
             <h1>Login</h1>
              <div class="textbox">
                 <i class="fas fa-user"></i>
-                <input id="name" type="text" placeholder="Username" name="LoginUsername" required>
+                <input id="name" type="text" placeholder="Username" name="LoginUsername" required value="<?php echo htmlspecialchars($UsernameL) ?>"> <br />
              </div>
 
              <div class="textbox">
                 <i class="fas fa-lock"></i>
-                <input id="password" type="password" placeholder="Password" name="LoginPassword" required>
+                <input id="password" type="password" placeholder="Password" name="LoginPassword" required value="<?php echo htmlspecialchars($PasswordL) ?>"> <br />
              </div>
 
              <div class="RadioInputs">
@@ -96,30 +123,62 @@
 
 
       <div class="Register-box">
-        <p id="errorR"></p>
-          <form id="formRegister">
+        <p id="errorR" style="margin-top:200px;"></p>
+          <form id="formRegister" action="../Views/RegisterView1.php" method="post">
             <h1>Register</h1>
             <div class="textbox">
-                <i class="fas fa-user"></i>
-                    <input id="nameR" type="text" placeholder="Username" required>
+                    <i class="fas fa-user"></i>
+                    <input  name="NameReg" id="Regname" type="text" placeholder="Name" required value="<?php echo htmlspecialchars($Name) ?>"> <br />
             </div>
+            <?php if(isset($NameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $NameR_Error ?></p>
+                            <?php } ?> 
+
+            <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input  name="SurnameReg" id="Regsurname" type="text" placeholder="Surname" required value="<?php echo htmlspecialchars($Surname) ?>"> <br />
+            </div>
+            <?php if(isset($SurnameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $SurnameR_Error ?></p>
+                            <?php } ?> 
+
+            <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input id="nameR" name="UsernameR" type="text" placeholder="Username" required value="<?php echo htmlspecialchars($Username) ?>"> <br />
+            </div>
+            <?php if(isset($UsernameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $UsernameR_Error ?></p>
+                            <?php } ?> 
 
             <div class="textbox">
                     <i class="fas fa-at"></i>
-                    <input id="emailR" type="email" placeholder="Email Adress" required>
+                    <input id="emailR" name="EmailR" type="email" placeholder="Email Adress" required value="<?php echo htmlspecialchars($Email) ?>"> <br />
             </div>
+            <?php if(isset($EmailR_Error)) { ?>
+                            <p style="color:red;"><?php echo $EmailR_Error ?></p>
+                            <?php } ?> 
 
              <div class="textbox">
                  <i class="fas fa-lock"></i>
-                    <input id="passwordR" type="password" placeholder="Password" required>
+                    <input id="passwordR" name="PasswordR" type="password" placeholder="Password" required value="<?php echo htmlspecialchars($Password) ?>"> <br />
              </div>
+             <?php if(isset($PasswordR_Error)) { ?>
+                            <p style="color:red;"><?php echo $PasswordR_Error ?></p>
+                            <?php } ?> 
+
              <div class="textbox">
                  <i class="fas fa-lock"></i>
-                    <input id="passwordconfirmR" type="password" placeholder="Confirm Password" required>
+                    <input id="passwordconfirmR" name="ConfirmPasswordR" type="password" placeholder="Confirm Password" required>
             </div>
+            <?php if(isset($ConfirmPasswordR_Error)) { ?>
+                            <p style="color:red;"><?php echo $ConfirmPasswordR_Error ?></p>
+                            <?php } ?> 
 
              <div class="LoginButtons">
-                     <input  type="submit" class="btnLogin" value="Register" >
+                     <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn">
+                     <?php if(isset($RegisterResult)) { ?>
+                            <p style="color:green;"><?php echo $RegisterResult ?></p>
+                            <?php } ?> 
                      <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
                     <input type="button" class="btnNotRegistered" value="Already have an account?" onclick="HaveAnAccount();">                    
             </div>
@@ -173,6 +232,6 @@
 
 </footer>
 
- <script src="../js/LoginValidation.js"></script>
+ <script src="../js/LoginValidation1.js"></script>
 </body>
 </html>

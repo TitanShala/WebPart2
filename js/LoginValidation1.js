@@ -60,22 +60,22 @@
             errorElement.innerText = messages.join('! ');           
             }
 
-        //  if(messages.length < 1){
+         if(messages.length < 1){
             
             
             
-        //     var signin = document.querySelector('.SignInNav');
-        //     var signout = document.querySelector('.SignOutNav');
-        //     LogedIn = true ;
-        //     SaveLoginCondition ();
+            var signin = document.querySelector('.SignInNav');
+            var signout = document.querySelector('.SignOutNav');
+            LogedIn = true ;
+            SaveLoginCondition ();
             
         
-        //     signin.style.display='none'; 
-        //     signout.style.display = 'block';
-        //     }
+            signin.style.display='none'; 
+            signout.style.display = 'block';
+            }
             
 
-        })
+       })
 
 
 
@@ -92,7 +92,7 @@
 
 
 
-        //Register submit
+       // Register submit
          formR.addEventListener('submit', (e) =>{
             let messagesR = [];
 
@@ -163,8 +163,6 @@
 
        
         register.style.display = 'none';
-
-        
         login.style.display = 'block';
  
         }
@@ -175,6 +173,8 @@
         //Cancel login or registration
 function cancelLogin(){
 
+        document.getElementById('Regname').value = '';
+        document.getElementById('Regsurname').value = '';
         document.getElementById('name').value = '';
         document.getElementById('password').value = '';
         document.getElementById('error').innerText = '';

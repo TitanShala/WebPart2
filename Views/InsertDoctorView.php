@@ -1,11 +1,19 @@
 <?php
 include_once '../Controller/DoctorController.php';
+include_once '../Controller/ManageController.php';
+
 	if(isset($_POST['SubmitInput'])){
+		session_start();
+		$Admin = $_SESSION['Username'];	
 		
 
 		$count = 0;
 		//$Name = $_POST['Emri'];
 		$Name =filter_input(INPUT_POST,'Emri');
+		$Manage = new ManageController();
+		 $sql = "select Id from Doktori where Emri='".$Name."'";
+		 $result = $Manage->filterTable($sql);
+		 $DoctorId = $result[0][0];
 
 		if(strlen($Name)<3){
 			$Name_Error = "Name should not be null or shorter than 3";
@@ -38,8 +46,9 @@ include_once '../Controller/DoctorController.php';
 			$count++;
 		}
 		if($count == 0){
-		$view->InsertDoctor($Name, $surname, $specialization, $experience);
+		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin);
 		$Result = 'Doctor Inserted succesfully';
+		$Manage->insertDoctorManage($Admin,$DoctorId,'Inserted');
 		$Name ="";
 		$surname ="";
 		$specialization="";
@@ -51,9 +60,9 @@ include_once '../Controller/DoctorController.php';
 
 class InsertView{
 	
-	public function InsertDoctor($name, $surname, $specialization, $experience){
+	public function InsertDoctor($name, $surname, $specialization, $experience ,$Admin){
 		$controller = new DoctorController();
-		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience);
+		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience, $Admin);
 
 	}
 

@@ -19,6 +19,9 @@ if(isset($_SESSION['Account'])){
     <?php
             if(isset($Account) ){
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                if($Account == 'Admin'){
+                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
+                }
                 
             }
        ?>
@@ -51,7 +54,7 @@ if(isset($_SESSION['Account'])){
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a>ManageDoctors</a></li>
+                                <li><a href="../WebPages/RegisterDoctor.php">ManageDoctors</a></li>
                                 <li><a>ManageUsers</a></li>
                                 <li><a>Departments</a></li>
                             </ul>   

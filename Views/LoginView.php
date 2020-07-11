@@ -3,46 +3,49 @@ include_once '../Models/DbConn.php';
 
 if(isset($_POST['LoginBtn'])){
 
-    $Username = $_POST['LoginUsername'];
-    $Password = $_POST['LoginPassword'];   
-    $Account =$_POST['account'];
+    $UsernameL = $_POST['LoginUsername'];
+    $PasswordL = $_POST['LoginPassword'];   
+    @$Account = $_POST['account'];
+    $Role ;
     $count = 0 ;
 
-    if(strlen($Username) < 7 ){
-        $UsernameError = "Username must be longer than 6";
+    if(strlen($UsernameL) < 7 ){
+        $UsernameLError = "Username must be longer than 6";
         $count++;
     }
-    if(strlen($Password) < 7){
-        $PasswordError = "Password must be longer than 6";
+    if(strlen($PasswordL) < 7){
+        $PasswordLError = "Password must be longer than 6";
         $count++;
     }
     if($Account == 'Admin'){
-        
+        $Role = 1;
     }
     else if($Account == 'User'){
-        
-
+        $Role=0;
     }
     else{       
         $LoginError="Please choose an account type";
         $count++;
+        $Role=3;
     }
-    $query = "select * from Account where Username = '".$Username."' and Password = '".$Password."'";
-    $obj = new DBConnection();
-    $connection= $obj->getConnection();
-    $getresults = $connection->prepare($query);
-    $getresults->execute();
-    $results = $getresults->fetchAll(PDO::FETCH_BOTH); 
+    
+        $query = "select * from Account where Username = '".$UsernameL."' and Password = '".$PasswordL."' and role =".$Role;
+        $obj = new DBConnection();
+        $connection= $obj->getConnection();
+        $getresults = $connection->prepare($query);
+        $getresults->execute();
+        $results = $getresults->fetchAll(PDO::FETCH_BOTH); 
+          
     if(count($results) == 0){
-        $LoginError = "Login or Password Incorrect";
+        $LoginError = "Login incorrect";
         include '../WebPages/Login.php' ;
         
     }
     else{
         $succes = 'Login Succesfull';
         session_start();
-        $_SESSION['Username'] = $Username ;
-        $_SESSION['Password'] = $Password ;
+        $_SESSION['Username'] = $UsernameL ;
+        $_SESSION['Password'] = $PasswordL ;
         $_SESSION['Account']  =  $Account ;
         
 

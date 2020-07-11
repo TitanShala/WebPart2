@@ -1,21 +1,19 @@
-<?php
-    session_start();
-    if(isset($_SESSION['Account'])){
-        $Account = $_SESSION['Account'];
-        }
 ?>
-
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="utf-8" />
-    
-     <link rel="stylesheet" href="../css/Appointment.css">
-     <link rel="stylesheet" href="../css/Default.css">
-     <link rel="stylesheet" href="../css/all.min.css">
 
-     <?php
+    <meta charset="utf-8" />
+    <title>Web Project</title>
+
+        <link rel="stylesheet" href="../css/Default.css">
+        <link rel="stylesheet" href="../css/LoginToIndex.css">
+       <link rel="stylesheet" href="../css/Index.css">
+       <link rel="stylesheet" href="../css/Doctors.css">
+       <link rel="stylesheet" href="../css/all.min.css">
+       
+       <?php
             if(isset($Account) ){
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
                 if($Account == 'Admin'){
@@ -24,18 +22,11 @@
                 
             }
        ?>
-    <title></title>
 
-    <script>
-       function gettheYear(){
-       var year = Date().getFullYear();
-       console.log('method u realizua');
-       return year;
-       }
-                                 
-    </script>
 </head>
+
 <body>
+
 
         <header>
             <div class="NavContainer">
@@ -46,10 +37,10 @@
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="../WebPages/index.php">Home</a></li>
+                        <li><a href="#">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
-                        <li><a href="#" class="AppointmentAnch">Appointment</a></li>
+                        <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
                 </nav>
             </div>
@@ -62,77 +53,24 @@
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a href="../WebPages/RegisterDoctor.php">ManageDoctors</a></li>
+                                <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
                                 <li><a>ManageUsers</a></li>
-                                <li><a>Departments</a></li>
+                                <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                             </ul>   
                         </li>
                     </ul>
                 </div>
             </div>   
         </header>
+  
+   <section style="display:inline-block;">    
+            <div>
 
+            </div>
+   </section>
+   <footer>
+        
 
-    <section>
-
-        <div class="DivForm">
-            
-            <h1>Make an appointment</h1>
-            <p id="error" style="color:red;"></p>
-            <form id="form" class="form" action="index.html">
-                
-
-                <div class="box">
-                    <img class="img" src="../Foto/person.png"> </img>
-                    <input class="input" id="name" type="text" placeholder="Full name" >
-                </div>
-
-                <div class="box" style="">
-                    <img class="img" src="../Foto/department.png"> </img>
-                    <!--<input class="input id="Department" type="text" placeholder="Department" required>
-                    -->
-                    <div class="radio-input">
-                        Cardiology: <input type="radio" id="Cardiology" name="dept" value="Cardiology">
-                        Surgery: <input type="radio" id="Surgery" name="dept" value="Surgery">
-                        ORL: <input type="radio" id="Orl" name="dept" value="ORL">
-                        Dentistry: <input type="radio" id="Dentistry" name="dept" value="Dentistry">
-                    </div>
-                </div>
-
-                <div class="box">
-                    <img class="img" src="../Foto/date.png"> </img>
-                    <div class="date" style="display:flex; flex-direction:row; justify-content:center;">
-                        <input class="dateinput" id="day" type="number" placeholder="Day" min="1" max="31">
-                        <input class="dateinput" id="month" type="number" placeholder="Month" min="1" max="12" >
-                        <input class="dateinput" id="year" type="number" placeholder="Year" min="1" >
-                    </div>
-
-                    <!--<input class="input" id="date" type="Date" placeholder="Date" >-->
-                </div>
-
-                <div class="box">
-                    <img class="img" src="../Foto/clock.png"> </img>
-                    
-                        <input class="input" id="hour" type="number" placeholder="Hour" min="8" max="16">
-                        
-                    
-                </div>
-
-                <input type="submit" class="submit" value="Submit">
-
-            </form>
-
-        </div>
-
-
-    </section>
-
-
-
-
-
-
-       <footer>
     <div class="footer">
         <div class="inner_footer">
             <div class="logo_container">
@@ -144,10 +82,10 @@
 
             <div class="footer_third">
                 <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="index.php">Home</a></li><br />
+                <li><a href="#">Home</a></li><br />
                 <li><a href="services.php">Services</a></li><br />
                 <li><a href="contactUs.php">Contact</a></li><br />
-                <li><a href="#">Appointment</a></li>
+                <li><a href="Appointment.php">Appointment</a></li>
             </div>
 
             <div class="footer_third">
@@ -176,7 +114,8 @@
 
 </footer>
 
+  
 
- <script src="../js/AppointmentValidation.js"></script>
 </body>
 </html>
+

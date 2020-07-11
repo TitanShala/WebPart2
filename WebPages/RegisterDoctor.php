@@ -1,15 +1,20 @@
 ﻿<?php
+    @session_start();
+    if(isset($_SESSION['Account'])){
+    $Account = $_SESSION['Account'];
+}
+else{
+    
+    header("Location: ../WebPages/Login.php");
+    
+
+}
     include_once '../Models/DbConn.php';
     include_once '../Controller/DoctorController.php';
 
     $DocController = new DoctorController();
     $search_result = $DocController->LoadTable();
-   // $DocController->ClearInputs();
-   @session_start();
-    if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
-    }
-
+   
     //Clear Loaded Inputs
     if(!isset($Name)){
         $Name="";
@@ -54,11 +59,12 @@
     if(!isset($DocID)){
         $DocID="";
     }
+
+
     
 ?>
-
-
-
+    
+    
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -66,9 +72,18 @@
 
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/RegisterDoctor.css"> 
-    <link rel="stylesheet" href="../css/all.css">
+    <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
+    <link rel="stylesheet" href="../css/Index.css"> 
       
+    <?php
+            if(isset($Account) ){
+                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                if($Account == 'Admin'){
+                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
+                }
+                
+            }
+       ?>    
     <title></title>                                                                                 
 </head>
 <body>
@@ -98,7 +113,7 @@
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a>ManageDoctors</a></li>
+                                <li><a href="#">ManageDoctors</a></li>
                                 <li><a>ManageUsers</a></li>
                                 <li><a>Departments</a></li>
                             </ul>   
@@ -114,92 +129,147 @@
         <input  type="button" class="btn" value="Edit" onclick="EditClick();">
         <input  type="button" class="btn" value="Delete" onclick="DeleteClick();">
     </div>
+
     <div  class="FormContainer">
-        <form action="../Views/InsertDoctorView.php" method="post" id="form" class="RegisterForm" id="RegisterForm">
-           
-                <h3 style="text-align:center; margin-bottom:20px;">Register Doctor</h3>
-                <Input type="text" placeholder="Name" name="Emri" value="<?php echo htmlspecialchars($Name) ?>"> <br />
-                    <?php if(isset($Name_Error)) { ?>
-                        <p style="color:red;"><?php echo $Name_Error ?></p>
-                        <?php } ?> 
+        
+            <form action="../Views/InsertDoctorView.php" method="post" id="form" class="RegisterForm" id="RegisterForm">
+            
+                    <h1 class="FormH1">Register</h1>
+                    <div class="textbox">
+                        <i class="fas fa-user"></i>
+                        <Input required type="text" id="Name" placeholder="Name" name="Emri" value="<?php echo htmlspecialchars($Name) ?>"> <br />
+                    </div>    
+                        <?php if(isset($Name_Error)) { ?>
+                            <p style="color:red;"><?php echo $Name_Error ?></p>
+                            <?php } ?> 
+                    
 
-                <input type="text" placeholder="Surname" name="SurnameInput" value="<?php echo htmlspecialchars($surname) ?>"> <br /> 
-                    <?php if(isset($Surname_Error)) { ?>
-                        <p style="color:red;"><?php echo $Surname_Error; ?></p>
-                        <?php } ?>
+                    <div class="textbox">
+                        <i class="fas fa-user"></i>
+                        <input required type="text" id="Surname" placeholder="Surname" name="SurnameInput" value="<?php echo htmlspecialchars($surname) ?>"> <br /> 
+                    </div>    
+                        <?php if(isset($Surname_Error)) { ?>
+                            <p style="color:red;"><?php echo $Surname_Error ?></p>
+                            <?php } ?>
+                    
 
-                <input type="text" placeholder="Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($specialization) ?>"> <br />
-                    <?php if(isset($Specialization_Error)) { ?>
-                        <p style="color:red;"><?php echo $Specialization_Error; ?></p>
-                        <?php } ?>     
-                        
-                <input type="text" placeholder="Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($experience) ?>"> <br />
+                    <div class="textbox">
+                        <i class="fas fa-user-md"></i>
+                        <input required type="text" id="Specialization" placeholder="Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($specialization) ?>"> <br />
+                    </div>    
+                        <?php if(isset($Specialization_Error)) { ?>
+                            <p style="color:red;"><?php echo $Specialization_Error; ?></p>
+                            <?php } ?>     
+                    
+                    
+                    <div class="textbox">
+                        <i class="far fa-clock"></i>
+                        <input required type="text" id="Experience" placeholder="Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($experience) ?>"> <br />
+                    </div>    
                     <?php if(isset($Experience_Error)) { ?>
-                        <p style="color:red;"><?php echo $Experience_Error; ?></p>
-                        <?php } ?>
+                            <p style="color:red;"><?php echo $Experience_Error; ?></p>
+                            <?php } ?>
+                    
+                    <div class="LoginButtons">
+                        <input class="FormSubmit" type="submit" value="Submit" name="SubmitInput">
+                            <?php if(isset($Result)) { ?>
+                                <p style="color:green;"><?php echo $Result; ?></p>                       
+                                <?php } ?>
+                        <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelRegister();">                        
+                    </div>
+                    
                 
-                <input type="submit" value="Submit" name="SubmitInput">
-                    <?php if(isset($Result)) { ?>
-                        <p style="color:green;"><?php echo $Result; ?></p>                       
-                        <?php } ?>
-            
-        </form>
+            </form>
+        
 
+        
+            <form action="../Views/EditDoctorView.php" class="EditForm"  method="post" >
+                <h1 class="FormH1">Edit</h1>
+                
+                <div class="textbox">
+                    <i class="fas fa-id-card"></i>
+                    <input required type="text" id="idE" placeholder="Type the id of Doctor" name="Id" class="EditID" value="<?php echo htmlspecialchars($DocID) ?>"> <br />
+                </div>    
+                        <?php if(isset($IdError)) { ?>
+                            <p style="color:red;"><?php echo $IdError ?></p>
+                            <?php } ?> 
+                                           
+                <div class="textbox">    
+                    <i class="fas fa-user"></i>
+                    <Input type="text" id="NameE" placeholder="New Name" name="Emri" value="<?php echo htmlspecialchars($DocName) ?>"> <br />
+                </div>    
+                        <?php if(isset($DocName_Error)) { ?>
+                            <p style="color:red;"><?php echo $DocName_Error ?></p>
+                            <?php } ?>
 
-        <form action="../Views/EditDoctorView.php" class="EditForm" class="EditForm" method="post" >
-            <h3>Edit Doctor</h3>
-                <input type="text" placeholder="Type the id of Doctor" name="Id" class="EditID" value="<?php echo htmlspecialchars($DocID) ?>"> <br />
-                    <?php if(isset($IdError)) { ?>
-                        <p style="color:red;"><?php echo $IdError ?></p>
-                        <?php } ?>                
-                <Input type="text" placeholder="New Name" name="Emri" value="<?php echo htmlspecialchars($DocName) ?>"> <br />
-                    <?php if(isset($DocName_Error)) { ?>
-                        <p style="color:red;"><?php echo $DocName_Error ?></p>
-                        <?php } ?> 
-
-                <input type="text" placeholder="New Surname" name="SurnameInput" value="<?php echo htmlspecialchars($DocSurname) ?>"> <br /> 
+                <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="SurnameE" placeholder="New Surname" name="SurnameInput" value="<?php echo htmlspecialchars($DocSurname) ?>"> <br /> 
+                </div>        
                     <?php if(isset($DocSurname_Error)) { ?>
-                        <p style="color:red;"><?php echo $DocSurname_Error; ?></p>
-                        <?php } ?>
+                            <p style="color:red;"><?php echo $DocSurname_Error; ?></p>
+                            <?php } ?>
 
-                <input type="text" placeholder="New Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($DocSpecialization) ?>"> <br />
+                <div class="textbox">
+                    <i class="fas fa-user-md"></i>       
+                    <input type="text" id="SpecializationE" placeholder="New Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($DocSpecialization) ?>"> <br />
+                </div>       
                     <?php if(isset($DocSpecialization_Error)) { ?>
-                        <p style="color:red;"><?php echo $DocSpecialization_Error; ?></p>
-                        <?php } ?>     
-                        
-                <input type="text" placeholder="New Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($DocExperience) ?>"> <br />
+                            <p style="color:red;"><?php echo $DocSpecialization_Error; ?></p>
+                            <?php } ?> 
+
+                <div class="textbox">
+                    <i class="far fa-clock"></i>            
+                    <input type="text" id="ExperienceE" placeholder="New Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($DocExperience) ?>"> <br />
+                </div>        
                     <?php if(isset($DocExperience_Error)) { ?>
-                        <p style="color:red;"><?php echo $DocExperience_Error; ?></p>
-                        <?php } ?>
+                            <p style="color:red;"><?php echo $DocExperience_Error; ?></p>
+                            <?php } ?>
+                    
+                <div class="LoginButtons">            
+                    <input class="FormSubmit" type="submit" value="Submit" name="SubmitInputt">
+                        <?php if(isset($NullError)) { ?>
+                                <p style="color:red;"><?php echo $NullError; ?></p>                       
+                                <?php } ?>    
+                    
+                        <?php if(isset($resultEdit)) { ?>
+                            <p style="color:green;"><?php echo $resultEdit; ?></p>                       
+                            <?php } ?>
+                    <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelEdit();">                                
+                </div>
+            </form>
+        
+
+         
+            <form class="DeleteForm" action="../Views/DeleteDoctorView.php" method="post" id="DeleteForm">
+                <h1 class="FormH1">Delete</h1>
+                <div class="textbox">
+                    <i class="fas fa-id-card"></i>
+                    <input required id="idD" type="text" placeholder="Type ID" name="DeleteInput" class="DeleteInput" value="<?php echo htmlspecialchars($DeleteInput) ?>"> <br />
+                </div>      
+                            <?php if(isset($error)) { ?>
+                                <p style="color:red;"><?php echo $error; ?></p>
+                                <?php } ?>
+
+                            <?php if(isset($Error)) { ?>
+                                <p style="color:red;"><?php echo $Error; ?></p>
+                                <?php } ?>
                 
-                <input type="submit" value="Submit" name="SubmitInputt">
-                    <?php if(isset($resultEdit)) { ?>
-                        <p style="color:green;"><?php echo $resultEdit; ?></p>                       
-                        <?php } ?>
-        </form>
-
-        
-        <form class="DeleteForm" action="../Views/DeleteDoctorView.php" method="post" id="DeleteForm">
-            <h3>Delete Doctor</h3>
-            <input type="text" placeholder="Type ID" name="DeleteInput" class="DeleteInput" value="<?php echo htmlspecialchars($DeleteInput) ?>"> <br />
-                    <?php if(isset($error)) { ?>
-                        <p style="color:red;"><?php echo $error; ?></p>
-                        <?php } ?>
-
-                    <?php if(isset($Error)) { ?>
-                        <p style="color:red;"><?php echo $Error; ?></p>
-                        <?php } ?>
-           
-            <input type="submit" value="Delete" name="DeleteSubmit" class="DeleteSubmit">
-        </form>
+                <div class="LoginButtons">
+                    <input class="FormSubmit" type="submit" value="Delete" name="DeleteSubmit" >
+                    <?php if(isset($DeleteResult)) { ?>
+                                <p style="color:green;"><?php echo $DeleteResult; ?></p>
+                                <?php } ?>
+                    <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelDelete();">                        
+                </div>    
+            </form>
+             
         
             
-        
-            
-            <form action="../WebPages/RegisterDoctor.php" method="post" class="SearchForm" style="display:flex; flex-direction:column">
+             <form action="../WebPages/RegisterDoctor.php" method="post" class="SearchForm" style="display:flex; flex-direction:column">
                  <div class="SearchFormInputContainer">
-                 <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
-                 <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+                    <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                    <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
                  </div>
                  
             <div id="table-wrapper">
@@ -238,7 +308,7 @@
                  </table>
               </div>
             </div>     
-            </form>
+            </form> 
 
     </div>
 </section>
@@ -288,6 +358,6 @@
 </footer>
 
 
- <script src="../js/RegisterDoctor.js"></script>
+ <script src="../js/Manage.js"></script>
 </body>
 </html>

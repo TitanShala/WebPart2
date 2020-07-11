@@ -14,19 +14,17 @@ class DoctorMapper{
 
 	
 
-	public function Insert($Name, $Surname, $Specialization, $Experience){
-		$sql = "INSERT INTO Doktori (Emri,Mbiemri,Specializimi,Pervoja) VALUES (:Name, :Surname, :Specialization, :Experience)";
+	public function Insert($Name, $Surname, $Specialization, $Experience, $Admin){
+		$sql = "INSERT INTO Doktori (Emri,Mbiemri,Specializimi,Pervoja,Stafi) VALUES (:Name, :Surname, :Specialization, :Experience, :Admin)";
 		$statement = $this->connection->prepare($sql);
 		$statement->bindParam(":Name", $Name);
 		$statement->bindParam(":Surname", $Surname);
 		$statement->bindParam(":Specialization", $Specialization);
 		$statement->bindParam(":Experience", $Experience);
-		
-
+		$statement->bindParam(":Admin", $Admin);
 		$statement->execute();
+
 	}
-
-
 
 }
 

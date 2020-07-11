@@ -6,10 +6,10 @@ include_once '../Models/doctorMapper.php';
 
 class DoctorController{
 
-	public function InsertDoctor($Name,$Surname,$Specialization,$Experience){
-		$Doctor = new Doctor($Name,$Surname,$Specialization,$Experience);
+	public function InsertDoctor($Name,$Surname,$Specialization,$Experience,$Admin){
+		$Doctor = new Doctor($Name,$Surname,$Specialization,$Experience,$Admin);
 		$DoctorMapper = new doctorMapper($Doctor);
-		$DoctorMapper->Insert($Name,$Surname,$Specialization,$Experience);
+		$DoctorMapper->Insert($Name,$Surname,$Specialization,$Experience,$Admin);
 		return true;
 	}
 
@@ -43,53 +43,9 @@ class DoctorController{
         return $this->filterTable($query);
     }
 
-
-	/*
-	function ClearInputs(){
-    if(!isset($Name)){
-        $Name="";
-    }
-
-    if(!isset($surname)){
-        $surname="";
-    }
-
-    if(!isset($specialization)){
-        $specialization="";
-    }
-
-    if(!isset($experience)){
-        $experience="";
-    }
-
-    if(!isset($DeleteInput)){
-        $DeleteInput="";
-    }
-
-    if(!isset($IdInput)){
-        $IdInput="";
-    }
-
-    if(!isset($DocName)){
-        $DocName="";
-    }
-
-    if(!isset($DocSurname)){
-        $DocSurname="";
-    }
-
-    if(!isset($DocSpecialization)){
-        $DocSpecialization="";
-    }
-
-    if(!isset($DocExperience)){
-        $DocExperience="";
-    }
-
-    if(!isset($DocID)){
-        $DocID="";
-    }	
-	}*/
+    public function isInteger($input){
+		return(ctype_digit(strval($input)));
+		}
 
 	}
 

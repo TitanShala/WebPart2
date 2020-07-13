@@ -20,7 +20,7 @@ if(isset($_SESSION['Account'])){
     <title>Services</title>
 
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/services1.css">
+    <link rel="stylesheet" href="../css/services.css">
     <link rel="stylesheet" href="../css/all.min.css">
 
     <?php
@@ -45,8 +45,8 @@ if(isset($_SESSION['Account'])){
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="../WebPages/services.php">Services</a></li>
+                        <li><a href="../WebPages/index.php">Home</a></li>
+                        <li><a href="#">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
@@ -90,8 +90,18 @@ if(isset($_SESSION['Account'])){
                     }
                     foreach($Search_Results as $result){
                         $DepartmentId = "'#Department".$result['Id']."'";
+                        if($result['image'] == ""){
+                            // $image = "../Foto/Department.jpg";
+                            // 'src="../UploadedImages/'.$image.'"'
+                            $image = 'src="../Foto/Department.jpg"';
+                            
+                        }
+                        else{
+                            $image = 'src="../UploadedImages/'.$result['image'].'"';
+                            
+                        }
                         ?>
-                    <div style="float:left; margin:50px 50px;"> <a href=<?php echo $DepartmentId?> ><img src="../Foto/cardiology.jpg" alt=""></a>
+                    <div style="float:left; margin:50px 50px;"> <a href=<?php echo $DepartmentId?> ><img <?php echo $image?> alt="No photo found"></a>
                      <h3 style="background-color:rgba(0,136,169,1);"><?php echo $result['Emri']."</br> Number of rooms: ".$result['NrDhoma'] ;?> </h3> </div>
                     
                     <?php }?>

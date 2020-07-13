@@ -6,10 +6,10 @@ include_once '../Models/doctorMapper.php';
 
 class DoctorController{
 
-	public function InsertDoctor($Name,$Surname,$Specialization,$Experience,$Admin){
-		$Doctor = new Doctor($Name,$Surname,$Specialization,$Experience,$Admin);
+	public function InsertDoctor($Name,$Surname,$Specialization,$Experience,$Admin,$Image){
+		$Doctor = new Doctor($Name,$Surname,$Specialization,$Experience,$Admin,$Image);
 		$DoctorMapper = new doctorMapper($Doctor);
-		$DoctorMapper->Insert($Name,$Surname,$Specialization,$Experience,$Admin);
+		$DoctorMapper->Insert($Name,$Surname,$Specialization,$Experience,$Admin,$Image);
 		return true;
 	}
 

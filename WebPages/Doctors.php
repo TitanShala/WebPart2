@@ -3,7 +3,7 @@ include_once '../Controller/DoctorController.php';
 $Controller = new DoctorController();
 $TopDoctors = $Controller->topDoctors();
 $count = count($TopDoctors);
-$search_result = $Controller->LoadTable();
+$Search_Results = $Controller->LoadTable();
 
 session_start();
 if(isset($_SESSION['Account'])){
@@ -20,7 +20,7 @@ if(isset($_SESSION['Account'])){
 <head>
     <meta charset="utf-8" />
     <title>Doctors</title>
-    <link rel="stylesheet" href="../css/Doctors.css">
+    <link rel="stylesheet" href="../css/services1.css">
     <link rel="stylesheet" href="../css/Default.css">   
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../css/Table1.css">
@@ -47,7 +47,7 @@ if(isset($_SESSION['Account'])){
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
@@ -67,7 +67,7 @@ if(isset($_SESSION['Account'])){
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -75,7 +75,62 @@ if(isset($_SESSION['Account'])){
             </div>   
         </header>
 
-<section>
+
+        <section style="background-image: url(../Foto/doctor.jpg);"> 
+            <div class="departments-section" style="text-align:center;">
+              <h1>Our Doctors</h1>
+              <span class="Departments-border"></span>
+              
+              <div class="SearchFormInputContainer" style="margin-bottom:50px;">
+                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+                 </div>
+
+              <div class="picture-section" >
+                    <?php if(count($Search_Results) < 1){
+                        echo '<h2>There are no Doctors registred</h2>';
+                    }
+                    foreach($Search_Results as $result){
+                        $DepartmentId = "'#Department".$result['Id']."'";
+                        
+                        if($result['image'] == ""){
+                            
+                
+                            $image = 'src="../Foto/doctor.jpg"';
+                            
+                        }
+                        else{
+                            $image = 'src="../UploadedImages/'.$result['image'].'"';
+                           // echo 'src="../UploadedImages/'.$image.'"';
+                            
+                        }
+                        ?>
+                    <div style="float:left; margin:50px 50px;"> <a href=<?php echo $DepartmentId?> ><img <?php echo $image ?> alt="No photo found"></a>
+                     <h3 style="background-color:rgba(0,136,169,1);"><?php echo $result['Emri']." ".$result['Mbiemri']; echo" </br> Specialization: ".$result['Specializimi']."  Experience: ".$result['Pervoja'] ;?> </h3> </div>
+                    
+                    <?php }?>
+               </div>
+                
+               <!-- <?php
+               foreach($Search_Results as $result){ 
+                $DepartmentId2 = "'#Department".$result['Id']."'";
+                   ?>
+               <div class="DepartmentSection" id= <?php echo $DepartmentId2;?> >
+                    <span class="DepartmentName"><?php echo $result['Emri'] ?></span>       
+                    <span class="Departmentborder"></span>
+                    <p>
+                        <?php echo $result['Emri']." department has ".$result['NrDhoma']." number of rooms" ; ?>
+                    </p>        
+               </div>
+               
+               <?php } ?> -->
+
+
+
+            </div>
+        </section>        
+
+<!-- <section>
     <div class="team-section" style="display:none;" >
         <h1>Our Doctors</h1>
             <span class="Doctorborder"></span>
@@ -153,7 +208,7 @@ if(isset($_SESSION['Account'])){
          </form> 
     
 
-</section>
+</section> -->
 
 <footer>
         

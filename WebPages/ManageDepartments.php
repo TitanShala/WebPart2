@@ -45,7 +45,7 @@ $search_result = $Controller->LoadTable();
 
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/RegisterDoctor.css"> 
+    <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
     <link rel="stylesheet" href="../css/Index.css"> 
       
     <?php
@@ -69,7 +69,7 @@ $search_result = $Controller->LoadTable();
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
@@ -86,10 +86,10 @@ $search_result = $Controller->LoadTable();
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
                                 <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
-                                <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
+                                <li><a href="#">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -106,7 +106,7 @@ $search_result = $Controller->LoadTable();
 
             <div  class="FormContainer">
  
-            <form action="../Views/InsertDepartmentView.php" method="post" id="form" class="RegisterForm" id="RegisterForm">
+            <form action="../Views/InsertDepartmentView.php" method="post" id="form" class="RegisterForm" id="RegisterForm"  enctype="multipart/form-data">
             
                     <h1 class="FormH1">Register</h1>
                     <div class="textbox">
@@ -124,6 +124,12 @@ $search_result = $Controller->LoadTable();
                         <?php if(isset($NrRooms_Error)) { ?>
                             <p style="color:red;"><?php echo $NrRooms_Error ?></p>
                             <?php } ?>     
+
+                     <input type="hidden" name="size" value="1000000" >
+                    <div class="textbox">
+                        <i class="far fa-clock"></i>
+                        <input type="file" name="IMAGE" style="font-size:15px;"> <br />
+                    </div>                                
                     
                     
                     <div class="LoginButtons">

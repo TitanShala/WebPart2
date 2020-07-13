@@ -63,7 +63,7 @@ include_once '../Controller/ManageController.php';
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
                             </ul>   
                         </li>
                     </ul>

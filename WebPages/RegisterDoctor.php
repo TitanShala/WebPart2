@@ -74,7 +74,7 @@ else{
 
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/RegisterDoctor.css"> 
+    <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
     <link rel="stylesheet" href="../css/Index.css"> 
       
     <?php
@@ -99,7 +99,7 @@ else{
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
@@ -115,11 +115,11 @@ else{
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>
-                                <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
+                                <li><a href="#">Doctors</a></li>
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -136,7 +136,7 @@ else{
 
     <div  class="FormContainer">
         
-            <form action="../Views/InsertDoctorView.php" method="post" id="form" class="RegisterForm" id="RegisterForm">
+            <form action="../Views/InsertDoctorView.php" method="post" id="form" class="RegisterForm" id="RegisterForm" enctype="multipart/form-data">
             
                     <h1 class="FormH1">Register</h1>
                     <div class="textbox">
@@ -169,10 +169,19 @@ else{
                     <div class="textbox">
                         <i class="far fa-clock"></i>
                         <input required type="text" id="Experience" placeholder="Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($experience) ?>"> <br />
-                    </div>    
+                    </div>
+
                     <?php if(isset($Experience_Error)) { ?>
                             <p style="color:red;"><?php echo $Experience_Error; ?></p>
                             <?php } ?>
+                    
+                    <input type="hidden" name="size" value="1000000">
+                    <div class="textbox">
+                        <i class="far fa-clock"></i>
+                        <input type="file" name="IMAGE" style="font-size:15px;"> <br />
+                    </div>    
+
+                    
                     
                     <div class="LoginButtons">
                         <input class="FormSubmit" type="submit" value="Submit" name="SubmitInput">

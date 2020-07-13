@@ -9,8 +9,14 @@
         $Manage = new ManageController();
         $Controller = new DepartmentController();
         $count= 0;
+
         $sql = "select * from Reparti where Emri='".$Name."'";
         $result = $Manage->filterTable($sql);
+        
+		$target = "../UploadedImages/".basename($_FILES['IMAGE']['name']);
+		$image1 = $_FILES['IMAGE']['name'];
+		move_uploaded_file($_FILES['IMAGE']['tmp_name'],$target);      		
+  
         
         
         if(strlen($Name) < 3){
@@ -34,10 +40,13 @@
             $count++;
         }
         if($count==0){
-            $Controller->InsertDepartment($Name,$Nr,$Admin);
+            $Controller->InsertDepartment($Name,$Nr,$Admin,$image1);
             $InsertResult='Department Registred Succesfully';
             
-            $result = $Controller->filterTable($sql);
+            // $result = $Controller->filterTable($sql);
+            
+            $sql = "select Id from Reparti order by Id desc";
+            $result = $Manage->filterTable($sql);
             $id = $result[0][0];
             $dt = new DateTime();
             $date = $dt->format('Y-m-d H:i:s');

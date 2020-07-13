@@ -2,20 +2,37 @@
 include_once '../Controller/AppointmentController.php';
 if(isset($_POST['submit'])){
     session_start();
-    $Username = $_SESSION['Username'];	
-    $Name = $_POST['name'] ;
+    $Username = $_SESSION['Username'];
+    	
+    // $Name = $_POST['name'] ;
     $Department = $_POST['dept'] ;
     $Day = $_POST['Day'] ;
     $Month = $_POST['Month'] ;
     $Year = $_POST['Year'] ;
     $Hour = $_POST['hour'] ;
     $count = 0 ;
+    $Controller = new AppointmentController();
 
-    if(strlen($Name) <= 6 || strlen($Name) >= 20){
-        $Name_Error = "Full Name must be longer than 6 and shorter than 20 characters";
-        $count++;
+    		
 
-    }
+
+    $getDepID="Select * from Reparti where Emri = '".$Department."'";
+    $DepartmentId = $Controller->filterTable($getDepID)[0][0];
+    // if(strlen($Name) <= 6 || strlen($Name) >= 20){
+    //     $Name_Error = "Full Name must be longer than 6 and shorter than 20 characters";
+    //     $count++;
+
+    // }
+
+
+        //Oraret e nxonme
+        $Date = $Year."-".$Month."-".$Day ;
+        $query = "Select Hour from Appointment where Data='".$Date."' and Department=".$DepartmentId ; 
+        $OraretPerSot = $Controller->filterTable($query);
+        
+
+
+    
     if(strlen($Department)< 1){
         $Department_Error= "Please choose a department";
         $count++;
@@ -36,11 +53,25 @@ if(isset($_POST['submit'])){
     if(strlen($Hour) < 1 || $Hour < 8 || $Hour>16){
         $Hour_Error = "Please choose hour between 8:00 to 16:00";
         $count++;
+    }else{
+        foreach($OraretPerSot as $Orari){
+            if($Orari[0] == $Hour){
+                $Hour_Error = "This Hours is busy, choose another hour for this date";
+                $count++;
+            }
+        }
     }
+
+
     if($count==0){
-    $Controller = new AppointmentController();
-    $getDepID="Select * from Reparti where Emri = '".$Department."'";
-    $DepartmentId = $Controller->filterTable($getDepID)[0][0];
+    
+
+    $getUserNameQuery="Select Emri,Mbiemri from Account where Username ='".$Username."'";
+
+    $getUserName = $Controller->filterTable($getUserNameQuery);
+    $Name = $getUserName[0][0]." ".$getUserName[0][1] ;
+
+    
     $Date = $Year."-".$Month."-".$Day ;
     $Controller->InsertAppointment($Name,$Username,$DepartmentId,$Date,$Hour);
     include '../WebPages/Appointment.php';

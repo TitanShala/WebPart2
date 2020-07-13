@@ -9,13 +9,14 @@ public function __construct(){
     $this->connection= $obj->getConnection();
 }
 
-public function InsertDepartment($Name, $Nr, $Admin){
+public function InsertDepartment($Name, $Nr, $Admin,$Image){
      //$sql = "INSERT INTO Reparti (Emri,NrDhoma,Stafi) VALUES (".$Name.", ".$Nr.", ".$Admin.")";
-    $sql = "INSERT INTO Reparti (Emri,NrDhoma,Stafi) VALUES (:Emri,:Nr,:Stafi)";
+    $sql = "INSERT INTO Reparti (Emri,NrDhoma,Stafi,image) VALUES (:Emri,:Nr,:Stafi,:Image)";
     $statement = $this->connection->prepare($sql);
     $statement->bindParam(":Emri", $Name);
     $statement->bindParam(":Nr", $Nr);
     $statement->bindParam(":Stafi", $Admin);
+    $statement->bindParam(":Image", $Image);
     $statement->execute();
 }
 

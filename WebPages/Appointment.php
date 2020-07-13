@@ -53,10 +53,10 @@
 
                 <nav>
                     <ul class="Nav">
-                        <li><a href="#">Home</a></li>
+                        <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
                         <li><a href="../WebPages/contactUs.php">Contact</a></li>
-                        <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
+                        <li><a href="#" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
                 </nav>
             </div>
@@ -73,7 +73,7 @@
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -90,14 +90,15 @@
             <p id="error" style="color:red;"></p>
             <form id="form" class="form" action="../Views/InsertAppointmentView.php" method="post">
                 
-
+                
+<!-- 
                 <div class="box">
                     <img class="img" src="../Foto/person.png"> </img>
                     <input name="name" class="input" id="name" type="text" placeholder="Full name" >
                     <?php if(isset($Name_Error)) { ?>
                             <p style="color:red;"><?php echo $Name_Error ?></p>
                             <?php } ?> 
-                </div>
+                </div> -->
 
                 <div class="box" style="">
                     <img class="img" src="../Foto/department.png"> </img>
@@ -125,7 +126,7 @@
                     <div class="date" style="display:flex; flex-direction:row; justify-content:center;">
                         <input name="Day" class="dateinput" id="day" type="number" placeholder="Day" min="1" max="31">
                         <input name="Month" class="dateinput" id="month" type="number" placeholder="Month" min="1" max="12" >
-                        <input name="Year" class="dateinput" id="year" type="number" placeholder="Year" min="1" >
+                        <input name="Year" class="dateinput" id="year" type="number" placeholder="Year" min= <?php echo date('Y');?> max=<?php echo date('Y') + 1;?> >
                     </div>
 
                     <!--<input class="input" id="date" type="Date" placeholder="Date" >-->

@@ -1,0 +1,286 @@
+@import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
+        #table-wrapper {
+          position:relative;
+        }
+        #table-scroll {
+          height:380px;
+          overflow:auto;  
+          
+        }
+        #table-wrapper table {
+          width:100%;
+
+        }
+        #table-wrapper table * {
+          background: rgba(0,136,169,1);
+          color:black;
+        }
+        #table-wrapper table thead th .text {
+          position:absolute;   
+          top:-20px;
+          z-index:2;
+          height:20px;
+          width:35%;
+          /* width:10%;
+           */
+}
+
+        .SearchFormInputContainer{
+            display:flex;
+            flex-direction:row;
+        }
+
+        .FormContainer{
+            display:flex;
+            flex-direction:row;
+            justify-content:space-around;
+            /* justify-content:center; */
+            /* align-items:center; */
+            /* border:2px solid red; */
+            padding-top:5%;         
+            padding-bottom:5%;
+            /* padding-left:10%; */
+        }
+
+        table{
+            
+            width:400px;
+            max-height:400px;
+            font-family:sans-serif;
+            border-collapse: collapse; 
+            
+   
+        }
+
+        .table.sticky th{
+            position: sticky;
+            top: 0 ;
+        }
+
+        .table.sticky th::after{
+            content:'';
+            width:100%;
+            height: 2px;
+            position:absolute;
+            bottom:0;
+            left:0;
+            background:black;
+        }
+
+        table th,
+        table td{
+            padding: 10px;
+            border:1px solid #cccccc;
+            text-align:center;
+        }
+        table th{
+            background: #888888;
+            color: #ffffff;
+        }
+
+        .RegisterForm{
+            display:flex;
+            flex-direction:column;
+            width: 280px;
+            /* margin-top:200px; */
+             /* margin-left: 20vh;  */
+            /* transform: translate(-50%,-50%); */
+            color: white;
+        }
+        .EditForm{
+            display:flex;
+            flex-direction:column;
+            display:none; 
+            width: 280px;
+            /* margin-top:200px;
+            margin-left: 10vh;
+            transform: translate(-50%,-50%); */
+            color: white;
+        }
+
+        .DeleteForm{
+            display:flex;
+            flex-direction:column;
+            display:none; 
+            width: 280px;
+            /* margin-top:200px;
+            margin-left: 20vh;
+            transform: translate(-50%,-50%); */
+            color: white;
+        }
+         /*.RegisterForm{
+            border:2px solid black; 
+            display:flex;
+            flex-direction:column;
+            justify-content:space-around;
+            width: 400px;
+            padding: 20px 100px;        
+            height:400px;
+        }
+        .RegisterForm input{        
+            height:30px;         
+        } */
+
+        .SearchForm{
+            height:30px;
+            width:600px;
+            /* border:2px solid black; */
+            display:flex ; 
+            flex-direction:row;
+            justify-content:space-between;
+        }
+
+        .SearchSubmit{
+            width:50px;
+        }
+
+        .SearchInput{
+            width:550px;
+        }
+
+        /* .DeleteForm{
+            border:2px solid black;
+            display:flex;
+            flex-direction:column;
+            text-align:center;
+            padding:20px 30px;
+            justify-content:space-around;
+            display:none;
+            height:400px;
+        } */
+
+        .ButtonContainer{
+            padding:10px;
+            display:flex;
+            flex-direction:row;
+            justify-content:space-around;
+            text-align:center;
+            width:30%;
+            margin:auto 35%;
+        }
+
+        .btn{
+            display: block;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            color: #edf0f1;
+            text-decoration: none;
+            padding: 9px 25px;
+            background-color: rgba(0,136,169,1);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease 0s;
+        }
+
+         /* .EditForm{
+             border:2px solid black;
+
+            justify-content:space-around;
+            width: 400px;
+            padding: 20px 100px;        
+            height:400px;            
+            align-items:center; 
+            display:flex;
+            flex-direction:column;            
+            display:none;
+        } 
+        .EditForm input{
+            
+            height:30px;
+            
+        } */
+
+        section{
+            display:block;
+            background-image: url(../Foto/5804.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            
+            /* display:flex ;
+            flex-direction: row;
+            justify-content: space-around; */
+            padding-top: 100px ;
+            padding-bottom:100px;
+        }
+
+        .FormH1{
+            /* text-align:center; 
+            margin-bottom:20px; 
+            color:white; 
+            margin-bottom:50px; */
+            color:white;
+            float: left;
+            font-size: 40px;
+            border-bottom: 6px solid #007a29;
+            margin-bottom: 50px;
+            padding: 13px 0;
+            width: 50%;
+        }
+        
+        .textbox{
+            width: 100%;
+            overflow: hidden;
+            font-size: 20px;
+            padding: 8px 0;
+            margin: 8px 0;
+            border-bottom: 1px solid #007a29;
+          }
+        .textbox input{
+            border: none;
+            outline: none;
+            background: none;
+            color: white;
+            font-size: 18px;
+            width: 80%;
+            float: left;
+            margin: 0 10px;
+        }
+
+        .FormSubmit{
+            width: 100%;
+            background: none;
+            border: 2px solid #007a29;
+            color: white;
+            padding: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            margin: 12px 0;
+        }
+
+        .Cancelbtn{
+            background: none;
+            border: 1px solid red;
+            color: red;
+            font-size:14px;
+            padding: 3px;
+            cursor: pointer;        
+          }
+
+          .textbox i{
+            width: 26px;
+            float: left;
+            text-align: center;
+          }
+/* 
+           @media all and (max-width:1300px){
+            .FormContainer{
+                flex-direction:column;
+                justify-content:center;
+            }
+          } */
+
+          @media all and (max-width:970px){
+            .FormContainer{
+                flex-direction:column;
+                justify-content:center;
+                
+            }
+            table{
+                width:300px;
+            }
+            .SearchForm{
+                width:300px;
+            }
+          } 

@@ -5,16 +5,17 @@ include_once '../Controller/ManageController.php';
 
 	if(isset($_POST['SubmitInput'])){
 		session_start();
-		$Admin = $_SESSION['Username'];	
+		$Admin = $_SESSION['Username'];			
 		
+		
+		$target = "../UploadedImages/".basename($_FILES['IMAGE']['name']);
+		$image1 = $_FILES['IMAGE']['name'];
+		move_uploaded_file($_FILES['IMAGE']['tmp_name'],$target);     
 
 		$count = 0;
-		//$Name = $_POST['Emri'];
 		$Name =filter_input(INPUT_POST,'Emri');
 		$Manage = new ManageController();
-		 $sql = "select Id from Doktori where Emri='".$Name."'";
-		 $result = $Manage->filterTable($sql);
-		 $DoctorId = $result[0][0];
+
 
 		if(strlen($Name)<3){
 			$Name_Error = "Name should not be null or shorter than 3";
@@ -47,10 +48,21 @@ include_once '../Controller/ManageController.php';
 			$count++;
 		}
 		if($count == 0){
-		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin);
+		//Insertimi  i doktori nese nuk ka error
+		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin,$image1);
 		$Result = 'Doctor Inserted succesfully';
+		
+		//Gjetja e dates se sotit per insertimin ne tabele, Aktiviteti i adminit te doktoret
+		
 		$dt = new DateTime();
 		$date = $dt->format('Y-m-d H:i:s');
+
+		//Gjetja e id se Doktorit te saposhtuar
+		$sql = "select Id from Doktori order by Id desc";
+		$result = $Manage->filterTable($sql);
+		$DoctorId = $result[0][0];
+
+		//Insertimi i aktivitetit te adminit
 		$Manage->insertDoctorManage($Admin,$DoctorId,'Inserted',$date);
 		$Name ="";
 		$surname ="";
@@ -63,9 +75,9 @@ include_once '../Controller/ManageController.php';
 
 class InsertView{
 	
-	public function InsertDoctor($name, $surname, $specialization, $experience ,$Admin){
+	public function InsertDoctor($name, $surname, $specialization, $experience ,$Admin,$image){
 		$controller = new DoctorController();
-		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience, $Admin);
+		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience, $Admin,$image);
 
 	}
 

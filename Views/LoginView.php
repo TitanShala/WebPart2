@@ -1,5 +1,8 @@
 <?php
 include_once '../Models/DbConn.php';
+include_once '../Controller/ManageController.php';
+
+session_start();
 
 if(isset($_POST['LoginBtn'])){
 
@@ -30,11 +33,13 @@ if(isset($_POST['LoginBtn'])){
     }
     
         $query = "select * from Account where Username = '".$UsernameL."' and Password = '".$PasswordL."' and role =".$Role;
-        $obj = new DBConnection();
-        $connection= $obj->getConnection();
-        $getresults = $connection->prepare($query);
-        $getresults->execute();
-        $results = $getresults->fetchAll(PDO::FETCH_BOTH); 
+        // $obj = new DBConnection();
+        // $connection= $obj->getConnection();
+        // $getresults = $connection->prepare($query);
+        // $getresults->execute();
+        $Controller = new ManageController();
+        $results = $Controller->filterTable($query);
+        // $results = $getresults->fetchAll(PDO::FETCH_BOTH); 
           
     if(count($results) == 0){
         $LoginError = "Login incorrect";
@@ -43,16 +48,18 @@ if(isset($_POST['LoginBtn'])){
     }
     else{
         $succes = 'Login Succesfull';
-        session_start();
+        @session_start();
         $_SESSION['Username'] = $UsernameL ;
         $_SESSION['Password'] = $PasswordL ;
         $_SESSION['Account']  =  $Account ;
-        
+        echo "<script> 
+                alert('You are succesfully Loged in!');
+            </script>";
 
-        include '../WebPages/index.php' ;
+            header("Location: ../WebPages/index.php"); 
+        // include '../WebPages/index.php' ;
         // echo '<link rel="stylesheet" href="../css/LoginToIndex.css">' ;  
     }
-    
-
 }
+
 ?>

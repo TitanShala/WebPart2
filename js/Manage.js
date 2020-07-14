@@ -1,30 +1,30 @@
 // JavaScript source code
-
+const formR = document.getElementById('formR');
+const formE = document.getElementById('formE');
+const formD = document.getElementById('formD');
 
 
 function RegisterClick(){
 
-        var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
        // DeleteForm.style.visibility = "hidden";
        // RegisterForm.style.visibility = "visible";
-       DeleteForm.style.display='none'; 
-       EditForm.style.display='none';
-        RegisterForm.style.display = 'block';	
+        formD.style.display='none'; 
+        formE.style.display='none';
+        formR.style.display = 'block';	
 
 }
 
 function DeleteClick(){
         
-        var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
+        // var DeleteForm = document.querySelector('.DeleteForm');
+        // var RegisterForm = document.querySelector('.RegisterForm');
+        // var EditForm = document.querySelector('.EditForm');
         //RegisterForm.style.visibility = "hidden";
         //DeleteForm.style.visibility = "visible";
-        RegisterForm.style.display = 'none';
-        DeleteForm.style.display='block'; 
-        EditForm.style.display='none';
+
+        formR.style.display = 'none';
+        formD.style.display='block'; 
+        formE.style.display='none';
         	
 
 }
@@ -34,30 +34,32 @@ function cancelEdit(){
         document.getElementById('NameE').value = '';
         document.getElementById('SurnameE').value = '';
         document.getElementById('ExperienceE').value = '';
-        document.getElementById('SpecializationE').value = ''; 
+        document.getElementById('SpecializationE').value = '';
+        document.getElementById('errorE').value = '' ; 
             
 }
 
 function cancelRegister(){
         
-        document.getElementById('Name').value = '';
-        document.getElementById('Surname').value = '';
-        document.getElementById('Experience').value = '';
-        document.getElementById('Specialization').value = '';
+        document.getElementById('NameR').value = '';
+        document.getElementById('SurnameR').value = '';
+        document.getElementById('ExperienceR').value = '';
+        document.getElementById('SpecializationR').value = '';
+        document.getElementById('error');
 } 
 
 function cancelDelete(){
-        document.getElementById('idD').value = '';     
+        document.getElementById('idD').value = ''; 
+        document.getElementById('errorD');    
 }
 
 function EditClick(){
-        var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
-
-        RegisterForm.style.display ='none';
-        DeleteForm.style.display='none'; 
-        EditForm.style.display='block';
+        // var DeleteForm = document.querySelector('.DeleteForm');
+        // var RegisterForm = document.querySelector('.RegisterForm');
+        // var EditForm = document.querySelector('.EditForm');
+        formR.style.display ='none';
+        formD.style.display='none'; 
+        formE.style.display='block';
 
 }
 

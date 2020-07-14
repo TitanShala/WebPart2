@@ -1,6 +1,8 @@
 <?php
     include_once '../Controller/DepartmentController.php';
     include_once '../Controller/ManageController.php';
+    session_start();
+
     if(isset($_POST['SubmitReg'])){
         session_start();
         $Admin = $_SESSION['Username'];
@@ -51,12 +53,15 @@
             $dt = new DateTime();
             $date = $dt->format('Y-m-d H:i:s');
             $Manage->InsertDepartmentManage($Admin,$id,'Inserted',$date); 
+            echo '<script> alert("Department inserted successfully !") </script>';
                       
             $Name = '' ;
             $Nr = '' ;
 
         }
-        
+        include '../WebPages/ManageDepartments.php';
+    }else if(!isset($_SESSION['Username'])){
+        header("Location: ../WebPages/Login.php"); 
     }
-    include '../WebPages/ManageDepartments.php';
+    
 ?>

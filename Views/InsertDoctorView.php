@@ -2,6 +2,7 @@
 include_once '../Controller/DoctorController.php';
 include_once '../Controller/ManageController.php';
 
+session_start();
 
 	if(isset($_POST['SubmitInput'])){
 		session_start();
@@ -38,8 +39,8 @@ include_once '../Controller/ManageController.php';
 
 		$view = new InsertView();
 
-		if(strlen($experience)<1){
-			$Experience_Error = "Experience should not be null";
+		if(strlen($experience)<1 || strlen($experience)>2){
+			$Experience_Error = "Experience should not be null or not contain more than 2 numbers";
 			$count++;
 		}
 
@@ -50,7 +51,7 @@ include_once '../Controller/ManageController.php';
 		if($count == 0){
 		//Insertimi  i doktori nese nuk ka error
 		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin,$image1);
-		$Result = 'Doctor Inserted succesfully';
+		
 		
 		//Gjetja e dates se sotit per insertimin ne tabele, Aktiviteti i adminit te doktoret
 		
@@ -68,9 +69,12 @@ include_once '../Controller/ManageController.php';
 		$surname ="";
 		$specialization="";
 		$experience="";
-		
+		echo '<script> alert("Doctor inserted succesfully !") </script>';
 			}	
 			include 'C:/xampp/htdocs/GitProject/WebPages/RegisterDoctor.php';
+
+	}else if(!isset($_SESSION['Username'])){
+		header("Location: ../WebPages/Login.php"); 
 	}
 
 class InsertView{

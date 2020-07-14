@@ -60,21 +60,19 @@
             errorElement.innerText = messages.join('! ');           
             }
 
-         if(messages.length < 1){
+        //  if(messages.length < 1){
             
             
             
-            var signin = document.querySelector('.SignInNav');
-            var signout = document.querySelector('.SignOutNav');
-            LogedIn = true ;
-            SaveLoginCondition ();
+        //     // var signin = document.querySelector('.SignInNav');
+        //     // var signout = document.querySelector('.SignOutNav');
+        //     // LogedIn = true ;
+        //     // SaveLoginCondition ();
             
         
-            signin.style.display='none'; 
-            signout.style.display = 'block';
-            }
-            
-
+        //     // signin.style.display='none'; 
+        //     // signout.style.display = 'block';
+        //     }
        })
 
 
@@ -82,12 +80,15 @@
 
 
         //konstantet per ruajtjen e vlerave gjate regjistrimit
-        const nameR = document.getElementById('nameR');
+        const nameR = document.getElementById('Regname');
+        const surnameR= document.getElementById('Regsurname');
+        const UsernameR = document.getElementById('nameR');
         const passwordR = document.getElementById('passwordR');
-        const passwordconfirmR = document.getElementById('passwordconfirmR')
+        const passwordconfirmR = document.getElementById('passwordconfirmR');
+        const emailR = document.getElementById('emailR');
+        
         const formR= document.getElementById('formRegister');
         const errorElementR = document.getElementById('errorR');
-        const emailR = document.getElementById('emailR');
         
 
 
@@ -96,32 +97,29 @@
          formR.addEventListener('submit', (e) =>{
             let messagesR = [];
 
-            if(nameR.value === '' || nameR.value == null){
-                messagesR.push('Username is required');
+            var NamePattern = /^[A-Za-z. ]{3,30}$/ ;
+            var ExperiencePattern = /^[0-9]{1,2}$/;
+
+
+            if(!NamePattern.test(NameR.value)){
+                messages.push('Name should be string and length should be between 3 to 20 characters');
             }
 
-            if(nameR.value.length <= 6){
-                messagesR.push('Username must be longer than 6 characters');
+            if(!NamePattern.test(surnameR.value)){
+                messages.push('Surname should be string and length should be between 3 to 20 characters');
             }
-
-             if(nameR.value.length >= 20){
-                messagesR.push('Username must be shorter than 20 characters');
-            }
-
-           
-
             if(passwordR.value.length <= 6){
                 messagesR.push('Password must be longer than 6 characters');
             }
 
-            if(passwordR.value.length >= 20){
+             if(passwordR.value.length >= 20){
                 messagesR.push('Password must be shorter than 20 characters');
             }
 
              if(passwordconfirmR.value !== passwordR.value ){
                 messagesR.push('Password is not the same');
             }
-
+            
             if(messagesR.length > 0){
             e.preventDefault();
             errorElementR.innerText = messagesR.join('! ');

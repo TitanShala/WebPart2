@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    @session_start();
     session_destroy();
 
     include_once '../Controller/ManageController.php';
@@ -80,6 +80,7 @@
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
                                 <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -95,7 +96,7 @@
         </div>
 
        <!-- <div style="display:flex; flex-direction="row"; height:800px; border:2px solid white;"> -->
-         <div class="login-box">
+         <div class="login-box" id="login-box">
 
          <p style="margin-top:60px;" id="error"></p>
           <form id="form" action="../Views/LoginView.php" method="post">
@@ -131,10 +132,13 @@
         <!--</div> -->
 
 
-      <div class="Register-box">
+      <div class="Register-box" id="Register-box">
         <p id="errorR" style="margin-top:200px;"></p>
-          <form id="formRegister" action="../Views/RegisterView1.php" method="post">
+          
+        <form id="formRegister" action="../Views/RegisterView1.php" method="post">
+            
             <h1>Register</h1>
+
             <div class="textbox">
                     <i class="fas fa-user"></i>
                     <input  name="NameReg" id="Regname" type="text" placeholder="Name" required value="<?php echo htmlspecialchars($Name) ?>"> <br />
@@ -184,11 +188,11 @@
                             <?php } ?> 
 
              <div class="LoginButtons">
-                     <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn">
+                     <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn" >
                      <?php if(isset($RegisterResult)) { ?>
                             <p style="color:green;"><?php echo $RegisterResult ?></p>
                             <?php } ?> 
-                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
+                     <input name="RegisterCancel" type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
                     <input type="button" class="btnNotRegistered" value="Already have an account?" onclick="HaveAnAccount();">                    
             </div>
           </form>
@@ -196,7 +200,7 @@
      
      
 </section>
-<footer>
+<footer  style="max-height:288px;">
         
 
         <div class="footer">
@@ -241,6 +245,6 @@
         </div>
     
     </footer>
- <script src="../js/LoginValidation1.js"></script>
+ <script src="../js/LoginValidate.js"></script>
 </body>
 </html>

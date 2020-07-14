@@ -1,11 +1,10 @@
 <?php
 include_once '../Controller/AppointmentController.php';
+session_start();
 if(isset($_POST['submit'])){
-    session_start();
+    
     $Username = $_SESSION['Username'];
     	
-    // $Name = $_POST['name'] ;
-    $Department = $_POST['dept'] ;
     $Day = $_POST['Day'] ;
     $Month = $_POST['Month'] ;
     $Year = $_POST['Year'] ;
@@ -13,25 +12,18 @@ if(isset($_POST['submit'])){
     $count = 0 ;
     $Controller = new AppointmentController();
 
-    		
-
-
-    $getDepID="Select * from Reparti where Emri = '".$Department."'";
-    $DepartmentId = $Controller->filterTable($getDepID)[0][0];
-    // if(strlen($Name) <= 6 || strlen($Name) >= 20){
-    //     $Name_Error = "Full Name must be longer than 6 and shorter than 20 characters";
-    //     $count++;
-
-    // }
-
-
-        //Oraret e nxonme
+    @$Department = $_POST['dept'];
+    if(!isset($_POST['dept'])){
+        $Department_Error="Please choose a department";
+        $count++;
+    }
+    else{
+        $Department = $_POST['dept'];
+        $getDepID="Select * from Reparti where Emri = '".$Department."'";
+        $DepartmentId = $Controller->filterTable($getDepID)[0][0];
         $Date = $Year."-".$Month."-".$Day ;
         $query = "Select Hour from Appointment where Data='".$Date."' and Department=".$DepartmentId ; 
-        $OraretPerSot = $Controller->filterTable($query);
-        
-
-
+        $OraretPerSot = $Controller->filterTable($query);        
     
     if(strlen($Department)< 1){
         $Department_Error= "Please choose a department";
@@ -58,32 +50,27 @@ if(isset($_POST['submit'])){
             if($Orari[0] == $Hour){
                 $Hour_Error = "This Hours is busy, choose another hour for this date";
                 $count++;
-            }
+                                  }
+                                        }
         }
     }
-
-
     if($count==0){
-    
-
     $getUserNameQuery="Select Emri,Mbiemri from Account where Username ='".$Username."'";
-
     $getUserName = $Controller->filterTable($getUserNameQuery);
     $Name = $getUserName[0][0]." ".$getUserName[0][1] ;
-
-    
     $Date = $Year."-".$Month."-".$Day ;
     $Controller->InsertAppointment($Name,$Username,$DepartmentId,$Date,$Hour);
-    include '../WebPages/Appointment.php';
+    
     echo "<script> 
         alert('We are gonna make an appointment for you, approximately with your choosen date and time. We will sent your appointment in your email adress thankyou!');
     </script>";
 
     }
-    else{
-        include '../WebPages/Appointment.php';
-    }
-    
+    include '../WebPages/Appointment.php';   
+// }
+}
+else if(!isset($_SESSION['Username'])){
+    header("Location: ../WebPages/Login.php"); 
 }
 
 ?>

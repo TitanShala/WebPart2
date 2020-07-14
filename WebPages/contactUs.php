@@ -64,6 +64,7 @@ include_once '../Controller/ManageController.php';
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
                                 <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -94,9 +95,7 @@ include_once '../Controller/ManageController.php';
                             <p style="color:red;"><?php echo $Name_Error ?></p>
                             <?php } ?> 
                 <input type="submit" name="Submit" class="form-control-submit" value="SEND MESSAGE">
-                <?php if(isset($Result)) { ?>
-                            <p style="color:green;"><?php echo $Result ?></p>
-                            <?php } ?> 
+                
             </form>
         </div>
     </div>

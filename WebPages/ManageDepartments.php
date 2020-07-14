@@ -90,6 +90,7 @@ $search_result = $Controller->LoadTable();
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
                                 <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -106,10 +107,11 @@ $search_result = $Controller->LoadTable();
 
             <div  class="FormContainer">
  
-            <form action="../Views/InsertDepartmentView.php" method="post" id="form" class="RegisterForm" id="RegisterForm"  enctype="multipart/form-data">
+            <form action="../Views/InsertDepartmentView.php" method="post" id="formR" class="RegisterForm" id="RegisterForm"  enctype="multipart/form-data">
             
                     <h1 class="FormH1">Register</h1>
                     <div class="textbox">
+                        <p style="margin-top:60px; color:red; font-size:15px; margin-bottom:15px;" id="errorR"></p>
                         <i class="fas fa-user"></i>
                         <Input required type="text" id="Name" placeholder="Name" name="Emri" value="<?php echo htmlspecialchars($Name) ?>"> <br />
                     </div>    
@@ -119,7 +121,7 @@ $search_result = $Controller->LoadTable();
 
                     <div class="textbox">
                         <i class="fas fa-user-md"></i>
-                        <input required type="text" id="NrRoom" placeholder="Number of Rooms" name="NrRooms" value="<?php echo htmlspecialchars($Nr) ?>"> <br />
+                        <input required type="number" min="1" id="NrRoom" placeholder="Number of Rooms" name="NrRooms" value="<?php echo htmlspecialchars($Nr) ?>"> <br />
                     </div>    
                         <?php if(isset($NrRooms_Error)) { ?>
                             <p style="color:red;"><?php echo $NrRooms_Error ?></p>
@@ -134,19 +136,18 @@ $search_result = $Controller->LoadTable();
                     
                     <div class="LoginButtons">
                         <input class="FormSubmit" type="submit" value="Submit" name="SubmitReg">
-                            <?php if(isset($InsertResult)) { ?>
-                                <p style="color:green;"><?php echo $InsertResult; ?></p>                       
-                                <?php } ?>
+                            
                         <input  type="button" class="Cancelbtn" value="Cancel" onclick="CancelDepReg();">                        
                     </div>
                     
                 
             </form> 
             
-            <form action="../Views/EditDepartmentView.php" class="EditForm"  method="post" >
+            <form action="../Views/EditDepartmentView.php" id="formE" class="EditForm"  method="post" >
                 <h1 class="FormH1">Edit</h1>
                 
                 <div class="textbox">
+                    <p style="margin-top:60px; color:red; font-size:15px; margin-bottom:15px;" id="errorE"></p>
                     <i class="fas fa-id-card"></i>
                     <input required type="text" id="idDR" placeholder="Type the id of Department" name="Id" class="EditID" value="<?php echo htmlspecialchars($IdE) ?>"> <br />
                 </div>    
@@ -164,7 +165,7 @@ $search_result = $Controller->LoadTable();
 
                 <div class="textbox">
                     <i class="fas fa-user"></i>
-                    <input  type="text" id="NumberOfRooms" placeholder="New Number of Rooms" name="Nr" value="<?php echo htmlspecialchars($NrE) ?>"> <br /> 
+                    <input  type="number" min="1" id="NumberOfRooms" placeholder="New Number of Rooms" name="Nr" value="<?php echo htmlspecialchars($NrE) ?>"> <br /> 
                 </div>        
                     <?php if(isset($NrE_Error)) { ?>
                             <p style="color:red;"><?php echo $NrE_Error; ?></p>
@@ -176,18 +177,16 @@ $search_result = $Controller->LoadTable();
                                 <p style="color:red;"><?php echo $NullError; ?></p>                       
                                 <?php } ?>    
                     
-                        <?php if(isset($ResultEdit)) { ?>
-                            <p style="color:green;"><?php echo $ResultEdit; ?></p>                       
-                            <?php } ?>
+                        
                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="CancelDepEdit();">                                
                 </div>
             </form>        
             
-            <form class="DeleteForm" action="../Views/DeleteDepartmentView.php" method="post" id="DeleteForm">
+            <form class="DeleteForm" action="../Views/DeleteDepartmentView.php" method="post" id="formD">
                 <h1 class="FormH1">Delete</h1>
                 <div class="textbox">
                     <i class="fas fa-id-card"></i>
-                    <input required id="idDep" type="text" placeholder="Type ID" name="IdD" class="DeleteInput" value="<?php echo htmlspecialchars($IdD) ?>"> <br />
+                    <input required id="idDep" type="number" min="1" placeholder="Type ID" name="IdD" class="DeleteInput" value="<?php echo htmlspecialchars($IdD) ?>"> <br />
                 </div>
                             <?php if(isset($IdD_Error)) { ?>
                                 <p style="color:red;"><?php echo $IdD_Error; ?></p>
@@ -197,9 +196,7 @@ $search_result = $Controller->LoadTable();
                
                 <div class="LoginButtons">
                     <input class="FormSubmit" type="submit" value="Delete" name="DeleteSubmit" >
-                    <?php if(isset($DeleteResult)) { ?>
-                                <p style="color:green;"><?php echo $DeleteResult; ?></p>
-                                <?php } ?>
+                    
                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="CancelDepDel();">                        
                 </div>    
             </form>
@@ -291,6 +288,7 @@ $search_result = $Controller->LoadTable();
     
     </footer>
 <script src="../js/Manage.js"></script>
+<script src="../js/Department.js"></script>
 </body>
 
 </html>

@@ -1,13 +1,11 @@
 ﻿<?php
     @session_start();
     if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
+    
+        $Account = $_SESSION['Account'];
 }
 else{
-    
     header("Location: ../WebPages/Login.php");
-    
-
 }
     include_once '../Models/DbConn.php';
     include_once '../Controller/DoctorController.php';
@@ -120,6 +118,7 @@ else{
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
                                 <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -127,7 +126,7 @@ else{
             </div>   
         </header>
 
-<section>
+<section style="min-height:80vh">
     <div class="ButtonContainer">
         <input  type="button" class="btn" value="Register" onclick="RegisterClick();">
         <input  type="button" class="btn" value="Edit" onclick="EditClick();">
@@ -136,12 +135,15 @@ else{
 
     <div  class="FormContainer">
         
-            <form action="../Views/InsertDoctorView.php" method="post" id="form" class="RegisterForm" id="RegisterForm" enctype="multipart/form-data">
+            
+            <form id="formR" action="../Views/InsertDoctorView.php" method="post"  class="RegisterForm" id="RegisterForm" enctype="multipart/form-data">
             
                     <h1 class="FormH1">Register</h1>
+                    
                     <div class="textbox">
+                        <p style="margin-top:60px; color:red; font-size:15px; margin-bottom:15px;" id="error"></p>
                         <i class="fas fa-user"></i>
-                        <Input required type="text" id="Name" placeholder="Name" name="Emri" value="<?php echo htmlspecialchars($Name) ?>"> <br />
+                        <Input required type="text" id="NameR" placeholder="Name" name="Emri" value="<?php echo htmlspecialchars($Name) ?>"> <br />
                     </div>    
                         <?php if(isset($Name_Error)) { ?>
                             <p style="color:red;"><?php echo $Name_Error ?></p>
@@ -150,7 +152,7 @@ else{
 
                     <div class="textbox">
                         <i class="fas fa-user"></i>
-                        <input required type="text" id="Surname" placeholder="Surname" name="SurnameInput" value="<?php echo htmlspecialchars($surname) ?>"> <br /> 
+                        <input required type="text" id="SurnameR" placeholder="Surname" name="SurnameInput" value="<?php echo htmlspecialchars($surname) ?>"> <br /> 
                     </div>    
                         <?php if(isset($Surname_Error)) { ?>
                             <p style="color:red;"><?php echo $Surname_Error ?></p>
@@ -159,7 +161,7 @@ else{
 
                     <div class="textbox">
                         <i class="fas fa-user-md"></i>
-                        <input required type="text" id="Specialization" placeholder="Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($specialization) ?>"> <br />
+                        <input required type="text" id="SpecializationR" placeholder="Specialization" name="SpecializationInput" value="<?php echo htmlspecialchars($specialization) ?>"> <br />
                     </div>    
                         <?php if(isset($Specialization_Error)) { ?>
                             <p style="color:red;"><?php echo $Specialization_Error; ?></p>
@@ -168,7 +170,7 @@ else{
                     
                     <div class="textbox">
                         <i class="far fa-clock"></i>
-                        <input required type="text" id="Experience" placeholder="Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($experience) ?>"> <br />
+                        <input required type="number" id="ExperienceR" placeholder="Experience in years" name="ExperienceInput" value="<?php echo htmlspecialchars($experience) ?>"> <br />
                     </div>
 
                     <?php if(isset($Experience_Error)) { ?>
@@ -185,9 +187,7 @@ else{
                     
                     <div class="LoginButtons">
                         <input class="FormSubmit" type="submit" value="Submit" name="SubmitInput">
-                            <?php if(isset($Result)) { ?>
-                                <p style="color:green;"><?php echo $Result; ?></p>                       
-                                <?php } ?>
+                            
                         <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelRegister();">                        
                     </div>
                     
@@ -196,12 +196,13 @@ else{
         
 
         
-            <form action="../Views/EditDoctorView.php" class="EditForm"  method="post" >
+            <form action="../Views/EditDoctorView.php" class="EditForm"  method="post" id="formE" >
                 <h1 class="FormH1">Edit</h1>
                 
                 <div class="textbox">
+                    <p style="margin-top:60px; color:red; font-size:15px; margin-bottom:15px;" id="errorE"></p>
                     <i class="fas fa-id-card"></i>
-                    <input required type="text" id="idE" placeholder="Type the id of Doctor" name="Id" class="EditID" value="<?php echo htmlspecialchars($DocID) ?>"> <br />
+                    <input required type="number" id="idE" placeholder="Type the id of Doctor" name="Id" class="EditID" min="1" value="<?php echo htmlspecialchars($DocID) ?>"> <br />
                 </div>    
                         <?php if(isset($IdError)) { ?>
                             <p style="color:red;"><?php echo $IdError ?></p>
@@ -245,20 +246,19 @@ else{
                                 <p style="color:red;"><?php echo $NullError; ?></p>                       
                                 <?php } ?>    
                     
-                        <?php if(isset($resultEdit)) { ?>
-                            <p style="color:green;"><?php echo $resultEdit; ?></p>                       
-                            <?php } ?>
+                        
                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelEdit();">                                
                 </div>
             </form>
         
 
          
-            <form class="DeleteForm" action="../Views/DeleteDoctorView.php" method="post" id="DeleteForm">
+            <form class="DeleteForm" action="../Views/DeleteDoctorView.php" method="post" id="formD">
                 <h1 class="FormH1">Delete</h1>
                 <div class="textbox">
+                    <p style="margin-top:60px; color:red; font-size:15px; margin-bottom:15px;" id="errorD"></p>
                     <i class="fas fa-id-card"></i>
-                    <input required id="idD" type="text" placeholder="Type ID" name="DeleteInput" class="DeleteInput" value="<?php echo htmlspecialchars($DeleteInput) ?>"> <br />
+                    <input required id="idD" type="number" min="1" placeholder="Type ID" name="DeleteInput" class="DeleteInput" value="<?php echo htmlspecialchars($DeleteInput) ?>"> <br />
                 </div>      
                             <?php if(isset($error)) { ?>
                                 <p style="color:red;"><?php echo $error; ?></p>
@@ -270,9 +270,7 @@ else{
                 
                 <div class="LoginButtons">
                     <input class="FormSubmit" type="submit" value="Delete" name="DeleteSubmit" >
-                    <?php if(isset($DeleteResult)) { ?>
-                                <p style="color:green;"><?php echo $DeleteResult; ?></p>
-                                <?php } ?>
+                    
                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelDelete();">                        
                 </div>    
             </form>
@@ -372,5 +370,6 @@ else{
     </footer>
 
  <script src="../js/Manage.js"></script>
+ <script src="../js/Doctors.js"></script>
 </body>
 </html>

@@ -41,19 +41,20 @@ Stafi varchar(20),
 Doctor int,
 Aktiviteti varchar(20),
 Data date,
-foreign key(Stafi) references Account(Username) on delete cascade on update cascade ,
-foreign key(Doctor) references Doktori(id) 
+foreign key(Stafi) references Account(Username)  ,
+foreign key(Doctor) references Doktori(id) on delete cascade on update cascade
 )
+drop table DoctorManage
 
 
 create table DepartmentManage(
 Id int primary key identity(1,1),
-Stafi varchar(20),
-Reparti int,
+Stafi varchar(20) ,
+Reparti int ,
 Aktiviteti varchar(20),
 Data date,
-foreign key(Stafi) references Account(Username)  on delete cascade on update cascade ,
-foreign key(Reparti) references Reparti(id) 
+foreign key(Stafi) references Account(Username) ,
+foreign key(Reparti) references Reparti(id)  on delete cascade on update cascade 
 )
 drop table DepartmentManage
 

@@ -29,7 +29,7 @@ public function InsertAppointment($Name, $Username, $Department, $Data, $Hour){
           $search_result = $this->filterTable($query);
       }
       else{
-   $query="Select * FROM Appointment order by Id desc";
+   $query="Select * FROM Appointment order by Data";
    $search_result = $this->filterTable($query);
       }
     return $search_result;

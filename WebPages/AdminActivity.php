@@ -7,7 +7,7 @@ $search_result1 = $Controller->LoadTableDoctor();
 
 @session_start();
 if(isset($_SESSION['Account'])){
-$Account = $_SESSION['Account'];
+    $Account = $_SESSION['Account'];
 }
 else{
 
@@ -25,8 +25,9 @@ $info = $Controller->filterTable($GetInfo);
 
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/RegisterDoctor.css"> 
-    <link rel="stylesheet" href="../css/Index.css"> 
+    <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
+    <link rel="stylesheet" href="../css/Index.css">
+    <link rel="stylesheet" href="../css/AdminActivity.css"> 
       
     <?php
             if(isset($Account) ){
@@ -43,8 +44,8 @@ $info = $Controller->filterTable($GetInfo);
 
 <header>
             <div class="NavContainer">
-                <div style="display:flex; flex-direction:row;">
-                    <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
+                <div class="HospitalName">
+                    <img class="IconImg" src="../Foto/logoS.png">
                     <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
 
@@ -61,16 +62,17 @@ $info = $Controller->filterTable($GetInfo);
             <div class="LogAndManage" >
                 <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
                 <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
-                <div class="ManageDiv">
-                    <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
+                <div class="ManageDiv" >
+        
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
-                            <ul>
+                            <ul>      
                                 <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="#">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li> 
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>           
                             </ul>   
                         </li>
                     </ul>
@@ -78,17 +80,17 @@ $info = $Controller->filterTable($GetInfo);
             </div>   
         </header>
 
-        <section style="min-height:80vh; display:flex; flex-direction:row; justify-content:space-around;" >
+        <section>
 
 
-        <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm"  style="display:flex; flex-direction:column;">
+        <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm">
                  <div class="SearchFormInputContainer">
                      <input type="text" placeholder="Search" name="SearchInput1" class="SearchInput">
                      <input type="submit" value="Search" name="SearchSubmit1" class="SearchSubmit">
                  </div>
         <div id="table-wrapper">
                <div id="table-scroll">
-                 <table style="border:1px black ; line-height:25px" class="table sticky">
+                 <table class="table sticky">
                     <thead>
                     <tr>
 				        <th colspan=5><h3>Admin Activity to Doctors</h3> </th>
@@ -129,14 +131,14 @@ $info = $Controller->filterTable($GetInfo);
             </form>     
 
 
-        <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm" style="display:flex; flex-direction:column;" >
+        <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm"  >
                  <div class="SearchFormInputContainer">
                      <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
                      <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
                  </div>
         <div id="table-wrapper">
                <div id="table-scroll">
-                 <table style="border:1px black ; line-height:25px" class="table sticky">
+                 <table  class="table sticky">
                     <thead>
                     <tr>
 				        <th colspan=5><h3>Admin Activity to Departments</h3> </th>

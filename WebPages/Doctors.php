@@ -20,10 +20,10 @@ if(isset($_SESSION['Account'])){
 <head>
     <meta charset="utf-8" />
     <title>Doctors</title>
-    <link rel="stylesheet" href="../css/services1.css">
+    <link rel="stylesheet" href="../css/services.css">
     <link rel="stylesheet" href="../css/Default.css">   
     <link rel="stylesheet" href="../css/all.min.css">
-    <link rel="stylesheet" href="../css/Table1.css">
+    
 
     <?php
             if(isset($Account) ){
@@ -68,6 +68,7 @@ if(isset($_SESSION['Account'])){
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
                                 <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -82,7 +83,7 @@ if(isset($_SESSION['Account'])){
               <span class="Departments-border"></span>
               
               <div class="SearchFormInputContainer" style="margin-bottom:50px;">
-                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput" >
                      <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
                  </div>
 

@@ -74,19 +74,26 @@ if(isset($_POST['SubmitInputt'])){
             $NameE = '';
             $NrE = '';
             $ResultEdit='Department edited successfully';
+            echo '<script> alert("Departmend edited succesfully !") </script>';
         }else {
             $NullError = 'Fill one of the fields';
         }
+        
     }
-} include '../WebPages/ManageDepartments.php';
+    include '../WebPages/ManageDepartments.php';
+    }else if(!isset($_SESSION['Username'])){
+        header("Location: ../WebPages/Login.php"); 
+    }
+
+echo "<script>        
+        var DeleteForm = document.querySelector('.formD');
+        var RegisterForm = document.querySelector('.formR');
+        var EditForm = document.querySelector('.formE');
+
+        DeleteForm.style.display='none';
+        RegisterForm.style.display ='none';  
+        EditForm.style.display='flex';
+    </script> ";
+
 ?>
 
-<script>        
-	var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
-
-        RegisterForm.style.display = 'none';
-        DeleteForm.style.display='none'; 
-        EditForm.style.display='flex';
-		</script>

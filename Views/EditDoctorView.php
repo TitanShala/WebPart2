@@ -104,6 +104,7 @@ $Admin = $_SESSION['Username'];
 
 			$NullError = "" ;
 			$resultEdit="Doctor edited succesfully!";
+			echo '<script> alert("Doctor edited succesfully !") </script>';
 			$DocID = '';
 			$DocName = '' ;
 			$DocSurname = '' ;
@@ -117,17 +118,17 @@ $Admin = $_SESSION['Username'];
 		}
 		}
 
+		include '../WebPages/RegisterDoctor.php';
 
-
+	}else if(!isset($_SESSION['Username'])){
+		header("Location: ../WebPages/Login.php"); 
 	}
-	include '../WebPages/RegisterDoctor.php';
-
 ?>
 
 	<script>        
-	var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
+	var DeleteForm = document.querySelector('.formD');
+        var RegisterForm = document.querySelector('.formR');
+        var EditForm = document.querySelector('.formE');
 
         RegisterForm.style.display = 'none';
         DeleteForm.style.display='none'; 

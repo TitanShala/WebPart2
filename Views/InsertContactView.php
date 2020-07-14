@@ -1,6 +1,6 @@
 <?php
 include_once  '../Controller/ContactController.php' ;
-
+session_start();
 if(isset($_POST['Submit'])){
     $Name = $_POST['name'];
     $Email = $_POST['email'];
@@ -34,7 +34,11 @@ if(isset($_POST['Submit'])){
         $date = $dt->format('Y-m-d H:i:s');
         $Contact->InsertContact($date,$Name,$Email,$Message);
         $Result = 'Your message succesfully submited';
+        echo '<script> alert("Your message has been sent!") </script>';
     }
+    include '../WebPages/contactUs.php';
+}else if(!isset($_SESSION['Username'])){
+    header("Location: ../WebPages/Login.php"); 
 }
-include '../WebPages/contactUs.php';
+
 ?>

@@ -1,9 +1,11 @@
 <?php
-include_once  '../Models/DbConn.php' ;
 include_once '../Controller/ManageController.php';
+include_once  '../Models/DbConn.php' ;
+@session_start();
 
-session_start();
+
 if(isset($_POST['RegisterBtn'])){
+    
     $Username = $_POST['UsernameR'];
     $Email = $_POST['EmailR'];
     $Password = $_POST['PasswordR'];
@@ -11,13 +13,13 @@ if(isset($_POST['RegisterBtn'])){
     $Name = $_POST['NameReg'];
     $Surname = $_POST['SurnameReg'];
     $count = 0;
-    
 
     $Controller = new ManageController(); //Krijimi i kontrollerit, per tja perdorur metoden filterTable()
     $GetUsernamequery = "select * from Account where  Username = '".$Username."'"; //Query per te kontrolluar nese ekziston nje Username i tille
     $Usernameresults = $Controller->filterTable($GetUsernamequery); //Marrja e rezultateve
 
-    $GetEmailquery = "select * from Account where role = 1 and Username = '".$Email."'"; //Query per te kontrolluar nese ekziston nje email i njejte ne databaze per accounten User
+
+    $GetEmailquery = "select * from Account where role = 1 and Username = '".$Email."'"; //Query per te kontrolluar nese ekziston nje email i njejte ne databaze per accounten admin
     $Emailresults = $Controller->filterTable($GetEmailquery); //Marrja e rezultateve
     if(strlen($Name) < 3){
         $NameR_Error="Name should not be shorter than 3";
@@ -35,7 +37,7 @@ if(isset($_POST['RegisterBtn'])){
             $count++;
         }
     }else{
-        $UsernameR_Error = "Username error";
+        $UsernameR_Error = "Username should be longer than 6 characters";
         $count++;
     }
     if(count($Emailresults)> 0 ){
@@ -54,38 +56,24 @@ if(isset($_POST['RegisterBtn'])){
     if($count==0){
         $obj = new DBConnection();
         $connection= $obj->getConnection();
-        $sql = "Insert into Account values ('".$Username."', '".$Password."', '".$Email."', 0, '".$Name."', '".$Surname."')";
+        $sql = "Insert into Account values ('".$Username."', '".$Password."', '".$Email."', 1, '".$Name."', '".$Surname."')";
         $statement = $connection->prepare($sql);
         $statement->execute();
-        $RegisterResult = "You are succesfully registred";
+        $RegisterResult = "Admin account is succesfully registred";
+        $Username = "";
+        $Email = "";
+        $Password = "";
+        $ConfirmPassword = "";
+        $Name =  "";
+        $Surname = "";
         echo "<script> 
-                alert('You are succesfully registred!');
+                alert('Admin is succesfully registred!');
             </script>";
 
     }
-    include '../WebPages/Login.php';
+    include '../WebPages/RegisterAdmin.php';
 }
-
-// if(isset($_POST['RegisterCancel'])){
-    
-//     echo "console.log('Cancel')";
-//     echo 'Cancel' ;
-//     $NameR_Error= '';
-//     $EmailR_Error= '';
-//     $SurnameR_Error= '';
-//     $UsernameR_Error= '';
-//     $PasswordR_Error= '';
-//     $ConfirmPasswordR_Error= '';
-// }
-
+else if(!isset($_SESSION['Username'])){
+    header("Location: ../WebPages/Login.php"); 
+}
 ?>
-
-
-<script>
-        var login = document.querySelector('.login-box');
-        var register = document.querySelector('.Register-box');
-     
-        
-        login.style.display='none'; 
-        register.style.display = 'block';
-</script>

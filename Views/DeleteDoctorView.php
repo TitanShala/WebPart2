@@ -1,7 +1,7 @@
 <?php
 include_once '..//Models/DbConn.php';
 include_once '../Controller/DoctorController.php';
-	
+session_start();
 	if(isset($_POST['DeleteSubmit'])){
 		
 		
@@ -30,17 +30,22 @@ include_once '../Controller/DoctorController.php';
 			$statement->execute();
 			$DeleteResult = "Doctor Successfully deleted";
 			$DoctorId = "" ;
+			echo '<script> alert("Doctor deleted succesfully !") </script>';
 		}
+		include '../WebPages/RegisterDoctor.php';
 		
-	}
+		}       
+		else if(!isset($_SESSION['Username'])){
+			header("Location: ../WebPages/Login.php"); 
+		}
 
-	include '../WebPages/RegisterDoctor.php';
+	
 ?>
 
 <script>        
-		var DeleteForm = document.querySelector('.DeleteForm');
-        var RegisterForm = document.querySelector('.RegisterForm');
-        var EditForm = document.querySelector('.EditForm');
+		var DeleteForm = document.querySelector('.formD');
+        var RegisterForm = document.querySelector('.formR');
+        var EditForm = document.querySelector('.formE');
 
         RegisterForm.style.display = 'none';
         DeleteForm.style.display='flex'; 

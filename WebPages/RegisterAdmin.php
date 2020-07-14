@@ -1,28 +1,49 @@
 <?php
-    include_once '../Controller/AppointmentController.php';
-    $Controller = new AppointmentController();
-    $search_result = $Controller->loadTable();
     @session_start();
     if(isset($_SESSION['Account'])){
     $Account = $_SESSION['Account'];
+
+    if(!isset($Name)){
+        $Name='';
     }
-    else{  
+
+    if(!isset($Surname)){
+        $Surname='';
+    }
+
+    if(!isset($Password)){
+        $Password='';
+    }
+    if(!isset($Email)){
+        $Email='';
+    }
+
+    if(!isset($Username)){
+        $Username='';
+    }
+
+    }
+else{
     header("Location: ../WebPages/Login.php");
     }
-    $GetInfo = "Select * from HospitalInfo" ;
-    $info = $Controller->filterTable($GetInfo);    
-?> 
+    include_once '../Models/DbConn.php';
+    include_once '../Controller/DoctorController.php';
 
+    $DocController = new DoctorController();
+    $search_result = $DocController->LoadTable();
+    $GetInfo = "Select * from HospitalInfo" ;
+    $info = $DocController->filterTable($GetInfo);   
+?>   
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../css/LoadInfo.css"> 
-    <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/all.min.css">
-         
+    <link rel="stylesheet" href="../css/Login1.css">
+     <link rel="stylesheet" href="../css/Default.css">
+     <link rel="stylesheet" href="../css/all.min.css">
+      
     <?php
             if(isset($Account) ){
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
@@ -34,7 +55,6 @@
        ?>    
     <title></title>                                                                                 
 </head>
-
 <body>
 
 <header>
@@ -66,8 +86,8 @@
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
                                 <li><a href="../WebPages/AdminActivity.php">Admin Activities</a></li>
                                 <li><a href="../WebPages/ClientContacts.php">Client Messages</a></li>
-                                <li><a href="#">Client Appointments</a></li>
-                                <li><a href="../WebPages/RegisterAdmin.php">New Admin</a></li>
+                                <li><a href="../WebPages/CheckAppointments.php">Client Appointments</a></li>
+                                <li><a href="#">New Admin</a></li>
                             </ul>   
                         </li>
                     </ul>
@@ -75,54 +95,77 @@
             </div>   
         </header>
 
-        <section style="min-height:80vh; padding-bottom:200px;">
-                    
-                    <h1 style="inline-block">Contact Messages</h1>
-                    ?>
-                  <form action = "../WebPages/CheckAppointments.php" method="post" style="margin-bottom:100px;">
-                  <div class="SearchFormInputContainer" style="margin-bottom:50px;">
-                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
-                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
-                 </div>
+        <section class="home" style="min-height:100vh;">
+     
+     <div class="bodyh1" style="margin-bottom:100px;">
+         <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
+     </div>
+<div class="Register-box" id="Register-box" style="display:flex;">
+        <p id="errorR" style="margin-top:200px; color:red;"></p>
+          
+        <form id="form" action="../Views/RegisterAdminView.php" method="post">
+            
+            <h1>Register</h1>
 
-                  <?php 
-                  if(count($search_result) < 1){
-                    echo '<h2 style="text-align:center;" >No Appointments</h2>';
-                  }
-                  else{
-                   
-                  echo '<div class="ContactDiv" style="display:inline-block; align-items:left; margin-bottom:50px;"> ';
-                  foreach($search_result as $row){ 
-                    $DepartmentNameQuery = "Select Emri from Reparti where Id =".$row['Department'];
-                    $DepartmentNameResult= $Controller->filterTable($DepartmentNameQuery);
-                    $DepartmentName = $DepartmentNameResult[0][0];
-                  ?>   
-                    
-                        <div class="ClientInfoDiv" style="width:300px; float:left;">
-                            <?php echo "<h3>Date: $row[Data]</h3>";?>
-                            <?php echo "<h3>Name: $row[Name]</h3>";?>
-                            <?php echo "<h3>Username: $row[Username]</h3>";?>
-                            <?php echo "<h3>Department: $DepartmentName</h3>";?>
-                            <?php echo "<h3>Hour: $row[Hour]</h2>";?>
-                            
-                        </div>
-                       
-                        <!-- <?php echo "<p>$row[Message]</p>";?> -->
-                   
+            <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input  name="NameReg" id="Regname" type="text" placeholder="Name" required value="<?php echo htmlspecialchars($Name) ?>"> <br />
+            </div>
+            <?php if(isset($NameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $NameR_Error ?></p>
+                            <?php } ?> 
 
-                  <?php }
-                        }
-                         ?>
-                  </div>
-                  </form>
+            <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input  name="SurnameReg" id="Regsurname" type="text" placeholder="Surname" required value="<?php echo htmlspecialchars($Surname) ?>"> <br />
+            </div>
+            <?php if(isset($SurnameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $SurnameR_Error ?></p>
+                            <?php } ?> 
 
-                  
-               
+            <div class="textbox">
+                    <i class="fas fa-user"></i>
+                    <input id="nameR" name="UsernameR" type="text" placeholder="Username" required value="<?php echo htmlspecialchars($Username) ?>"> <br />
+            </div>
+            <?php if(isset($UsernameR_Error)) { ?>
+                            <p style="color:red;"><?php echo $UsernameR_Error ?></p>
+                            <?php } ?> 
 
-        </section>
+            <div class="textbox">
+                    <i class="fas fa-at"></i>
+                    <input id="emailR" name="EmailR" type="email" placeholder="Email Adress" required value="<?php echo htmlspecialchars($Email) ?>"> <br />
+            </div>
+            <?php if(isset($EmailR_Error)) { ?>
+                            <p style="color:red;"><?php echo $EmailR_Error ?></p>
+                            <?php } ?> 
 
-        
-        <footer>
+             <div class="textbox">
+                 <i class="fas fa-lock"></i>
+                    <input id="passwordR" name="PasswordR" type="password" placeholder="Password" required value="<?php echo htmlspecialchars($Password) ?>"> <br />
+             </div>
+             <?php if(isset($PasswordR_Error)) { ?>
+                            <p style="color:red;"><?php echo $PasswordR_Error ?></p>
+                            <?php } ?> 
+
+             <div class="textbox">
+                 <i class="fas fa-lock"></i>
+                    <input id="passwordconfirmR" name="ConfirmPasswordR" type="password" placeholder="Confirm Password" required>
+            </div>
+            <?php if(isset($ConfirmPasswordR_Error)) { ?>
+                            <p style="color:red;"><?php echo $ConfirmPasswordR_Error ?></p>
+                            <?php } ?> 
+
+             <div class="LoginButtons">
+                     <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn">
+                     <?php if(isset($RegisterResult)) { ?>
+                            <p style="color:green;"><?php echo $RegisterResult ?></p>
+                            <?php } ?> 
+                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
+            </div>
+          </form>
+      </div>
+</section>
+<footer>
         
 
         <div class="footer">
@@ -168,6 +211,6 @@
     
     </footer>
 
-
+ <script src="../js/RegisterAdminValidation.js"></script>
 </body>
 </html>

@@ -24,7 +24,10 @@ $info = $Controller->filterTable($GetInfo);
 
     <meta charset="utf-8" />
     <title>Web Project</title>
-
+    
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/Default.css">
         <link rel="stylesheet" href="../css/LoginToIndex.css">
        <link rel="stylesheet" href="../css/Index.css">
@@ -48,7 +51,7 @@ $info = $Controller->filterTable($GetInfo);
 
         <header>
             <div class="NavContainer">
-                <div style="display:flex; flex-direction:row;">
+                <div class="divv" style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
                     <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
@@ -69,7 +72,7 @@ $info = $Controller->filterTable($GetInfo);
                 <div class="ManageDiv">
                     <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
                     <ul class="Manager">
-                        <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
+                        <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a class="ManageName">Manage</a></div>
                             <ul>
                                 <li><a href="../WebPages/RegisterDoctor.php">Doctors</a></li>
                                 <li><a href="../WebPages/ManageDepartments.php">Departments</a></li>
@@ -88,8 +91,8 @@ $info = $Controller->filterTable($GetInfo);
      <div class="home">
      
         <div class="bodyh1">
-            <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
-            <?php if(isset($Result)){echo '</br> </br> <h3 style="display:inline;font-size: 7vh; color:white;">Welcome</br></h3> <h3 style="color:#24c1d6; font-size:7vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h3>' ;} ?>
+            <h1 style="color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6;">HEALTH</h1>
+            <?php if(isset($Result)){echo '</br> </br> <h1 style="display:inline;font-size: 7vh; color:white;">Welcome</br></h1> <h1 style="color:#24c1d6; font-size:7vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h1>' ;} ?>
         </div>
   
      </div>
@@ -101,7 +104,7 @@ $info = $Controller->filterTable($GetInfo);
                 <h1>Welcome to Our Hospital</h1>
                 <p>Need to make an appointment?</p>
                 <?php if(!isset($Account))
-                    echo '<h4 style="color:rgba(0,136,169,1);; margin-top:20px;">Please sign in to make an appointment</h4>';
+                    echo '<h4 style="color:rgba(0,136,169,1); margin-top:20px;">Please sign in to make an appointment</h4>';
                 ?>
                <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
             </div>

@@ -7,7 +7,7 @@
 .home{
 border:2px solid black;
 background-image: url(../Foto/5804.jpg);
-height:80vh;
+/* height:80vh; */
 background-repeat: no-repeat;
 background-size: cover;
 padding-top:100px;
@@ -17,10 +17,13 @@ padding-left:100px;
 
 
 .bodyh1{
-
 width:450px;
 margin-bottom:200px;
+}
 
+.body h1{
+	display:inline;
+	font-size: 7vh;
 }
 
 

@@ -24,7 +24,8 @@ color:#edf0f1;
 .Nav li,a{
     font-family: "Montserrat", sans-serif;
     font-weight:500;
-    font-size: 18px;
+	font-size: 18px;
+	/* font-size:2vh; */
 	color: #edf0f1;	
     text-decoration:none;
 } 
@@ -34,7 +35,8 @@ color:#edf0f1;
 }
 
 .SignInNav{
-	width:150px;
+	width:100%;
+	/* width:150px; */
 	display:block;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
@@ -51,11 +53,13 @@ color:#edf0f1;
 }
 
 .SignOutNav{
-	width:150px;
+	width:100%;
+	/* width:150px; */
 	display:none;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
-    font-size: 16px;
+	font-size: 16px;
+	/* font-size:2vh; */
     color: #edf0f1;
     text-decoration:none;
 	padding: 9px 25px;
@@ -111,7 +115,6 @@ padding:0;
 }
 
 footer{
-	
 	/* width: 100vw; */
 	display: block;
 	overflow: hidden;
@@ -189,17 +192,7 @@ footer{
 	padding-top: 20px;
 }
 
-@media(max-width: 600px){
-	.footer .inner_footer{
-		width: 90%;
-	}
 
-	.inner_footer .logo_container,
-	.inner_footer .footer_third{
-		width: 100%;
-		margin-bottom: 30px;
-	}
-}
 
 .gotopbtn{
 	position: fixed;
@@ -235,6 +228,7 @@ html{
 }
 
 .Manager{
+	font-size:3vh;
 	display:none;
 	margin-top:20px;
 	padding:0px;
@@ -264,10 +258,11 @@ html{
 	align-items: center;
 }
 
+
 .Manager li a{
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
-	font-size: 16px; 
+	/* font-size: 2vh;  */
 	display:block;
 	color: #edf0f1;	
     text-decoration:none;
@@ -286,3 +281,61 @@ html{
 	display:block;
 }
 
+@media(max-width: 1060px){
+	.inner_footer{
+		display:flex;
+		width:auto;
+	}
+}
+
+@media(max-width: 650px){
+	.NavContainer{
+		flex-direction: column;
+		align-items:normal;
+	}
+	.Nav{
+		margin-top:20px;
+		margin-right:20px;
+		margin-left:0;
+	}
+	.Manager li{
+		width:100px;
+		
+	}
+	
+	.footer .inner_footer{
+		width: 90%;
+	}
+	.inner_footer{
+		flex-direction:column;
+	}
+	.logo_container {
+		width:auto;
+		margin-right:50px;
+	}
+
+	.inner_footer .logo_container,
+	.inner_footer .footer_third{
+		width: 100%;
+		margin-bottom: 30px;
+	}
+	.ManagePhoto{
+		height:20px;
+	}
+	.SignOutNav{
+		padding: 4px 25px;
+	}
+	.HospitalNameDiv{
+		flex-direction:column;
+	}
+
+	@media(max-width: 360px){
+		.SignOutNav{
+			width:100px;
+			margin-top:20px;
+		}
+		header{
+			flex-direction:column;
+		}
+	}
+}

@@ -20,8 +20,8 @@ include_once '../Controller/ManageController.php';
     <link rel="stylesheet" href="../css/ContactUs.css">
     <link rel="stylesheet" href="../css/Default.css">
     <link rel="stylesheet" href="../css/all.min.css">
-
-    <?php
+   
+   <?php
             if(isset($Account) ){
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
                 if($Account == 'Admin'){
@@ -34,9 +34,10 @@ include_once '../Controller/ManageController.php';
 <body>
 
     <!-- CONTACT US -->
+
     <header>
             <div class="NavContainer">
-                <div style="display:flex; flex-direction:row;">
+                <div class="HospitalNameDiv"style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
                     <h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1>
                 </div>
@@ -45,7 +46,7 @@ include_once '../Controller/ManageController.php';
                     <ul class="Nav">
                         <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
-                        <li><a href="#">Contact</a></li>
+                        <li><a href="../WebPages/contactUs.php">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
                 </nav>

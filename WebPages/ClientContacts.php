@@ -19,9 +19,11 @@
 <head>
 
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../css/LoadInfo.css"> 
     <link rel="stylesheet" href="../css/Default.css">
+    <link rel="stylesheet" href="../css/ClientContacts.css">
     
          
     <?php
@@ -79,7 +81,7 @@
                     
                     <h1 style="inline-block">Contact Messages</h1>
                     ?>
-                  <form action = "../WebPages/ClientContacts.php" method="post">
+                  <form class="clientForm" action = "../WebPages/ClientContacts.php" method="post">
                   <div class="SearchFormInputContainer">
                      <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
                      <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">

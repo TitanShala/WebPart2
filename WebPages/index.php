@@ -25,14 +25,14 @@ $info = $Controller->filterTable($GetInfo);
     <meta charset="utf-8" />
     <title>Web Project</title>
     
-        <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/Default.css">
         <link rel="stylesheet" href="../css/LoginToIndex.css">
-       <link rel="stylesheet" href="../css/Index.css">
-       <link rel="stylesheet" href="../css/Doctors.css">
-       <link rel="stylesheet" href="../css/all.min.css">
+        <link rel="stylesheet" href="../css/Index.css">
+        <link rel="stylesheet" href="../css/Doctors.css">
+        <link rel="stylesheet" href="../css/all.min.css">
        
        <?php
             if(isset($Account) ){
@@ -91,66 +91,64 @@ $info = $Controller->filterTable($GetInfo);
      <div class="home">
      
         <div class="bodyh1">
-            <h1 style="color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6;">HEALTH</h1>
-            <?php if(isset($Result)){echo '</br> </br> <h1 style="display:inline;font-size: 7vh; color:white;">Welcome</br></h1> <h1 style="color:#24c1d6; font-size:7vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h1>' ;} ?>
+            <h1 style="color:white; display:inline;font-size: 20px;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; display:inline;font-size: 4vh;">HEALTH</h1>
+            <?php if(isset($Result)){echo '</br> </br> <h1 style="display:inline;font-size: 4vh; color:white;">Welcome</br></h1> 
+                <h1 style="color:#24c1d6; font-size:4vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h1>' ;} ?>
         </div>
   
      </div>
      
-     <div style="width:100%; background-color:#24252A">
-     <div class="MainContact">
-        <div class="AppointmentBox">
-            <div style="padding-top:5%;">
-                <h1>Welcome to Our Hospital</h1>
-                <p>Need to make an appointment?</p>
-                <?php if(!isset($Account))
-                    echo '<h4 style="color:rgba(0,136,169,1); margin-top:20px;">Please sign in to make an appointment</h4>';
-                ?>
-               <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
+     <!-- <div style="width:100%; background-color:#24252A"> -->
+        <div class="MainContact" style="border:2px solid black;">
+            <div class="AppointmentBox">
+                <div style="padding-top:5%;">
+                    <h1>Welcome to Our Hospital</h1>
+                    <p>Need to make an appointment?</p>
+                    <?php if(!isset($Account))
+                        echo '<h4 style="color:rgba(0,136,169,1); margin-top:20px;">Please sign in to make an appointment</h4>';
+                    ?>
+                <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
+                </div>
             </div>
-        </div>
-        <div class="schedule">
-            <div>
-                <h4>Monday-Friday</h4>
-                <h4><?php echo $info[0][1] ?></h4>
-            </div>
-            <div>
-                <h4>Saturday</h4>
-                <h4><?php echo $info[0][2] ?></h4>
-            </div>                
-            <div>
-                <h4>Sunday</h4>
-                <h4><?php echo $info[0][3] ?></h4>
-            </div>
-            <div>
-                <h4>Break</h4>
-                <h4><?php echo $info[0][4] ?></h4>
-            </div>
-        </div>
-        <div class="ContactInfo">
-            <div style="border-bottom:2px solid #edf0f1;">        
-                <img src="../Foto/phone.jpg" alt="" style="height:80%; width:25%;">
+            <div class="schedule">
                 <div>
-                    <h4>Emergency Number</h4>
-                    <h4><?php echo $info[0][5] ?></h4>         
-                </div>    
-            </div>               
-            <div>
-                <img src="../Foto/Email.png" alt="" style="height:80%; width:25%;">
+                    <h4>Monday-Friday</h4>
+                    <h4><?php echo $info[0][1] ?></h4>
+                </div>
                 <div>
-                    <h4>Email Adress</h4>
-                    <h4><?php echo $info[0][7] ?></h4>         
-                </div> 
+                    <h4>Saturday</h4>
+                    <h4><?php echo $info[0][2] ?></h4>
+                </div>                
+                <div>
+                    <h4>Sunday</h4>
+                    <h4><?php echo $info[0][3] ?></h4>
+                </div>
+                <div>
+                    <h4>Break</h4>
+                    <h4><?php echo $info[0][4] ?></h4>
+                </div>
+            </div>
+            <div class="ContactInfo">
+                <div style="border-bottom:2px solid #edf0f1;">        
+                    <img src="../Foto/phone.jpg" alt="" style="height:80%; width:25%;">
+                    <div>
+                        <h4>Emergency Number</h4>
+                        <h4><?php echo $info[0][5] ?></h4>         
+                    </div>    
+                </div>               
+                <div>
+                    <img src="../Foto/Email.png" alt="" style="height:80%; width:25%;">
+                    <div  class="emailH4">
+                        <h4>Email Adress</h4>
+                        <h4><?php echo $info[0][7] ?></h4>         
+                    </div> 
+                </div>
             </div>
         </div>
-
-
-
-    </div>
-    </div>
+    <!-- </div> -->
  
 
-    <div class="team-section" style="display:block">
+    <div class="team-section" style="display:block ;">
         <h1>Our Doctors</h1>
         <span class="border"></span>
         <div class="picture-section">

@@ -4,7 +4,7 @@
     session_start();
 
     if(isset($_POST['SubmitReg'])){
-        session_start();
+        
         $Admin = $_SESSION['Username'];
         $Name = $_POST['Emri'] ;
         $Nr = $_POST['NrRooms'];

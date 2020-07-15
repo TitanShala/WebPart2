@@ -42,7 +42,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Login Page</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Login1.css">
      <link rel="stylesheet" href="../css/Default.css">
      <link rel="stylesheet" href="../css/all.min.css">
@@ -92,7 +92,7 @@
 <section class="home">
      
         <div class="bodyh1">
-            <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
+            <h1 style="display:inline;font-size: 4vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:4vh;display:inline;">HEALTH</h1>
         </div>
 
        <!-- <div style="display:flex; flex-direction="row"; height:800px; border:2px solid white;"> -->
@@ -133,7 +133,7 @@
 
 
       <div class="Register-box" id="Register-box">
-        <p id="errorR" style="margin-top:200px;"></p>
+        <p id="errorR" style="margin-top:50px;"></p>
           
         <form id="formRegister" action="../Views/RegisterView1.php" method="post">
             

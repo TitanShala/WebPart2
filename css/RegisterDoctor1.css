@@ -197,7 +197,7 @@
             background-image: url(../Foto/5804.jpg);
             background-repeat: no-repeat;
             background-size: cover;
-            
+            min-height: 80vh;
             /* display:flex ;
             flex-direction: row;
             justify-content: space-around; */
@@ -263,24 +263,28 @@
             float: left;
             text-align: center;
           }
-/* 
-           @media all and (max-width:1300px){
-            .FormContainer{
-                flex-direction:column;
-                justify-content:center;
-            }
-          } */
+
 
           @media all and (max-width:970px){
             .FormContainer{
                 flex-direction:column;
                 justify-content:center;
-                
+                min-height: 120vh;    
             }
-            table{
-                width:300px;
-            }
+          .SearchForm{
+              margin-top:50px;
+              margin-bottom: 200px;
+          }
+          }
+
+          @media all and (max-width:605px){
             .SearchForm{
-                width:300px;
+                width:400px;
             }
-          } 
+        }
+
+          @media all and (max-width:405px){
+              .SearchForm{
+                  width:310px;
+            }           
+          }

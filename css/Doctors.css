@@ -105,3 +105,13 @@ html{
 	scroll-behavior: smooth;
 	}
 
+.Doc{
+	float:left; 
+	margin:50px 50px;
+		}
+		
+@media(max-width:450px){
+	.Doc{
+		margin:30px 0;
+	}
+	}

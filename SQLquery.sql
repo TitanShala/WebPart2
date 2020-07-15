@@ -85,7 +85,7 @@ HospitalName varchar(20),
 StreetAdress varchar(40)
 )
 
-insert into HospitalInfo values (0,'8:00-16:00' , '9:00-12:00' , 'Closed' , '10:00-11:00', '+383-49-123-456', '+383-44-123-456','HospitalPeja@gmail.com','Peja','Kosove & Peje Bill Clinton, 231')
+insert into HospitalInfo values (0,'8:00-16:00' , '9:00-12:00' , 'Closed' , '10:00-11:00', '+383-49-123-456', '+383-44-123-456','HPeja@gmail.com','Peja','Kosove & Peje Bill Clinton, 231')
 
 create table Appointment(
 Id int primary key identity(1,1),

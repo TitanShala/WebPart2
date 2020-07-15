@@ -44,6 +44,7 @@ $search_result = $Controller->LoadTable();
 <head>
 
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Default.css">
     <link rel="stylesheet" href="../css/RegisterDoctor1.css"> 
     <link rel="stylesheet" href="../css/Index.css"> 

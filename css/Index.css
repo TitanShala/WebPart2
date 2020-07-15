@@ -6,8 +6,8 @@
 
 .home{
 border:2px solid black;
-background-image: url(../Foto/5804.jpg);
-/* height:80vh; */
+background-image: url(../Foto/5804.jpg); 
+/* height:80vh;  */
 background-repeat: no-repeat;
 background-size: cover;
 padding-top:100px;
@@ -17,11 +17,11 @@ padding-left:100px;
 
 
 .bodyh1{
-width:450px;
+/* width:450px; */
 margin-bottom:200px;
 }
 
-.body h1{
+h1.body {
 	display:inline;
 	font-size: 7vh;
 }
@@ -30,22 +30,19 @@ margin-bottom:200px;
 
 
 .MainContact{
-margin-left:12%;
+height:auto;	
+width:100%;
 display:flex;
-flex-direction: row ;
-width:75%;
-height:250px;
-min-height:200px;
-
+min-height:250px;
+background-color:#24252A;
 }
 
 .MainContact > div{
 min-width:33%;
 text-align:center;
 min-height:100%;
-//border-radius:30px;
 justify-content:center;
-//border:2px solid #edf0f1;
+
 }
 
 .AppointmentBox{
@@ -117,9 +114,9 @@ height:40%;
 
 }
 
-.ContactInfo > div > div{
-display:flex;
-flex-direction: column;
+.ContactInfo  div  div{
+/* display:flex;
+flex-direction: column; */
 justify-content:center;
 align-items:center;
 height:80%;
@@ -175,5 +172,66 @@ margin:5% 0;
 
 	100%{
 		background: url(../Foto/Gallery/photo4.jpg);
+	}
+}
+@media(max-width:1500px){
+	.emailH4{
+		margin-right:100px;
+	}
+}
+
+@media(max-width:800px){
+	.slider{
+		height:500px;
+	}
+	.sliderDiv{
+		width:533px;
+		height:266px;
+	}
+}
+
+@media(max-width:760px){
+	.ContactInfo > div > img{
+		display:none;
+	}
+}
+
+@media(max-width:560px){
+	.slider{
+		height:500px;
+		
+	}
+	.home{
+		padding-left:0;
+	}
+	
+	.sliderDiv{
+		width:321px;
+		height:160px;
+	}
+	.MainContact{
+		justify-content:  space-between;
+	}
+}
+
+@media(max-width:500px){
+	.MainContact{
+		flex-direction: column;
+		justify-content:center;
+		align-items:center;
+	}
+	.MainContact > div {
+		height:auto;
+		margin:50px auto;
+	}
+	.ContactInfo{
+		justify-content:center;
+		align-items:center;
+	}
+	.ContactInfo > div > img{
+		display:inline-block;
+		height:60%;
+		
+		margin-right:10px;
 	}
 }

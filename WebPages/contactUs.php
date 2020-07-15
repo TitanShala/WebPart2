@@ -1,6 +1,6 @@
 <?php
 include_once '../Controller/ManageController.php';
-    session_start();
+    @session_start();
     if(isset($_SESSION['Account'])){
         $Account = $_SESSION['Account'];
         }
@@ -46,7 +46,7 @@ include_once '../Controller/ManageController.php';
                     <ul class="Nav">
                         <li><a href="../WebPages/index.php">Home</a></li>
                         <li><a href="../WebPages/services.php">Services</a></li>
-                        <li><a href="../WebPages/contactUs.php">Contact</a></li>
+                        <li><a href="#">Contact</a></li>
                         <li><a href="../WebPages/Appointment.php" class="AppointmentAnch">Appointment</a></li>
                     </ul>  
                 </nav>
@@ -92,8 +92,8 @@ include_once '../Controller/ManageController.php';
                             <p style="color:red;"><?php echo $Email_Error ?></p>
                             <?php } ?> 
                 <textarea id="text" name="message" class="form-controlContactUs" placeholder="Message" rows="4" required></textarea><br />
-                <?php if(isset($Email_Error)) { ?>
-                            <p style="color:red;"><?php echo $Name_Error ?></p>
+                <?php if(isset($Message_Error)) { ?>
+                            <p style="color:red;"><?php echo $Message_Error ?></p>
                             <?php } ?> 
                 <input type="submit" name="Submit" class="form-control-submit" value="SEND MESSAGE">
                 

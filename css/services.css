@@ -87,3 +87,13 @@
 	font-size:22px;
 }
 
+.Dep{
+float:left; 
+margin:50px 50px;
+	}
+
+@media(max-width:450px){
+	.Dep{
+		margin:30px 0;
+	}
+}

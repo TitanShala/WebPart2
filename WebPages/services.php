@@ -18,10 +18,10 @@ if(isset($_SESSION['Account'])){
 <head>
     <meta charset="utf-8" />
     <title>Services</title>
-
-    <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/services.css">
-    <link rel="stylesheet" href="../css/all.min.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/Default.css">
+        <link rel="stylesheet" href="../css/services.css">
+        <link rel="stylesheet" href="../css/all.min.css">
 
     <?php
             if(isset($Account) ){
@@ -102,7 +102,7 @@ if(isset($_SESSION['Account'])){
                             
                         }
                         ?>
-                    <div style="float:left; margin:50px 50px;"> <a href=<?php echo $DepartmentId?> ><img <?php echo $image?> alt="No photo found"></a>
+                    <div class="Dep" > <a href=<?php echo $DepartmentId?> ><img <?php echo $image?> alt="No photo found"></a>
                      <h3 style="background-color:rgba(0,136,169,1);"><?php echo $result['Emri']."</br> Number of rooms: ".$result['NrDhoma'] ;?> </h3> </div>
                     
                     <?php }?>

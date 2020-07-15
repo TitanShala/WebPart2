@@ -4,42 +4,37 @@
     $search_result = $Controller->loadTable();
     @session_start();
     if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
+        $Account = $_SESSION['Account'];
     }
     else{  
-    header("Location: ../WebPages/Login.php");
+        header("Location: ../WebPages/Login.php");
     }
     $GetInfo = "Select * from HospitalInfo" ;
     $info = $Controller->filterTable($GetInfo);    
 ?> 
 
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/all.min.css">
     <link rel="stylesheet" href="../css/LoadInfo.css"> 
     <link rel="stylesheet" href="../css/Default.css">
-    <link rel="stylesheet" href="../css/ClientContacts.css">
-    
-         
-    <?php
-            if(isset($Account) ){
-                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
-                if($Account == 'Admin'){
-                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
-                }
-                
-            }
-       ?>    
-    <title></title>                                                                                 
+    <link rel="stylesheet" href="../css/ClientContacts.css">    
+
+<?php
+    if(isset($Account) ){
+        echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+        if($Account == 'Admin'){
+                echo '<link rel="stylesheet" href="../css/Admin.css">';  
+        }            
+    }
+?>    
+<title>Messages from Clients</title>                                                                                 
 </head>
 <body>
-
-<header>
+        <header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
@@ -77,53 +72,43 @@
             </div>   
         </header>
 
-        <section style="min-height:80vh">
+        <section style="min-height:80vh">    
+            <h1 style="inline-block">Contact Messages</h1>
+            <form class="clientForm" action = "../WebPages/ClientContacts.php" method="post">
+                <div class="SearchFormInputContainer">
+                    <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                    <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+                </div>
+                
+                <?php 
+                    if(count($search_result) < 1){
+                        echo '<h2 style="text-align:center;" >No messages</h2>';
+                    }
+                foreach($search_result as $row){ ?>
                     
-                    <h1 style="inline-block">Contact Messages</h1>
-                    ?>
-                  <form class="clientForm" action = "../WebPages/ClientContacts.php" method="post">
-                  <div class="SearchFormInputContainer">
-                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
-                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
-                 </div>
-
-                  <?php 
-                  if(count($search_result) < 1){
-                    echo '<h2 style="text-align:center;" >No messages</h2>';
-                  }
-                  
-                  foreach($search_result as $row){ ?>
-                    
-                    <div class="ContactDiv"> 
-                        <div class="ClientInfoDiv">
-                            <?php echo "<h2>$row[Data]</h2>";?>
-                            <?php echo "<h2>$row[Name]</h2>";?>
-                            <?php echo "<h2>$row[Email]</h2>";?>
-                        </div>
-                        <?php echo "<p>$row[Message]</p>";?>
+                <div class="ContactDiv"> 
+                    <div class="ClientInfoDiv">
+                        <?php echo "<h2>$row[Data]</h2>";?>
+                        <?php echo "<h2>$row[Name]</h2>";?>
+                        <?php echo "<h2>$row[Email]</h2>";?>
                     </div>
-
-                  <?php } ?>
-                  </form>
-
+                    
+                    <?php echo "<p>$row[Message]</p>";?>
+                </div>
                   
-               
-
+                <?php } ?>
+            </form>
         </section>
 
 
-        <footer>
-        
-
+    <footer>
         <div class="footer">
             <div class="inner_footer">
                 <div class="logo_container">
                     <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                     <img src="../Foto/logoS.png" >
                 </div>
-    
-                
-    
+
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Links</h1>
                     <li><a href="#">Home</a></li><br />
@@ -149,8 +134,8 @@
     
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Contact Us</h1>
-                        <li>Email: <?php echo $info[0][7] ?></li>
-                        <li>Phone: <?php echo $info[0][6] ?></li>
+                    <li>Email: <?php echo $info[0][7] ?></li>
+                    <li>Phone: <?php echo $info[0][6] ?></li>
                 </div>
                 <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>

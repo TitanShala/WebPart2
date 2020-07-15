@@ -1,9 +1,3 @@
-.ContactUsPage
-{   
-
-   
-}
-
 section{
     margin: 0;
     padding-top: 10%;
@@ -15,9 +9,7 @@ section{
 }
 
 .ContactUstitle
-{
-    
-    
+{    
     color: black;
 }
 
@@ -79,7 +71,6 @@ form .form-control-submit:hover
 	background: #24c1d6;
 	bottom: 40px;
 	right: 50px;
-  
 	text-decoration: none;
 	text-align: center;
 	line-height: 50px;

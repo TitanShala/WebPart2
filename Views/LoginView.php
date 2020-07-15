@@ -31,20 +31,12 @@ if(isset($_POST['LoginBtn'])){
         $count++;
         $Role=3;
     }
-    
-        $query = "select * from Account where Username = '".$UsernameL."' and Password = '".$PasswordL."' and role =".$Role;
-        // $obj = new DBConnection();
-        // $connection= $obj->getConnection();
-        // $getresults = $connection->prepare($query);
-        // $getresults->execute();
-        $Controller = new ManageController();
-        $results = $Controller->filterTable($query);
-        // $results = $getresults->fetchAll(PDO::FETCH_BOTH); 
-          
+    $query = "select * from Account where Username = '".$UsernameL."' and Password = '".$PasswordL."' and role =".$Role;
+    $Controller = new ManageController();
+    $results = $Controller->filterTable($query);
     if(count($results) == 0){
         $LoginError = "Login incorrect";
-        include '../WebPages/Login.php' ;
-        
+        include '../WebPages/Login.php' ;        
     }
     else{
         $succes = 'Login Succesfull';
@@ -56,9 +48,7 @@ if(isset($_POST['LoginBtn'])){
                 alert('You are succesfully Loged in!');
             </script>";
 
-            header("Location: ../WebPages/index.php"); 
-        // include '../WebPages/index.php' ;
-        // echo '<link rel="stylesheet" href="../css/LoginToIndex.css">' ;  
+        header("Location: ../WebPages/index.php"); 
     }
 }
 

@@ -1,9 +1,4 @@
-﻿body
-{
-
-}
-
-section{
+﻿section{
 	background-image: url(../Foto/Department2.jpg);
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -14,7 +9,6 @@ section{
 }
 
 .form{
-
 height:500px;
 width:400px;
 display:flex;
@@ -64,7 +58,6 @@ margin-right:5px;
 }
 
 .submit{
-    
   width: 100%;
   background: none;
   border:none;
@@ -103,6 +96,16 @@ margin-right:5px;
   outline: none;
   background: none;
   float:right;
+}
+
+@media(max-width:800px){
+  section{
+    justify-content: normal;
+    padding:50px auto;
+  }
+  .DivForm h1{
+    margin-bottom:0;
+  }
 }
 
 @media(max-width:510px){

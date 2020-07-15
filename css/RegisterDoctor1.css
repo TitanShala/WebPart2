@@ -21,9 +21,7 @@
           z-index:2;
           height:20px;
           width:35%;
-          /* width:10%;
-           */
-}
+        }
 
         .SearchFormInputContainer{
             display:flex;
@@ -34,22 +32,15 @@
             display:flex;
             flex-direction:row;
             justify-content:space-around;
-            /* justify-content:center; */
-            /* align-items:center; */
-            /* border:2px solid red; */
             padding-top:5%;         
             padding-bottom:5%;
-            /* padding-left:10%; */
         }
 
         table{
-            
             width:400px;
             max-height:400px;
             font-family:sans-serif;
             border-collapse: collapse; 
-            
-   
         }
 
         .table.sticky th{
@@ -82,9 +73,6 @@
             display:flex;
             flex-direction:column;
             width: 280px;
-            /* margin-top:200px; */
-             /* margin-left: 20vh;  */
-            /* transform: translate(-50%,-50%); */
             color: white;
         }
         .EditForm{
@@ -92,9 +80,6 @@
             flex-direction:column;
             display:none; 
             width: 280px;
-            /* margin-top:200px;
-            margin-left: 10vh;
-            transform: translate(-50%,-50%); */
             color: white;
         }
 
@@ -103,28 +88,12 @@
             flex-direction:column;
             display:none; 
             width: 280px;
-            /* margin-top:200px;
-            margin-left: 20vh;
-            transform: translate(-50%,-50%); */
             color: white;
         }
-         /*.RegisterForm{
-            border:2px solid black; 
-            display:flex;
-            flex-direction:column;
-            justify-content:space-around;
-            width: 400px;
-            padding: 20px 100px;        
-            height:400px;
-        }
-        .RegisterForm input{        
-            height:30px;         
-        } */
 
         .SearchForm{
             height:30px;
             width:600px;
-            /* border:2px solid black; */
             display:flex ; 
             flex-direction:row;
             justify-content:space-between;
@@ -137,17 +106,6 @@
         .SearchInput{
             width:550px;
         }
-
-        /* .DeleteForm{
-            border:2px solid black;
-            display:flex;
-            flex-direction:column;
-            text-align:center;
-            padding:20px 30px;
-            justify-content:space-around;
-            display:none;
-            height:400px;
-        } */
 
         .ButtonContainer{
             padding:10px;
@@ -174,42 +132,17 @@
             transition: all 0.3s ease 0s;
         }
 
-         /* .EditForm{
-             border:2px solid black;
-
-            justify-content:space-around;
-            width: 400px;
-            padding: 20px 100px;        
-            height:400px;            
-            align-items:center; 
-            display:flex;
-            flex-direction:column;            
-            display:none;
-        } 
-        .EditForm input{
-            
-            height:30px;
-            
-        } */
-
         section{
             display:block;
             background-image: url(../Foto/5804.jpg);
             background-repeat: no-repeat;
             background-size: cover;
             min-height: 80vh;
-            /* display:flex ;
-            flex-direction: row;
-            justify-content: space-around; */
             padding-top: 100px ;
             padding-bottom:100px;
         }
 
         .FormH1{
-            /* text-align:center; 
-            margin-bottom:20px; 
-            color:white; 
-            margin-bottom:50px; */
             color:white;
             float: left;
             font-size: 40px;

@@ -1,11 +1,11 @@
 
 const NameR = document.getElementById('Name');
 const NrR = document.getElementById('NrRooms');
-const formR = document.getElementById('formR');
+// const formR = document.getElementById('formR');
 const ErrorR = document.getElementById('errorR');
 
 const ErrorE = document.getElementById('errorE');
-const formE = document.getElementById('formE');
+// const formE = document.getElementById('formE');
 const NameE = document.getElementById('NameDR');
 const NrE = document.getElementById('NumberOfRooms');
 

@@ -1,4 +1,3 @@
-// JavaScript source code
 
 const name = document.getElementById('name');
 const day = document.getElementById('day');
@@ -12,11 +11,9 @@ const rbs = document.querySelectorAll('input[name="dept"]');
 var today = new Date() ;
 var actualyear = today.getFullYear();
 
+
 form.addEventListener('submit', (e) =>{
 	let messages = [];	
-     
-    
-    
 
     //Validate the name
 	if(name.value === '' || name.value == null){
@@ -75,24 +72,13 @@ form.addEventListener('submit', (e) =>{
          messages.push('Choose a correct year');
     
    }
-
-   //Time can be null we choose a preffered time
     
         //Put all the error messages in screen
     if(messages.length > 0){
             e.preventDefault();
             errorElement.innerText = messages.join('! ');           
     }
-    else
-    // alert('We are gonna make an appointment for you, approximately with your choosen date and time. We will sent your appointment in your email adress thankyou!');
+    else{
+    alert('We are gonna make an appointment for you, approximately with your choosen date and time. We will sent your appointment in your email adress thankyou!!');
+    }
 })
-/*
-window.onload = function(){
-console.log('u loadua');
-clamp(year,1,2020);
-
-}
-
-function clamp(value, min, max) {
-    return Math.min(Math.max(value, min), max);
-}*/

@@ -1,7 +1,7 @@
 <?php
 include_once '../Controller/DepartmentController.php' ;
 include_once '../Controller/ManageController.php'; 
-session_start();
+@session_start();
 $Admin = $_SESSION['Username'];
 
 if(isset($_POST['SubmitInputt'])){
@@ -23,77 +23,65 @@ if(isset($_POST['SubmitInputt'])){
             $IdE_Error = 'Id does not exist';
             $count++;
         }
-    }else{
-        $IdE_Error = 'Type Id as integer' ;
-        $count++;
-    }
+        }else{
+            $IdE_Error = 'Type Id as integer' ;
+            $count++;
+        }
+        if(strlen($NameE) > 1 && strlen($NameE) < 3){
+            $NameE_Error = 'New name should be longer than 3' ;
+            $count++;
+        }
+        else{
+            if(!strlen($NameE)==0 ){
+                if(count($result) > 0){
+                    $NameE_Error="Department with this name already exists";
+                    $count++;
+                }
+            }
+        }
 
-    if(strlen($NameE) > 1 && strlen($NameE) < 3){
-        $NameE_Error = 'New name should be longer than 3' ;
-        $count++;
-    }
-    else{
-        if(!strlen($NameE)==0 ){
-            if(count($result) > 0){
-                $NameE_Error="Department with this name already exists";
+        if(strlen($NrE) > 0){
+            if(!$Controller->isInteger($NrE)){
+                $NrE_Error = 'Type number of rooms as integer' ;
                 $count++;
             }
         }
-    }
-
-    if(strlen($NrE) > 0){
-        if(!$Controller->isInteger($NrE)){
-            $NrE_Error = 'Type number of rooms as integer' ;
-            $count++;
-        }
-    }
-    if($count == 0){
-        $queries =array();
-        if(strlen($NameE) > 0){
-            $query = "Update Reparti set Emri ='".$NameE."' where id=".$IdE  ;
-            array_push($queries, $query);
-        }
-        if(strlen($NrE) > 0){
-            $query2 = "Update Reparti set NrDhoma ='".$NrE."' where id=".$IdE  ;
-            array_push($queries, $query2);
-        }
-        if(count($queries) > 0){
-            $query3 = "Update Reparti set Stafi='".$Admin."' where id=".$IdE ;
-            array_push($queries,$query3);
-            $obj = new DBConnection();
-            $connection= $obj->getConnection();
-            foreach($queries as $query){
-                $getresults = $connection->prepare($query);
-                $getresults->execute();
+        if($count == 0){
+            $queries =array();
+            if(strlen($NameE) > 0){
+                $query = "Update Reparti set Emri ='".$NameE."' where id=".$IdE  ;
+                array_push($queries, $query);
             }
-            $dt = new DateTime();
-            $date = $dt->format('Y-m-d H:i:s');
-            $Manage->InsertDepartmentManage($Admin,$IdE,'Edited',$date); 
+            if(strlen($NrE) > 0){
+                $query2 = "Update Reparti set NrDhoma ='".$NrE."' where id=".$IdE  ;
+                array_push($queries, $query2);
+            }
+            if(count($queries) > 0){
+                $query3 = "Update Reparti set Stafi='".$Admin."' where id=".$IdE ;
+                array_push($queries,$query3);
+                $obj = new DBConnection();
+                $connection= $obj->getConnection();
+                foreach($queries as $query){
+                    $getresults = $connection->prepare($query);
+                    $getresults->execute();
+                }
+                $dt = new DateTime();
+                $date = $dt->format('Y-m-d H:i:s');
+                $Manage->InsertDepartmentManage($Admin,$IdE,'Edited',$date); 
 
-            $IdE = '';
-            $NameE = '';
-            $NrE = '';
-            $ResultEdit='Department edited successfully';
-            echo '<script> alert("Departmend edited succesfully !") </script>';
-        }else {
-            $NullError = 'Fill one of the fields';
+                $IdE = '';
+                $NameE = '';
+                $NrE = '';
+                $ResultEdit='Department edited successfully';
+                echo '<script> alert("Departmend edited succesfully !") </script>';
+            }else {
+                $NullError = 'Fill one of the fields';
+            }
         }
-        
-    }
-    include '../WebPages/ManageDepartments.php';
+        include '../WebPages/ManageDepartments.php';
+        echo '<script> EditClick(); </script>';
     }else if(!isset($_SESSION['Username'])){
         header("Location: ../WebPages/Login.php"); 
     }
-
-echo "<script>        
-        var DeleteForm = document.querySelector('.formD');
-        var RegisterForm = document.querySelector('.formR');
-        var EditForm = document.querySelector('.formE');
-
-        DeleteForm.style.display='none';
-        RegisterForm.style.display ='none';  
-        EditForm.style.display='flex';
-    </script> ";
-
 ?>
 

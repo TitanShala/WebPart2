@@ -5,50 +5,41 @@ $Controller = new DoctorController();
 if(isset($_SESSION['Account'])){
     $Account = $_SESSION['Account'];
     $Username = $_SESSION['Username'];
-    
-    
     $query = "select * from Account where Username ='".$Username."'";
     
     //E marrim Userin per ta perdorur emrin dhe mbiemri e tij per 'WELCOME'
     $Result = $Controller->filterTable($query);
     }
+
 $GetInfo = "Select * from HospitalInfo" ;
 $info = $Controller->filterTable($GetInfo);    
-
-
 ?>
+
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
+    <head>
+        <meta charset="utf-8" />
+        <title>HospitalMain</title>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="../css/Default.css">
+            <link rel="stylesheet" href="../css/Index.css">
+            <link rel="stylesheet" href="../css/Doctors.css">
+            <link rel="stylesheet" href="../css/all.min.css">
 
-    <meta charset="utf-8" />
-    <title>Web Project</title>
-    
-        
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/Default.css">
-        <link rel="stylesheet" href="../css/LoginToIndex.css">
-        <link rel="stylesheet" href="../css/Index.css">
-        <link rel="stylesheet" href="../css/Doctors.css">
-        <link rel="stylesheet" href="../css/all.min.css">
-       
-       <?php
-            if(isset($Account) ){
-                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
-                if($Account == 'Admin'){
-                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
+        <?php
+                if(isset($Account) ){
+                    echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                    if($Account == 'Admin'){
+                        echo '<link rel="stylesheet" href="../css/Admin.css">';  
+                    }
+                    
                 }
-                
-            }
-       ?>
+        ?>
 
-</head>
+    </head>
 
-<body>
-
-
+    <body>
         <header>
             <div class="NavContainer">
                 <div class="divv" style="display:flex; flex-direction:row;">
@@ -70,7 +61,6 @@ $info = $Controller->filterTable($GetInfo);
                 <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
                 <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
                 <div class="ManageDiv">
-                    <!-- <img class="ManagePhoto" src="../Foto/Manage.png"> -->
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a class="ManageName">Manage</a></div>
                             <ul>
@@ -88,17 +78,14 @@ $info = $Controller->filterTable($GetInfo);
         </header>
   
    <section>
-     <div class="home">
-     
-        <div class="bodyh1">
-            <h1 style="color:white; display:inline;font-size: 20px;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; display:inline;font-size: 4vh;">HEALTH</h1>
-            <?php if(isset($Result)){echo '</br> </br> <h1 style="display:inline;font-size: 4vh; color:white;">Welcome</br></h1> 
-                <h1 style="color:#24c1d6; font-size:4vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h1>' ;} ?>
+        <div class="home">
+            <div class="bodyh1">
+                <h1 style="color:white; display:inline;font-size: 5vh;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; display:inline;font-size: 5vh;">HEALTH</h1>
+                <?php if(isset($Result)){echo '</br> </br> <h1 style="display:inline;font-size: 5vh; color:white;">Welcome</br></h1> 
+                    <h1 style="color:#24c1d6; font-size:5vh;display:inline;">'.$Result[0][4].' '.$Result[0][5].'</h1>' ;} ?>
+            </div>
         </div>
-  
-     </div>
      
-     <!-- <div style="width:100%; background-color:#24252A"> -->
         <div class="MainContact" style="border:2px solid black;">
             <div class="AppointmentBox">
                 <div style="padding-top:5%;">
@@ -107,9 +94,10 @@ $info = $Controller->filterTable($GetInfo);
                     <?php if(!isset($Account))
                         echo '<h4 style="color:rgba(0,136,169,1); margin-top:20px;">Please sign in to make an appointment</h4>';
                     ?>
-                <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
+                    <a class="AppointmentAnch" href="Appointment.php"> <input type="button" value="Make an Appointment"></a>
                 </div>
             </div>
+
             <div class="schedule">
                 <div>
                     <h4>Monday-Friday</h4>
@@ -145,81 +133,69 @@ $info = $Controller->filterTable($GetInfo);
                 </div>
             </div>
         </div>
-    <!-- </div> -->
  
-
-    <div class="team-section" style="display:block ;">
-        <h1>Our Doctors</h1>
-        <span class="border"></span>
-        <div class="picture-section">
-            <a href="Doctors.php#Doctor1"><img src="../Foto/DoctorProfile1.jpg" alt=""></a>
-            <a href="Doctors.php#Doctor2"><img src="../Foto/DoctorProfile2.jpg" alt=""></a>
-            <a href="Doctors.php#Doctor3"><img src="../Foto/DoctorProfile3.png" alt=""></a>
-            <a href="Doctors.php#Doctor4"><img src="../Foto/DoctorProfile4.jpg" alt=""></a>
+        <div class="team-section" style="display:block ;">
+            <h1>Our Doctors</h1>
+            <span class="border"></span>
+            <div class="picture-section">
+                <a href="Doctors.php#Doctor1"><img src="../Foto/DoctorProfile1.jpg" alt=""></a>
+                <a href="Doctors.php#Doctor2"><img src="../Foto/DoctorProfile2.jpg" alt=""></a>
+                <a href="Doctors.php#Doctor3"><img src="../Foto/DoctorProfile3.png" alt=""></a>
+                <a href="Doctors.php#Doctor4"><img src="../Foto/DoctorProfile4.jpg" alt=""></a>
+            </div>
+            <a style="color:blue;" href="Doctors.php">Read About Our Doctors</a>
         </div>
-        <a style="color:blue;" href="Doctors.php">Read About Our Doctors</a>
-    </div>
 
-
-    <div class="slider">
-        <h1>Gallery</h1>
-        <div class="sliderDiv">
-            
+        <div class="slider">
+            <h1>Gallery</h1>
+            <div class="sliderDiv">
+                
         </div>
-    </div>
-
+        <!-- </div> -->
    </section>
 
+    <footer>
+        <div class="footer">
+            <div class="inner_footer">
+                <div class="logo_container">
+                    <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
+                    <img src="../Foto/logoS.png" >
+                </div>
 
-   
-   <footer>
-        
+                
 
-    <div class="footer">
-        <div class="inner_footer">
-            <div class="logo_container">
-                <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
-                <img src="../Foto/logoS.png" >
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Links</h1>
+                    <li><a href="#">Home</a></li><br />
+                    <li><a href="services.php">Services</a></li><br />
+                    <li><a href="contactUs.php">Contact</a></li><br />
+                    <li><a href="Appointment.php">Appointment</a></li>
+                </div>
+
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Social</h1>
+                    <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
+
+                    <address>
+                        <span>
+                            <?php echo $info[0][8] ?> <br />
+                            
+                            <?php echo $info[0][9] ?>
+                        </span>
+                    </address>
+                </div>
+
+                <div class="footer_third">
+                    <h1 style="color:#24c1d6;">Contact Us</h1>
+                        <li>Email: <?php echo $info[0][7] ?></li>
+                        <li>Phone: <?php echo $info[0][6] ?></li>
+                </div>
+                <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
-
-            
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Links</h1>
-                <li><a href="#">Home</a></li><br />
-                <li><a href="services.php">Services</a></li><br />
-                <li><a href="contactUs.php">Contact</a></li><br />
-                <li><a href="Appointment.php">Appointment</a></li>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Social</h1>
-                <li><a href="https://www.facebook.com/" target="blank"><i class="fab fa-facebook"></i></a></li>
-                <li><a href="https://twitter.com/" target="blank"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="blank"><i class="fab fa-instagram"></i></a></li>
-
-                <address>
-                    <span>
-                        <?php echo $info[0][8] ?> <br />
-                        
-                        <?php echo $info[0][9] ?>
-                    </span>
-                </address>
-            </div>
-
-            <div class="footer_third">
-                <h1 style="color:#24c1d6;">Contact Us</h1>
-                    <li>Email: <?php echo $info[0][7] ?></li>
-                    <li>Phone: <?php echo $info[0][6] ?></li>
-            </div>
-            <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
         </div>
-    </div>
-
-</footer>
-
-  
-
+    </footer>
 </body>
 </html>
 

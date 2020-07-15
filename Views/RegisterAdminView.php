@@ -18,7 +18,6 @@ if(isset($_POST['RegisterBtn'])){
     $GetUsernamequery = "select * from Account where  Username = '".$Username."'"; //Query per te kontrolluar nese ekziston nje Username i tille
     $Usernameresults = $Controller->filterTable($GetUsernamequery); //Marrja e rezultateve
 
-
     $GetEmailquery = "select * from Account where role = 1 and Username = '".$Email."'"; //Query per te kontrolluar nese ekziston nje email i njejte ne databaze per accounten admin
     $Emailresults = $Controller->filterTable($GetEmailquery); //Marrja e rezultateve
     if(strlen($Name) < 3){
@@ -69,7 +68,6 @@ if(isset($_POST['RegisterBtn'])){
         echo "<script> 
                 alert('Admin is succesfully registred!');
             </script>";
-
     }
     include '../WebPages/RegisterAdmin.php';
 }

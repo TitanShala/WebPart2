@@ -1,14 +1,13 @@
-@import url('httph://fonts.googleapis.com/css?family=Montserrat:500');
-
+/* @import url('httph://fonts.googleapis.com/css?family=Montserrat:500'); */
 *{
-box-sizing:border-box;
-margin:0;
-padding:0;
+	box-sizing:border-box;
+	margin:0;
+	padding:0;
 }
 
 .HospitalName{
-font-family:sans-serif;
-color:#edf0f1;
+	font-family:sans-serif;
+	color:#edf0f1;
 }
 
 .NavContainer{
@@ -25,7 +24,6 @@ color:#edf0f1;
     font-family: "Montserrat", sans-serif;
     font-weight:500;
 	font-size: 18px;
-	/* font-size:2vh; */
 	color: #edf0f1;	
     text-decoration:none;
 } 
@@ -36,7 +34,6 @@ color:#edf0f1;
 
 .SignInNav{
 	width:100%;
-	/* width:150px; */
 	display:block;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
@@ -54,12 +51,10 @@ color:#edf0f1;
 
 .SignOutNav{
 	width:100%;
-	/* width:150px; */
 	display:none;
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
 	font-size: 16px;
-	/* font-size:2vh; */
     color: #edf0f1;
     text-decoration:none;
 	padding: 9px 25px;
@@ -74,7 +69,6 @@ color:#edf0f1;
 .SignOutNav:hover{	
 background-color: rgba(0,136,169,0.8);
 }
-
 
 .SignInNav:hover{
 background-color: rgba(0,136,169,0.8);
@@ -96,8 +90,6 @@ transition: all 0.3s ease 0s;
 color: #0088a9;
 }
 
-
-
 header{
 display:flex;
 justify-content: space-between;
@@ -106,16 +98,13 @@ padding: 30px 5%;
 background-color: #24252A;
 }
 
-
 body
 {
-/* background-image: url("C:\xampp\htdocs\Project\Foto\dust_scratches.png"); */
 margin:0;
 padding:0;
 }
 
 footer{
-	/* width: 100vw; */
 	display: block;
 	overflow: hidden;
 	padding: 70px 0;
@@ -127,13 +116,11 @@ footer{
 	display: block;
 	margin: 0 auto;
 	width: 1100px;
-	height: 100%;
 }
 
 .inner_footer .logo_container{
 	width: 35%;
 	float: left;
-	height: 100%;
 	display: block;
 }
 
@@ -146,7 +133,6 @@ footer{
 	width: calc(21.6666666667% - 20px);
 	margin-right: 10px;
 	float: left;
-	height: 100%;
 }
 
 .inner_footer .footer_third:last-child{
@@ -192,8 +178,6 @@ footer{
 	padding-top: 20px;
 }
 
-
-
 .gotopbtn{
 	position: fixed;
 	width: 50px;
@@ -236,7 +220,6 @@ html{
 }	
 
 .Manager li{
-	
 	margin-left:0px;
 	float:right;
 	width:150px;
@@ -247,7 +230,6 @@ html{
 	text-align:center;
 	justify-content: center;
 	align-items: center;
-	
 }
 
 .ImgAnchor{
@@ -262,7 +244,6 @@ html{
 .Manager li a{
 	font-family: "Montserrat", sans-serif;
     font-weight:500;
-	/* font-size: 2vh;  */
 	display:block;
 	color: #edf0f1;	
     text-decoration:none;
@@ -302,7 +283,6 @@ html{
 		width:100px;
 		
 	}
-	
 	.footer .inner_footer{
 		width: 90%;
 	}
@@ -313,7 +293,6 @@ html{
 		width:auto;
 		margin-right:50px;
 	}
-
 	.inner_footer .logo_container,
 	.inner_footer .footer_third{
 		width: 100%;
@@ -328,6 +307,7 @@ html{
 	.HospitalNameDiv{
 		flex-direction:column;
 	}
+}
 
 	@media(max-width: 360px){
 		.SignOutNav{
@@ -338,4 +318,4 @@ html{
 			flex-direction:column;
 		}
 	}
-}
+

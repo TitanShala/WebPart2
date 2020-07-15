@@ -48,19 +48,18 @@ table{
     }
 }
 
-      @media (max-width:600px){
-    
+@media (max-width:600px){    
     .SearchForm{
         width:400px;
     }
-    } 
+} 
 
-    @media (max-width:400px){
-        .SearchForm{
+@media (max-width:400px){
+    .SearchForm{
             width: 300px;
-        }
-        section{
-            min-height:120vh;
-            padding-bottom: 50px;
-        }
     }
+    section{
+        min-height:120vh;
+        padding-bottom: 50px;
+    }
+}

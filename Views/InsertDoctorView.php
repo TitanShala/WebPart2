@@ -2,59 +2,47 @@
 include_once '../Controller/DoctorController.php';
 include_once '../Controller/ManageController.php';
 
-session_start();
+@session_start();
 
 	if(isset($_POST['SubmitInput'])){
-		session_start();
 		$Admin = $_SESSION['Username'];			
-		
-		
 		$target = "../UploadedImages/".basename($_FILES['IMAGE']['name']);
 		$image1 = $_FILES['IMAGE']['name'];
 		move_uploaded_file($_FILES['IMAGE']['tmp_name'],$target);     
-
 		$count = 0;
 		$Name =filter_input(INPUT_POST,'Emri');
 		$Manage = new ManageController();
-
 
 		if(strlen($Name)<3){
 			$Name_Error = "Name should not be null or shorter than 3";
 			$count++;
 		}
-		//$surname =$_POST['SurnameInput'];
+		
 		$surname =filter_input(INPUT_POST,'SurnameInput');
 		if(strlen($surname)<3){
 			$Surname_Error = "Surname should not be null or shorter than 3";
 			$count++;
 		}
-		//$specialization = $_POST['SpecializationInput'];
+		
 		$specialization =filter_input(INPUT_POST,'SpecializationInput');
 		if(strlen($specialization)<3){
 			$Specialization_Error = "Specialization should not be null or shorter than 3";
 			$count++;
 		}
-		//$experience = $_POST['ExperienceInput'];
+		
 		$experience =filter_input(INPUT_POST,'ExperienceInput');
-
 		$view = new InsertView();
 
 		if(strlen($experience)<1 || strlen($experience)>2){
 			$Experience_Error = "Experience should not be null or not contain more than 2 numbers";
 			$count++;
 		}
-
 		else if(!$view->isInteger($experience)){
 			$Experience_Error = "Experience should be integer";
 			$count++;
 		}
 		if($count == 0){
-		//Insertimi  i doktori nese nuk ka error
 		$view->InsertDoctor($Name, $surname, $specialization, $experience, $Admin,$image1);
-		
-		
-		//Gjetja e dates se sotit per insertimin ne tabele, Aktiviteti i adminit te doktoret
-		
 		$dt = new DateTime();
 		$date = $dt->format('Y-m-d H:i:s');
 
@@ -84,12 +72,9 @@ class InsertView{
 		$response = $controller->InsertDoctor($name, $surname, $specialization, $experience, $Admin,$image);
 
 	}
-
-	
 	public function isInteger($input){
 		return(ctype_digit(strval($input)));
 }
-
-
-
 }
+
+?>

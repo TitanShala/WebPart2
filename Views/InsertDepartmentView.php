@@ -1,10 +1,9 @@
 <?php
     include_once '../Controller/DepartmentController.php';
     include_once '../Controller/ManageController.php';
-    session_start();
+    @session_start();
 
     if(isset($_POST['SubmitReg'])){
-        
         $Admin = $_SESSION['Username'];
         $Name = $_POST['Emri'] ;
         $Nr = $_POST['NrRooms'];
@@ -19,14 +18,11 @@
 		$image1 = $_FILES['IMAGE']['name'];
 		move_uploaded_file($_FILES['IMAGE']['tmp_name'],$target);      		
   
-        
-        
         if(strlen($Name) < 3){
             $Name_Error='Name should not be shorter than 3';
             $count++;
         }
-        else{
-            
+        else{          
             if(count($result) > 0){
                 $Name_Error="Department with this name already exists";
                 $count++;
@@ -44,9 +40,6 @@
         if($count==0){
             $Controller->InsertDepartment($Name,$Nr,$Admin,$image1);
             $InsertResult='Department Registred Succesfully';
-            
-            // $result = $Controller->filterTable($sql);
-            
             $sql = "select Id from Reparti order by Id desc";
             $result = $Manage->filterTable($sql);
             $id = $result[0][0];

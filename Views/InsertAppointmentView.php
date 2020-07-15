@@ -1,10 +1,8 @@
 <?php
-include_once '../Controller/AppointmentController.php';
-session_start();
-if(isset($_POST['submit'])){
-    
+    include_once '../Controller/AppointmentController.php';
+    @session_start();
+    if(isset($_POST['submit'])){
     $Username = $_SESSION['Username'];
-    	
     $Day = $_POST['Day'] ;
     $Month = $_POST['Month'] ;
     $Year = $_POST['Year'] ;
@@ -24,7 +22,6 @@ if(isset($_POST['submit'])){
         $Date = $Year."-".$Month."-".$Day ;
         $query = "Select Hour from Appointment where Data='".$Date."' and Department=".$DepartmentId ; 
         $OraretPerSot = $Controller->filterTable($query);        
-    
     if(strlen($Department)< 1){
         $Department_Error= "Please choose a department";
         $count++;
@@ -50,8 +47,8 @@ if(isset($_POST['submit'])){
             if($Orari[0] == $Hour){
                 $Hour_Error = "This Hours is busy, choose another hour for this date";
                 $count++;
-                                  }
-                                        }
+                }
+            }
         }
     }
     if($count==0){
@@ -67,11 +64,9 @@ if(isset($_POST['submit'])){
 
     }
     include '../WebPages/Appointment.php';   
-// }
-}
-else if(!isset($_SESSION['Username'])){
+    }
+    else if(!isset($_SESSION['Username'])){
     header("Location: ../WebPages/Login.php"); 
-}
-
+    }
 ?>
 

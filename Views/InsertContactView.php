@@ -1,6 +1,6 @@
 <?php
 include_once  '../Controller/ContactController.php' ;
-session_start();
+@session_start();
 if(isset($_POST['Submit'])){
     $Name = $_POST['name'];
     $Email = $_POST['email'];

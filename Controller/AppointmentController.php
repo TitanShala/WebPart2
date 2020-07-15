@@ -20,22 +20,19 @@ public function InsertAppointment($Name, $Username, $Department, $Data, $Hour){
    $statement->execute();
 }
 
-
-   function LoadTable(){
-      if(isset($_POST['SearchSubmit']) ){
-          $SearchInput = $_POST['SearchInput'];
-          $query = "select * from Appointment where Id like '%".$SearchInput."%' OR Username like '%".$SearchInput."%' OR Name like '%".$SearchInput."%' 
-          OR Department like '%".$SearchInput."%' OR Data like '%".$SearchInput."%' OR Hour like '%".$SearchInput."%'"; 
-          $search_result = $this->filterTable($query);
-      }
-      else{
-   $query="Select * FROM Appointment order by Data";
-   $search_result = $this->filterTable($query);
-      }
-    return $search_result;
+function LoadTable(){
+   if(isset($_POST['SearchSubmit']) ){
+       $SearchInput = $_POST['SearchInput'];
+       $query = "select * from Appointment where Id like '%".$SearchInput."%' OR Username like '%".$SearchInput."%' OR Name like '%".$SearchInput."%' 
+       OR Department like '%".$SearchInput."%' OR Data like '%".$SearchInput."%' OR Hour like '%".$SearchInput."%'"; 
+       $search_result = $this->filterTable($query);
+   }
+   else{
+      $query="Select * FROM Appointment order by Data";
+      $search_result = $this->filterTable($query);
+   }
+   return $search_result;
 }
-
-
 
 function filterTable($query){
    $obj = new DBConnection();
@@ -44,7 +41,7 @@ function filterTable($query){
    $getresults->execute();
    $results = $getresults->fetchAll(PDO::FETCH_BOTH);
    return $results ;        
-}
-}
+   }
 
+}
 ?>

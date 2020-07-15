@@ -7,8 +7,6 @@
 
 .departments-section{
 	overflow: hidden;
-	/* text-align: center;
-	//background: #34495e; */
 	padding: 60px;
 }
 
@@ -20,7 +18,6 @@
 }
 
 .Departments-border{
-	/* display:block; */
 	margin: auto;
 	width: 160px;
 	height: 3px;
@@ -31,10 +28,6 @@
 .picture-section{
 	margin-bottom: 40px;
 	display:inline-block;
-	/* display:block;
-	flex-direction: row;
-	align-items:center; 
-	justify-content:center;*/
 }
 
 .picture-section a{
@@ -43,23 +36,19 @@
 	width: 160px;
 	height: 160px;
 	overflow: hidden;
-	
 }
 
 .picture-section a img{
 	width:100%;
 	height:80%;
-	//filter: grayscale(100%);
 	transition: 0.4s all;
 }
 
 .picture-section a:hover > img{
-	//filter:none;
 	filter: grayscale(100%);
 }
 
 .DepartmentSection{	
-	//background:#F0F8FF;
 	width:600px;
 	margin:auto;
 	font-size:20px;

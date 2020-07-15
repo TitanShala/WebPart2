@@ -1,19 +1,18 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
 
 .RadioInputs{
-  
   display:flex;
   flex-direction: row;
   justify-content: center;
   align-items:center;
   margin:15px auto;
 }
+
 .RadioInputs input{
   margin-right:10px;
   height:15px;
   width:15px;
 }
-
 
 .home{
 display:flex;
@@ -27,19 +26,16 @@ padding-left:100px;
 
 .bodyh1{
 margin-top:100px;
-/* margin-bottom:30px; */
 }
 
 .login-box{
   width:300px;
   color: white;
-  /* margin-top:100px; */
   margin-bottom:50px;
   
 }
 .login-box h1{
   float: left;
-  /* font-size:200%; */
   font-size: 40px;
   border-bottom: 6px solid #007a29;
   margin-bottom: 50px;
@@ -89,16 +85,11 @@ margin-top:100px;
   float:right;
 }
 
-/* #formRegister{
-  margin-top:100px;
-} */
+
 
 .Register-box{
   width: 300px;
   display:none;
-  /* margin-top:200px;
-  margin-left: 20vh;
-  transform: translate(-50%,-50%); */
   margin-bottom:50px;
   color: white;
   

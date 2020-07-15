@@ -3,13 +3,9 @@ include_once '../Models/DbConn.php';
 include_once '../Views/InsertDoctorView.php';
 include_once '../Controller/DoctorController.php';
 include_once '../Controller/ManageController.php';
-session_start();
+@session_start();
 $Admin = $_SESSION['Username'];	
-
-	
-
 	if(isset($_POST['SubmitInputt'])){
-		
 		$DocID = filter_input(INPUT_POST,'Id');
 		$DocName =filter_input(INPUT_POST,'Emri');
 		$DocSurname =filter_input(INPUT_POST,'SurnameInput');
@@ -17,22 +13,14 @@ $Admin = $_SESSION['Username'];
 		$DocExperience =filter_input(INPUT_POST,'ExperienceInput');
 		$count = 0 ;
 		$View = new InsertView();
-		
 		if(strlen($DocID)<1 || !$View->isInteger($DocID)){			
-			
 			$IdError = "Type ID as an integer" ;
 			$count++;		
 		}
-		
 		$query = "Select * from Doktori where id =".$DocID;
-		
 		$obj = new DBConnection();
         $connection= $obj->getConnection();
-		
-		
-		
-
-
+	
 		if(!strlen($DocName)==0 && strlen($DocName)<3){
 			$DocName_Error = "New Name should not be shorter than 3";
 			$count++;
@@ -67,10 +55,7 @@ $Admin = $_SESSION['Username'];
 		if($count == 0){
 			if(!strlen($DocName)==0){
 				$query="Update Doktori set Emri = '".$DocName."' where id=".$DocID;
-				array_push($queries,$query);
-				//$getresults = $connection->prepare($query);
-				//$getresults->execute();
-				
+				array_push($queries,$query);				
 			}
 
 			if(!strlen($DocSurname) == 0){
@@ -119,18 +104,8 @@ $Admin = $_SESSION['Username'];
 		}
 
 		include '../WebPages/RegisterDoctor.php';
-
+		echo '<script> EditClick(); </script>';
 	}else if(!isset($_SESSION['Username'])){
 		header("Location: ../WebPages/Login.php"); 
 	}
-?>
-
-	<script>        
-	var DeleteForm = document.querySelector('.formD');
-        var RegisterForm = document.querySelector('.formR');
-        var EditForm = document.querySelector('.formE');
-
-        RegisterForm.style.display = 'none';
-        DeleteForm.style.display='none'; 
-        EditForm.style.display='flex';
-		</script>
+		?>

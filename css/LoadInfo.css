@@ -26,9 +26,7 @@ section{
 }
 
 h2{
-     /* display:inline ; */
     background-color:#24c1d6;
-    /* border:2px solid black; */
     width:300px;
     justify-content:center;
 }

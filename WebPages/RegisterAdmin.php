@@ -2,29 +2,27 @@
     @session_start();
     if(isset($_SESSION['Account'])){
     $Account = $_SESSION['Account'];
+        if(!isset($Name)){
+            $Name='';
+        }
 
-    if(!isset($Name)){
-        $Name='';
-    }
+        if(!isset($Surname)){
+            $Surname='';
+        }
 
-    if(!isset($Surname)){
-        $Surname='';
-    }
+        if(!isset($Password)){
+            $Password='';
+        }
+        if(!isset($Email)){
+            $Email='';
+        }
 
-    if(!isset($Password)){
-        $Password='';
+        if(!isset($Username)){
+            $Username='';
+        }
     }
-    if(!isset($Email)){
-        $Email='';
-    }
-
-    if(!isset($Username)){
-        $Username='';
-    }
-
-    }
-else{
-    header("Location: ../WebPages/Login.php");
+    else{
+        header("Location: ../WebPages/Login.php");
     }
     include_once '../Models/DbConn.php';
     include_once '../Controller/DoctorController.php';
@@ -34,31 +32,30 @@ else{
     $GetInfo = "Select * from HospitalInfo" ;
     $info = $DocController->filterTable($GetInfo);   
 ?>   
+
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
-
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/Login1.css">
-     <link rel="stylesheet" href="../css/Default.css">
-     <link rel="stylesheet" href="../css/all.min.css">
-      
-    <?php
-            if(isset($Account) ){
-                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
-                if($Account == 'Admin'){
-                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../css/Login1.css">
+        <link rel="stylesheet" href="../css/Default.css">
+        <link rel="stylesheet" href="../css/all.min.css">
+        
+        <?php
+                if(isset($Account) ){
+                    echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+                    if($Account == 'Admin'){
+                        echo '<link rel="stylesheet" href="../css/Admin.css">';  
+                    }
+                    
                 }
-                
-            }
-       ?>    
-    <title></title>                                                                                 
-</head>
+        ?>    
+        <title>Register Admins</title>                                                                                 
+    </head>
 <body>
 
-<header>
+        <header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
@@ -97,86 +94,80 @@ else{
         </header>
 
         <section class="home" style="min-height:100vh;">
-     
-     <div class="bodyh1" style="margin-bottom:100px;">
-         <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
-     </div>
-<div class="Register-box" id="Register-box" style="display:flex;">
-        <p id="errorR" style="margin-top:200px; color:red;"></p>
-          
-        <form id="form" action="../Views/RegisterAdminView.php" method="post">
-            
-            <h1>Register</h1>
+            <div class="bodyh1" style="margin-bottom:100px;">
+                <h1 style="display:inline;font-size: 7vh; color:white;">WE CARE ABOUT</br>YOUR </h1><h1 style="color:#24c1d6; font-size:7vh;display:inline;">HEALTH</h1>
+            </div>
+            <div class="Register-box" id="Register-box" style="display:flex;">
+                <p id="errorR" style="margin-top:200px; color:red;"></p>
+                <form id="form" action="../Views/RegisterAdminView.php" method="post">
+                <h1>Register</h1>
 
-            <div class="textbox">
+                <div class="textbox">
                     <i class="fas fa-user"></i>
                     <input  name="NameReg" id="Regname" type="text" placeholder="Name" required value="<?php echo htmlspecialchars($Name) ?>"> <br />
-            </div>
-            <?php if(isset($NameR_Error)) { ?>
-                            <p style="color:red;"><?php echo $NameR_Error ?></p>
-                            <?php } ?> 
+                </div>
+                <?php if(isset($NameR_Error)) { ?>
+                        <p style="color:red;"><?php echo $NameR_Error ?></p>
+                <?php } ?> 
 
-            <div class="textbox">
+                <div class="textbox">
                     <i class="fas fa-user"></i>
                     <input  name="SurnameReg" id="Regsurname" type="text" placeholder="Surname" required value="<?php echo htmlspecialchars($Surname) ?>"> <br />
-            </div>
-            <?php if(isset($SurnameR_Error)) { ?>
-                            <p style="color:red;"><?php echo $SurnameR_Error ?></p>
-                            <?php } ?> 
+                </div>
+                <?php if(isset($SurnameR_Error)) { ?>
+                                <p style="color:red;"><?php echo $SurnameR_Error ?></p>
+                <?php } ?> 
 
-            <div class="textbox">
-                    <i class="fas fa-user"></i>
-                    <input id="nameR" name="UsernameR" type="text" placeholder="Username" required value="<?php echo htmlspecialchars($Username) ?>"> <br />
-            </div>
-            <?php if(isset($UsernameR_Error)) { ?>
-                            <p style="color:red;"><?php echo $UsernameR_Error ?></p>
-                            <?php } ?> 
+                <div class="textbox">
+                        <i class="fas fa-users"></i>
+                        <input id="nameR" name="UsernameR" type="text" placeholder="Username" required value="<?php echo htmlspecialchars($Username) ?>"> <br />
+                </div>
+                <?php if(isset($UsernameR_Error)) { ?>
+                        <p style="color:red;"><?php echo $UsernameR_Error ?></p>
+                <?php } ?> 
 
-            <div class="textbox">
+                <div class="textbox">
                     <i class="fas fa-at"></i>
                     <input id="emailR" name="EmailR" type="email" placeholder="Email Adress" required value="<?php echo htmlspecialchars($Email) ?>"> <br />
-            </div>
-            <?php if(isset($EmailR_Error)) { ?>
-                            <p style="color:red;"><?php echo $EmailR_Error ?></p>
-                            <?php } ?> 
+                </div>
+                <?php if(isset($EmailR_Error)) { ?>
+                        <p style="color:red;"><?php echo $EmailR_Error ?></p>
+                <?php } ?> 
 
-             <div class="textbox">
-                 <i class="fas fa-lock"></i>
+                <div class="textbox">
+                    <i class="fas fa-lock"></i>
                     <input id="passwordR" name="PasswordR" type="password" placeholder="Password" required value="<?php echo htmlspecialchars($Password) ?>"> <br />
-             </div>
-             <?php if(isset($PasswordR_Error)) { ?>
-                            <p style="color:red;"><?php echo $PasswordR_Error ?></p>
-                            <?php } ?> 
+                </div>
+                <?php if(isset($PasswordR_Error)) { ?>
+                        <p style="color:red;"><?php echo $PasswordR_Error ?></p>
+                <?php } ?> 
 
-             <div class="textbox">
-                 <i class="fas fa-lock"></i>
+                <div class="textbox">
+                    <i class="fas fa-lock"></i>
                     <input id="passwordconfirmR" name="ConfirmPasswordR" type="password" placeholder="Confirm Password" required>
-            </div>
-            <?php if(isset($ConfirmPasswordR_Error)) { ?>
-                            <p style="color:red;"><?php echo $ConfirmPasswordR_Error ?></p>
-                            <?php } ?> 
+                </div>
+                <?php if(isset($ConfirmPasswordR_Error)) { ?>
+                        <p style="color:red;"><?php echo $ConfirmPasswordR_Error ?></p>
+                <?php } ?> 
 
-             <div class="LoginButtons">
-                     <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn">
-                     <?php if(isset($RegisterResult)) { ?>
-                            <p style="color:green;"><?php echo $RegisterResult ?></p>
-                            <?php } ?> 
-                     <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
-            </div>
-          </form>
-      </div>
-</section>
-<footer>
-        
+                <div class="LoginButtons">
+                    <input  type="submit" class="btnLogin" value="Register" name="RegisterBtn">
+                    <?php if(isset($RegisterResult)) { ?>
+                        <p style="color:green;"><?php echo $RegisterResult ?></p>
+                    <?php } ?> 
+                    <input  type="button" class="Cancelbtn" value="Cancel" onclick="cancelLogin();">
+                </div>
+            </form>
+        </div>
+    </section>
 
+    <footer>
         <div class="footer">
             <div class="inner_footer">
                 <div class="logo_container">
                     <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                     <img src="../Foto/logoS.png" >
                 </div>
-    
-                
     
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Links</h1>
@@ -209,7 +200,6 @@ else{
                 <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
-    
     </footer>
 
  <script src="../js/RegisterAdminValidation.js"></script>

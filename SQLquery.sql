@@ -58,9 +58,6 @@ foreign key(Reparti) references Reparti(id)  on delete cascade on update cascade
 )
 drop table DepartmentManage
 
-
-
-
 create table Contacts(
 Id int primary key identity(1,1),
 Data Date,

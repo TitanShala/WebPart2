@@ -1,28 +1,25 @@
 <?php
-include_once '../Controller/ManageController.php';
-$Controller = new ManageController();
-$search_result = $Controller->LoadTableDepartment();
+    include_once '../Controller/ManageController.php';
+    $Controller = new ManageController();
+    $search_result = $Controller->LoadTableDepartment();
+    $search_result1 = $Controller->LoadTableDoctor();
 
-$search_result1 = $Controller->LoadTableDoctor();
+    @session_start();
+    if(isset($_SESSION['Account'])){
+        $Account = $_SESSION['Account'];
+    }
+    else{
+        header("Location: ../WebPages/Login.php");
+        }
 
-@session_start();
-if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
-}
-else{
-
-header("Location: ../WebPages/Login.php");
-}
-      
-$GetInfo = "Select * from HospitalInfo" ;
-$info = $Controller->filterTable($GetInfo);   
+    $GetInfo = "Select * from HospitalInfo" ;
+    $info = $Controller->filterTable($GetInfo);   
 ?> 
 
 <!DOCTYPE html>
-
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
-<head>
 
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/Default.css">
@@ -31,19 +28,18 @@ $info = $Controller->filterTable($GetInfo);
     <link rel="stylesheet" href="../css/AdminActivity.css"> 
       
     <?php
-            if(isset($Account) ){
-                echo '<link rel="stylesheet" href="../css/SignedIn.css">';
-                if($Account == 'Admin'){
-                    echo '<link rel="stylesheet" href="../css/Admin.css">';  
-                }
-                
-            }
+        if(isset($Account) ){
+            echo '<link rel="stylesheet" href="../css/SignedIn.css">';
+            if($Account == 'Admin'){
+                echo '<link rel="stylesheet" href="../css/Admin.css">';  
+            }    
+        }
        ?>    
-    <title></title>                                                                                 
+    <title>Admin Activity</title>                                                                                 
 </head>
-<body>
 
-<header>
+<body>
+        <header>
             <div class="NavContainer">
                 <div class="HospitalName">
                     <img class="IconImg" src="../Foto/logoS.png">
@@ -63,8 +59,8 @@ $info = $Controller->filterTable($GetInfo);
             <div class="LogAndManage" >
                 <a href="../WebPages/Login.php" class="SignInNav"> <input type="button" style="background:none; border:none;">Sign In</input> </a>
                 <a href="../WebPages/Login.php" class="SignOutNav" onclick="SigningOut()"> <input type="button" style="background:none; border:none;">Sign Out</input> </a>            
+                
                 <div class="ManageDiv" >
-        
                     <ul class="Manager">
                         <li><div class="ImgAnchor"><img class="ManagePhoto" src="../Foto/Manage.png"><a>Manage</a></div>
                             <ul>      
@@ -82,118 +78,94 @@ $info = $Controller->filterTable($GetInfo);
         </header>
 
         <section>
+            <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm">
+                <div class="SearchFormInputContainer">
+                    <input type="text" placeholder="Search" name="SearchInput1" class="SearchInput">
+                    <input type="submit" value="Search" name="SearchSubmit1" class="SearchSubmit">
+                </div>
+                <div id="table-wrapper">
+                    <div id="table-scroll">
+                        <table class="table sticky">
+                            <thead>
+                                <tr>
+                                    <th colspan=5><h3>Admin Activity to Doctors</h3> </th>
+                                </tr>
+                                <tr>
+                                    <th> Date </th>
+                                    <th> Stafi </th>
+                                    <th> Doctor Name </th>
+                                    <th> Doctor ID </th>
+                                    <th> Activity </th>    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                foreach($search_result1 as $row){
+                                    $sql = "Select * from Doktori where Id=".$row['Doctor'];
+                                    $result = $Controller->filterTable($sql);
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $row['Data'];?></td>
+                                        <td><?php echo $row['Stafi'];?></td>
+                                        <td><?php echo $result[0][1]." ".$result[0][2];?></td>
+                                        <td><?php echo $row['Doctor'];?></td>
+                                        <td><?php echo $row['Aktiviteti'];?></td>  
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
 
-
-        <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm">
-                 <div class="SearchFormInputContainer">
-                     <input type="text" placeholder="Search" name="SearchInput1" class="SearchInput">
-                     <input type="submit" value="Search" name="SearchSubmit1" class="SearchSubmit">
-                 </div>
-        <div id="table-wrapper">
-               <div id="table-scroll">
-                 <table class="table sticky">
-                    <thead>
-                    <tr>
-				        <th colspan=5><h3>Admin Activity to Doctors</h3> </th>
-				    </tr>
-
-			        <tr>
-                        <th> Date </th>
-						<th> Stafi </th>
-		                <th> Doctor Name </th>
-                        <th> Doctor ID </th>
-						<th> Activity </th>
-			            
-	                </tr>
-                    </thead>
-                    <tbody>
-                  <?php 
-                  
-                  foreach($search_result1 as $row){
-                        $sql = "Select * from Doktori where Id=".$row['Doctor'];
-                      $result = $Controller->filterTable($sql);
-                      ?>
-                    
-                    <tr>
-                        <td><?php echo $row['Data'];?></td>
-                        <td><?php echo $row['Stafi'];?></td>
-                        <td><?php echo $result[0][1]." ".$result[0][2];?></td>
-                        <td><?php echo $row['Doctor'];?></td>
-                        <td><?php echo $row['Aktiviteti'];?></td>
-                        
-                        
-                    </tr>
-                  <?php } ?>
-                  </tbody>
-
-                 </table>
-              </div>
-            </div>
+                        </table>
+                    </div>
+                </div>
             </form>     
 
-
         <form action="../WebPages/AdminActivity.php" method="post" class="SearchForm"  >
-                 <div class="SearchFormInputContainer">
-                     <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
-                     <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
-                 </div>
-        <div id="table-wrapper">
+            <div class="SearchFormInputContainer">
+                 <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
+                 <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
+            </div>
+            <div id="table-wrapper">
                <div id="table-scroll">
                  <table  class="table sticky">
                     <thead>
-                    <tr>
-				        <th colspan=5><h3>Admin Activity to Departments</h3> </th>
-				    </tr>
-
-			        <tr>
-                        <th> Date </th>
-						<th> Stafi </th>
-		                <th> Department:Name </th>
-                        <th> Department:ID </th>
-						<th> Activity </th>
-			            
-	                </tr>
+                        <tr>
+				            <th colspan=5><h3>Admin Activity to Departments</h3> </th>
+				        </tr>
+                        <tr>
+                            <th> Date </th>
+                            <th> Stafi </th>
+                            <th> Department:Name </th>
+                            <th> Department:ID </th>
+                            <th> Activity </th>
+                        </tr>
                     </thead>
                     <tbody>
-                  <?php 
-                  
-                  foreach($search_result as $row){
+                    <?php 
+                        foreach($search_result as $row){
                         $sql = "Select * from Reparti where Id=".$row['Reparti'];
-                      $result = $Controller->filterTable($sql);
-                      ?>
-                    
-                    <tr>
-                        <td><?php echo $row['Data'];?></td>
-                        <td><?php echo $row['Stafi'];?></td>
-                        <td><?php echo $result[0][1];?></td>
-                        <td><?php echo $row['Reparti'];?></td>
-                        <td><?php echo $row['Aktiviteti'];?></td>
-                        
-                        
-                    </tr>
-                  <?php } ?>
-                  </tbody>
-
+                        $result = $Controller->filterTable($sql);
+                        ?>
+                        <tr>
+                            <td><?php echo $row['Data'];?></td>
+                            <td><?php echo $row['Stafi'];?></td>
+                            <td><?php echo $result[0][1];?></td>
+                            <td><?php echo $row['Reparti'];?></td>
+                            <td><?php echo $row['Aktiviteti'];?></td>    
+                        </tr>
+                        <?php } ?>
+                    </tbody>
                  </table>
               </div>
             </div>
-            </form>     
-
+        </form>     
         </section>
-
-
         <footer>
-        
-
         <div class="footer">
             <div class="inner_footer">
                 <div class="logo_container">
                     <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                     <img src="../Foto/logoS.png" >
                 </div>
-    
-                
-    
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Links</h1>
                     <li><a href="#">Home</a></li><br />
@@ -227,7 +199,5 @@ $info = $Controller->filterTable($GetInfo);
         </div>
     
     </footer>
-
-
 </body>
 </html>

@@ -20,7 +20,6 @@
     z-index:2;
     height:20px;
     width:35%;
-    
 }
 
 table{
@@ -28,8 +27,6 @@ table{
     max-height:400px;
     font-family:sans-serif;
     border-collapse: collapse; 
-    
-
 }
 
 .table.sticky th{

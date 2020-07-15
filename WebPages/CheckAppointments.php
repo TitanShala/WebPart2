@@ -2,9 +2,10 @@
     include_once '../Controller/AppointmentController.php';
     $Controller = new AppointmentController();
     $search_result = $Controller->loadTable();
+    
     @session_start();
     if(isset($_SESSION['Account'])){
-    $Account = $_SESSION['Account'];
+        $Account = $_SESSION['Account'];
     }
     else{  
     header("Location: ../WebPages/Login.php");
@@ -17,7 +18,6 @@
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/LoadInfo.css"> 
@@ -29,16 +29,14 @@
                 echo '<link rel="stylesheet" href="../css/SignedIn.css">';
                 if($Account == 'Admin'){
                     echo '<link rel="stylesheet" href="../css/Admin.css">';  
-                }
-                
+                }  
             }
-       ?>    
-    <title></title>                                                                                 
+    ?>    
+    <title>Check Appointments</title>                                                                                 
 </head>
 
 <body>
-
-<header>
+        <header>
             <div class="NavContainer">
                 <div style="display:flex; flex-direction:row;">
                     <img style="width: 40px; height:auto;" src="../Foto/logoS.png">
@@ -76,65 +74,51 @@
             </div>   
         </header>
 
-        <section style="min-height:80vh; padding-bottom:200px;">
-                    
-                    <h1 style="inline-block">Contact Messages</h1>
-                    ?>
-                  <form action = "../WebPages/CheckAppointments.php" method="post" style="margin-bottom:100px;">
-                  <div class="SearchFormInputContainer" style="margin-bottom:50px;">
+        <section style="min-height:80vh; padding-bottom:200px;">  
+            <h1 style="inline-block">Contact Messages</h1>
+            <form action = "../WebPages/CheckAppointments.php" method="post" style="margin-bottom:100px;">
+                <div class="SearchFormInputContainer" style="margin-bottom:50px;">
                      <input type="text" placeholder="Search" name="SearchInput" class="SearchInput">
                      <input type="submit" value="Search" name="SearchSubmit" class="SearchSubmit">
-                 </div>
+                </div>
 
-                  <?php 
-                  if(count($search_result) < 1){
+                <?php 
+                if(count($search_result) < 1){
                     echo '<h2 style="text-align:center;" >No Appointments</h2>';
-                  }
-                  else{
-                   
-                  echo '<div class="ContactDiv" style="display:inline-block; align-items:left; margin-bottom:50px;"> ';
-                  foreach($search_result as $row){ 
-                    $DepartmentNameQuery = "Select Emri from Reparti where Id =".$row['Department'];
-                    $DepartmentNameResult= $Controller->filterTable($DepartmentNameQuery);
-                    $DepartmentName = $DepartmentNameResult[0][0];
-                  ?>   
+                }
+                else{   
+                    echo '<div class="ContactDiv" style="display:inline-block; align-items:left; margin-bottom:50px;"> ';
+                    foreach($search_result as $row){ 
+                        $DepartmentNameQuery = "Select Emri from Reparti where Id =".$row['Department'];
+                        $DepartmentNameResult= $Controller->filterTable($DepartmentNameQuery);
+                        $DepartmentName = $DepartmentNameResult[0][0];
+                    ?>   
                     
-                        <div class="ClientInfoDiv" style="width:300px; float:left;">
-                            <?php echo "<h3>Date: $row[Data]</h3>";?>
-                            <?php echo "<h3>Name: $row[Name]</h3>";?>
-                            <?php echo "<h3>Username: $row[Username]</h3>";?>
-                            <?php echo "<h3>Department: $DepartmentName</h3>";?>
-                            <?php echo "<h3>Hour: $row[Hour]</h2>";?>
-                            
-                        </div>
-                       
-                        <!-- <?php echo "<p>$row[Message]</p>";?> -->
-                   
-
-                  <?php }
+                    <div class="ClientInfoDiv" style="width:300px; float:left;">
+                        <?php echo "<h3>Date: $row[Data]</h3>";?>
+                        <?php echo "<h3>Name: $row[Name]</h3>";?>
+                        <?php echo "<h3>Username: $row[Username]</h3>";?>
+                        <?php echo "<h3>Department: $DepartmentName</h3>";?>
+                        <?php echo "<h3>Hour: $row[Hour]</h2>";?>                            
+                    </div>
+    
+                    <?php 
                         }
-                         ?>
-                  </div>
-                  </form>
-
-                  
-               
-
+                        }
+                    ?>
+                    </div>
+            </form>
         </section>
 
         
-        <footer>
-        
-
+    <footer>
         <div class="footer">
             <div class="inner_footer">
                 <div class="logo_container">
                     <div style="display:flex; flex-direction:row;"><h1 class="HospitalName"><?php echo $info[0][8] ?></h1> <h1 style="color:#24c1d6;">Hospital</h1></div><br />
                     <img src="../Foto/logoS.png" >
                 </div>
-    
-                
-    
+
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Links</h1>
                     <li><a href="#">Home</a></li><br />
@@ -152,7 +136,6 @@
                     <address>
                         <span>
                             <?php echo $info[0][8] ?> <br />
-                            
                             <?php echo $info[0][9] ?>
                         </span>
                     </address>
@@ -160,15 +143,13 @@
     
                 <div class="footer_third">
                     <h1 style="color:#24c1d6;">Contact Us</h1>
-                        <li>Email: <?php echo $info[0][7] ?></li>
-                        <li>Phone: <?php echo $info[0][6] ?></li>
+                    <li>Email: <?php echo $info[0][7] ?></li>
+                    <li>Phone: <?php echo $info[0][6] ?></li>
                 </div>
                 <a class="gotopbtn" href="#"> <i class="fas fa-arrow-up"></i></a>
             </div>
         </div>
-    
     </footer>
-
 
 </body>
 </html>

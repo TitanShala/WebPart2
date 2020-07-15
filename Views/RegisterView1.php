@@ -12,7 +12,6 @@ if(isset($_POST['RegisterBtn'])){
     $Surname = $_POST['SurnameReg'];
     $count = 0;
     
-
     $Controller = new ManageController(); //Krijimi i kontrollerit, per tja perdorur metoden filterTable()
     $GetUsernamequery = "select * from Account where  Username = '".$Username."'"; //Query per te kontrolluar nese ekziston nje Username i tille
     $Usernameresults = $Controller->filterTable($GetUsernamequery); //Marrja e rezultateve
@@ -66,21 +65,7 @@ if(isset($_POST['RegisterBtn'])){
     include '../WebPages/Login.php';
 }
 
-// if(isset($_POST['RegisterCancel'])){
-    
-//     echo "console.log('Cancel')";
-//     echo 'Cancel' ;
-//     $NameR_Error= '';
-//     $EmailR_Error= '';
-//     $SurnameR_Error= '';
-//     $UsernameR_Error= '';
-//     $PasswordR_Error= '';
-//     $ConfirmPasswordR_Error= '';
-// }
-
 ?>
-
-
 <script>
         var login = document.querySelector('.login-box');
         var register = document.querySelector('.Register-box');

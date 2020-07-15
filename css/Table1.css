@@ -28,7 +28,6 @@
 
         }
         #table-wrapper table * {
-          /* background:rgba(0,136,169,1); */
           color:black;
         }
         #table-wrapper table thead th .text {
@@ -38,15 +37,13 @@
           height:20px;
           width:35%;
           border:1px solid red;
-}
-
+        }
 
         table{
             width:600px;
             max-height:400px;
             font-family:sans-serif;
             border-collapse: collapse; 
-      
         }
 
         .table.sticky th{
@@ -72,7 +69,6 @@
         }
         table th{
           background:  rgba(0,136,169,1);;
-            /* background: #888888; */
             color: #ffffff;
         }
 
@@ -83,12 +79,9 @@
             width:15%;
         }
         .SearchFormInputContainer{
-            	;
-
             display:flex;
             flex-direction:row;
            height:30px;
-          
         }
 
         .SearchForm{
@@ -98,10 +91,9 @@
 	        background-repeat: no-repeat;
 	        background-size: cover;
 	        padding: 60px;
-            display:flex; 
-            flex-direction:column;
-            text-align:center;
-            //margin:100px 200px;
+          display:flex; 
+          flex-direction:column;
+          text-align:center;      
         }
         
         .team-section{

@@ -21,23 +21,22 @@ function LoadTableDepartment(){
         $search_result = $this->filterTable($query);
     }
     return $search_result;
+}
+
+function LoadTableDoctor(){
+    if(isset($_POST['SearchSubmit1']) ){
+        $SearchInput = $_POST['SearchInput1'];
+        $query = "select * from DoctorManage where Stafi like '%".$SearchInput."%' OR Doctor like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%' OR Data like'%".$SearchInput."%'"; 
+        $search_result = $this->filterTable($query);
+        }
+    else{
+        $query="Select * FROM DoctorManage";
+        $search_result = $this->filterTable($query);
     }
+    return $search_result;
+}
 
-    function LoadTableDoctor(){
-        if(isset($_POST['SearchSubmit1']) ){
-            $SearchInput = $_POST['SearchInput1'];
-            $query = "select * from DoctorManage where Stafi like '%".$SearchInput."%' OR Doctor like '%".$SearchInput."%' OR Aktiviteti like '%".$SearchInput."%' OR Data like'%".$SearchInput."%'"; 
-            $search_result = $this->filterTable($query);
-        }
-        else{
-            $query="Select * FROM DoctorManage";
-            $search_result = $this->filterTable($query);
-        }
-        return $search_result;
-        }
-
-function filterTable($query){
-    
+function filterTable($query){    
     $getresults = $this->connection->prepare($query);
     $getresults->execute();
     $results = $getresults->fetchAll(PDO::FETCH_BOTH);
@@ -65,6 +64,6 @@ public function InsertDoctorManage($Admin, $Doctor, $Activity, $Date){
 }
 public function isInteger($input){
     return(ctype_digit(strval($input)));
-}
+    }
 }
 ?>

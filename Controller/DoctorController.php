@@ -14,21 +14,19 @@ class DoctorController{
 	}
 
 
-	function LoadTable(){
-    if(isset($_POST['SearchSubmit']) ){
-        $SearchInput = $_POST['SearchInput'];
-        $query = "select * from Doktori where Id like '%".$SearchInput."%' OR Emri like '%".$SearchInput."%' OR Mbiemri like '%".$SearchInput."%' OR Specializimi like '%".$SearchInput."%' or Pervoja like '%".$SearchInput."%' or Stafi like'%".$SearchInput."%' ";
-        $search_result = $this->filterTable($query);
-    }
-    else{
-        $query="Select * FROM Doktori";
-        $search_result = $this->filterTable($query);
-    }
-	return $search_result;
-	}
+    function LoadTable(){
+        if(isset($_POST['SearchSubmit']) ){
+            $SearchInput = $_POST['SearchInput'];
+            $query = "select * from Doktori where Id like '%".$SearchInput."%' OR Emri like '%".$SearchInput."%' OR Mbiemri like '%".$SearchInput."%' OR Specializimi like '%".$SearchInput."%' or Pervoja like '%".$SearchInput."%' or Stafi like'%".$SearchInput."%' ";
+            $search_result = $this->filterTable($query);
+        }
+        else{
+            $query="Select * FROM Doktori";
+            $search_result = $this->filterTable($query);
+        }
+        return $search_result;
+        }
 	
-
-
     function filterTable($query){
         $obj = new DBConnection();
         $connection= $obj->getConnection();
@@ -45,9 +43,9 @@ class DoctorController{
 
     public function isInteger($input){
 		return(ctype_digit(strval($input)));
-		}
-
 	}
 
-	?>
+}
+
+?>
 

@@ -19,21 +19,18 @@ public function InsertContact($Date, $Name, $Email, $Message){
    $statement->execute();
 }
 
-
-   function LoadTable(){
-      if(isset($_POST['SearchSubmit']) ){
-          $SearchInput = $_POST['SearchInput'];
-          $query = "select * from Contacts where Id like '%".$SearchInput."%' OR Data like '%".$SearchInput."%' OR Name like '%".$SearchInput."%' OR Email like '%".$SearchInput."%'"; 
-          $search_result = $this->filterTable($query);
-      }
-      else{
-   $query="Select * FROM Contacts order by Id desc";
-   $search_result = $this->filterTable($query);
-      }
-    return $search_result;
+function LoadTable(){
+   if(isset($_POST['SearchSubmit']) ){
+      $SearchInput = $_POST['SearchInput'];
+       $query = "select * from Contacts where Id like '%".$SearchInput."%' OR Data like '%".$SearchInput."%' OR Name like '%".$SearchInput."%' OR Email like '%".$SearchInput."%'"; 
+       $search_result = $this->filterTable($query);
+   }
+   else{
+      $query="Select * FROM Contacts order by Id desc";
+      $search_result = $this->filterTable($query);
+   }
+   return $search_result;
 }
-
-
 
 function filterTable($query){
    $obj = new DBConnection();
@@ -43,6 +40,6 @@ function filterTable($query){
    $results = $getresults->fetchAll(PDO::FETCH_BOTH);
    return $results ;        
 }
-}
 
+}
 ?>

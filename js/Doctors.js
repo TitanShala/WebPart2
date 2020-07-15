@@ -4,18 +4,15 @@ const NameR = document.getElementById('NameR');
 const SurnameR = document.getElementById('SurnameR');
 const ExperienceR = document.getElementById('ExperienceR');
 const SpecializationR = document.getElementById('SpecializationR');
-const formR = document.getElementById('formR');
 const errorElement = document.getElementById('error');
 
 const errorElementE = document.getElementById('errorE');
-const formE = document.getElementById('formE');
 const IdE = document.getElementById('IdE');
 const NameE = document.getElementById('NameE');
 const SurnameE = document.getElementById('SurnameE');
 const ExperienceE = document.getElementById('ExperienceE');
 const SpecializationE = document.getElementById('SpecializationE');
 
-const formD = document.getElementById('formD');
 const errorElementD = document.getElementById('errorD');
 const IdD = document.getElementById('IdD');
 
@@ -25,7 +22,6 @@ formR.addEventListener('submit', (e) =>{
 	var NamePattern = /^[A-Za-z. ]{3,30}$/ ;
 	var ExperiencePattern = /^[0-9]{1,2}$/;
 	
-
 	if(!NamePattern.test(NameR.value)){
 		messages.push('Name should be string and length should be between 3 to 20 characters');
 	}
@@ -37,9 +33,7 @@ formR.addEventListener('submit', (e) =>{
 	}
 	 else if(!ExperiencePattern.test(ExperienceR.value)){
 		messages.push('Experience should be typed as integer and can not contatin more than 2 numbers');
-
 	}
-
 
     if(messages.length > 0){
 		
